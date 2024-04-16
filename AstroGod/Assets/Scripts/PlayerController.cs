@@ -10,10 +10,16 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameObject bulletPrefab;
 
     [SerializeField] private float moveSpeed = 10f;
-    [SerializeField] private float bulletForce = 20f;
+    [SerializeField] private float bulletForce = 25f;
+    [SerializeField] private float dashSpeed = 30f;
+    [SerializeField] private float dashDuration = 0.2f;
+    [SerializeField] private float dashCooldown = 0.75f;
 
     public Vector2 moveDir;
     private Vector2 aimDir;
+    private bool isDashing = false;
+    private bool canDash = true;
+
 
     void Update()
     {
@@ -27,6 +33,11 @@ public class PlayerController : MonoBehaviour
         float angle = Mathf.Atan2(aimDir.y, aimDir.x) * Mathf.Rad2Deg;
         centre.eulerAngles = new Vector3(0, 0, angle);
         
+        if (canDash && Input.GetKeyDown(KeyCode.Space))
+        {
+            StartCoroutine(Dash());
+        }
+
         if (Input.GetButtonDown("Fire1"))
         {
             Fire();
@@ -35,14 +46,29 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rb.MovePosition(rb.position + moveDir * moveSpeed * Time.deltaTime);
+        if (!isDashing)
+        {
+            rb.MovePosition(rb.position + moveDir * moveSpeed * Time.deltaTime);
+        }
         
     }
 
-    void Fire()
+    private void Fire()
     {
         var bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
         var bulletRb = bullet.GetComponent<Rigidbody2D>();
         bulletRb.AddForce(bulletForce * firePoint.right, ForceMode2D.Impulse);
+    }
+
+    private IEnumerator Dash()
+    {
+        isDashing = true;
+        canDash = false;
+        rb.velocity = moveDir * dashSpeed;
+        yield return new WaitForSeconds(dashDuration);
+        isDashing = false;
+
+        yield return new WaitForSeconds(dashCooldown);
+        canDash = true;
     }
 }
