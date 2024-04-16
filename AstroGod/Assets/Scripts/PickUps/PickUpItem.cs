@@ -1,4 +1,3 @@
-using TMPro;
 using UnityEngine;
 
 public class PickUpItem : MonoBehaviour
@@ -30,5 +29,11 @@ public class PickUpItem : MonoBehaviour
 
         // Show pick-up prompt if this item is being targeted by the player
         pickUpPrompt.SetActive(targetingSystem.Target == this);
+    }
+
+    public void OnPickUp()
+    {
+        targetingSystem.RemoveItem(this);
+        Destroy(gameObject);
     }
 }

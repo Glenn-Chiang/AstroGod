@@ -4,15 +4,14 @@ using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
 
-[Serializable, Inspectable]
-public class WeaponManager
+public class WeaponManager : MonoBehaviour
 {
     [SerializeField] private List<Weapon> weapons;
     [SerializeField] public Weapon EquippedWeapon { get; private set; }
-
-    public WeaponManager()
+    
+    private void Start()
     {
-        EquippedWeapon = weapons[0];
+            
     }
 
     public void AddWeapon(Weapon weapon)
@@ -20,7 +19,7 @@ public class WeaponManager
         weapons.Add(weapon);
     }
 
-    public void DropWeapon(int weaponNumber)
+    public void RemoveWeapon(int weaponNumber)
     {
         weapons.RemoveAt(weaponNumber);
     }

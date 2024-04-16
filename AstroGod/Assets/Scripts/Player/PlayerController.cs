@@ -18,8 +18,8 @@ public class PlayerController : MonoBehaviour
     private bool isDashing = false;
     private bool canDash = true;
 
-    
-    //[SerializeField] private WeaponManager weaponManager = new();
+    [SerializeField] private PickUpTargeting pickUpTargeting;
+    [SerializeField] private WeaponManager weaponManager;
 
     private void Start()
     {
@@ -46,6 +46,11 @@ public class PlayerController : MonoBehaviour
         if (Input.GetButtonDown("Fire1"))
         {
             Fire();
+        }
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            PickUp();
         }
     }
 
@@ -74,5 +79,18 @@ public class PlayerController : MonoBehaviour
 
         yield return new WaitForSeconds(dashCooldown);
         canDash = true;
+    }
+
+    private void PickUp()
+    {
+        var target = pickUpTargeting.Target;
+        if (target == null) return;
+
+        Debug.Log($"Picked up {target.name}");
+        if (target.GetComponent<Weapon>() != null)
+        {
+            weaponManager.AddWeapon(target.gameObject.GetComponent<Weapon>());
+            target.OnPickUp();
+        }
     }
 }
