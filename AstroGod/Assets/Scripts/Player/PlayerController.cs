@@ -6,11 +6,9 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Transform centre;
-    [SerializeField] private Transform firePoint;
-    [SerializeField] private GameObject bulletPrefab;
+    [SerializeField] private Transform weaponSlot;
 
     [SerializeField] private float moveSpeed = 10f;
-    [SerializeField] private float bulletForce = 25f;
     [SerializeField] private float dashSpeed = 30f;
     [SerializeField] private float dashDuration = 0.2f;
     [SerializeField] private float dashCooldown = 0.75f;
@@ -20,8 +18,15 @@ public class PlayerController : MonoBehaviour
     private bool isDashing = false;
     private bool canDash = true;
 
+    
+    //[SerializeField] private WeaponManager weaponManager = new();
 
-    void Update()
+    private void Start()
+    {
+        //Instantiate(weaponManager.EquippedWeapon, weaponSlot.position, weaponSlot.rotation);
+    }
+
+    private void Update()
     {
         moveDir.x = Input.GetAxisRaw("Horizontal");
         moveDir.y = Input.GetAxisRaw("Vertical");
@@ -55,9 +60,8 @@ public class PlayerController : MonoBehaviour
 
     private void Fire()
     {
-        var bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
-        var bulletRb = bullet.GetComponent<Rigidbody2D>();
-        bulletRb.AddForce(bulletForce * firePoint.right, ForceMode2D.Impulse);
+        //weaponManager.EquippedWeapon.Fire();
+        
     }
 
     private IEnumerator Dash()
