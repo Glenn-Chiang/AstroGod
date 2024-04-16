@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float moveSpeed = 10f;
     [SerializeField] private float bulletForce = 20f;
 
-    private Vector2 moveDir;
+    public Vector2 moveDir;
     private Vector2 aimDir;
 
     void Update()
@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
         moveDir.y = Input.GetAxisRaw("Vertical");
         moveDir.Normalize();
 
-        // Rotate towards cursor
+        // Rotate firePoint towards cursor
         var cursorPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         aimDir = (cursorPos - transform.position).normalized;
         float angle = Mathf.Atan2(aimDir.y, aimDir.x) * Mathf.Rad2Deg;
