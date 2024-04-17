@@ -4,24 +4,39 @@ using UnityEngine;
 
 public class WeaponManager : MonoBehaviour
 {
+    [SerializeField] private Transform weaponSlot;
     [SerializeField] private List<Weapon> weapons;
-    public Weapon EquippedWeapon { get; set; }
-    
+    [SerializeReference] public Weapon equippedWeapon;
 
-    public void AddWeapon(Weapon weapon)
+    private void Start()
     {
+    }
+
+    public void AddWeapon(Weapon weaponPrefab)
+    {
+        var weapon = Instantiate(weaponPrefab, weaponSlot);
+        weapon.gameObject.SetActive(false);
         weapons.Add(weapon);
-        EquippedWeapon = weapon; // Equip the weapon that was just added
+
+        EquipWeapon(weapons.Count - 1); // Equip the weapon that was just added
     }
 
     public void RemoveWeapon(Weapon weapon)
     {
         weapons.Remove(weapon);
-        EquippedWeapon = null;
+        equippedWeapon = null;
     }
 
     public void EquipWeapon(int weaponNumber)
     {
-        EquippedWeapon = weapons[weaponNumber];
+        // Unequip currently equipped weapon
+        if (equippedWeapon != null)
+        {
+            equippedWeapon.gameObject.SetActive(false);
+        }
+
+        // Equip selected weapon
+        equippedWeapon = weapons[weaponNumber];
+        equippedWeapon.gameObject.SetActive(true);
     }
 }

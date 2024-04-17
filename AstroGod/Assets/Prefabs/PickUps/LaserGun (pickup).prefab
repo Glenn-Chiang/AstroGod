@@ -10,8 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6935742413682026171}
   - component: {fileID: 6086345783507041912}
-  - component: {fileID: 8880263497399854951}
-  - component: {fileID: 7687973482784807789}
+  - component: {fileID: 8878047201259405263}
   m_Layer: 0
   m_Name: LaserGun (pickup)
   m_TagString: Untagged
@@ -28,11 +27,11 @@ Transform:
   m_GameObject: {fileID: 9140609486032140464}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.01, y: -1.14, z: -0.040448368}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2610216983508859612}
+  - {fileID: 3103898448566914334}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &6086345783507041912
@@ -87,7 +86,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &8880263497399854951
+--- !u!114 &8878047201259405263
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -96,27 +95,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 9140609486032140464}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff8fa62fa37873a4a958a27995608e54, type: 3}
+  m_Script: {fileID: 11500000, guid: 1aae63bd7485e304a89b6987b02d0c45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickUpPrompt: {fileID: 8925099607535689002}
   distanceFromPlayer: 0
---- !u!114 &7687973482784807789
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9140609486032140464}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 92b50b1d1960616499a8481308ad3b45, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  firePoint: {fileID: 0}
-  bulletPrefab: {fileID: 0}
-  fireForce: 25
---- !u!1001 &2567250946372786835
+  interactPrompt: {fileID: 8428006746625125096}
+  weapon: {fileID: -6280227975667907284, guid: 94dfe2d5d73583845a86fb792e4fa0ad, type: 3}
+--- !u!1001 &3209567451257695569
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -206,7 +191,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6376226173515548601, guid: fe3347a1663aaf94a887584195de3006, type: 3}
       propertyPath: m_Name
-      value: PickUpPrompt
+      value: InteractPrompt
       objectReference: {fileID: 0}
     - target: {fileID: 6376226173515548601, guid: fe3347a1663aaf94a887584195de3006, type: 3}
       propertyPath: m_IsActive
@@ -217,13 +202,13 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fe3347a1663aaf94a887584195de3006, type: 3}
---- !u!224 &2610216983508859612 stripped
+--- !u!224 &3103898448566914334 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 547732326405726287, guid: fe3347a1663aaf94a887584195de3006, type: 3}
-  m_PrefabInstance: {fileID: 2567250946372786835}
+  m_PrefabInstance: {fileID: 3209567451257695569}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &8925099607535689002 stripped
+--- !u!1 &8428006746625125096 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6376226173515548601, guid: fe3347a1663aaf94a887584195de3006, type: 3}
-  m_PrefabInstance: {fileID: 2567250946372786835}
+  m_PrefabInstance: {fileID: 3209567451257695569}
   m_PrefabAsset: {fileID: 0}

@@ -9,7 +9,7 @@ public class WeaponPickUp : Interactable
 
     private void Start()
     {
-        weaponManager = player.GetComponent<WeaponManager>();
+        weaponManager = player.GetComponentInChildren<WeaponManager>();
     }
 
     // Called when picked up by the player

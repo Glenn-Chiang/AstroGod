@@ -5,7 +5,6 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D rb;
-    [SerializeField] private Transform centre;
     [SerializeField] private Transform weaponSlot;
 
     [SerializeField] private float moveSpeed = 10f;
@@ -23,7 +22,7 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        //Instantiate(weaponManager.EquippedWeapon, weaponSlot.position, weaponSlot.rotation);
+        
     }
 
     private void Update()
@@ -36,7 +35,7 @@ public class PlayerController : MonoBehaviour
         var cursorPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         aimDir = (cursorPos - transform.position).normalized;
         float angle = Mathf.Atan2(aimDir.y, aimDir.x) * Mathf.Rad2Deg;
-        centre.eulerAngles = new Vector3(0, 0, angle);
+        weaponSlot.eulerAngles = new Vector3(0, 0, angle);
         
         if (canDash && Input.GetKeyDown(KeyCode.Space))
         {
@@ -96,11 +95,11 @@ public class PlayerController : MonoBehaviour
 
     private void DropWeapon()
     {
-        var weaponToDrop = weaponManager.EquippedWeapon;
+        var weaponToDrop = weaponManager.equippedWeapon;
         if (weaponToDrop == null) return;
 
         // Spawn the corresponding pickup item
-        var weaponPickUp = Instantiate(weaponManager.EquippedWeapon.PickUp, transform.position, transform.rotation);
+        var weaponPickUp = Instantiate(weaponManager.equippedWeapon.PickUp, transform.position, transform.rotation);
         weaponManager.RemoveWeapon(weaponToDrop);
 
         Debug.Log($"Dropped {weaponToDrop.name}");
