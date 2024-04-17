@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
     private bool isDashing = false;
     private bool canDash = true;
 
-    [SerializeField] private PickUpTargeting pickUpTargeting;
+    [SerializeField] private InteractSystem interactSystem;
     [SerializeField] private WeaponManager weaponManager;
 
     private void Start()
@@ -50,7 +50,12 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.E))
         {
-            PickUp();
+            Interact();
+        }
+
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            DropWeapon();
         }
     }
 
@@ -81,16 +86,24 @@ public class PlayerController : MonoBehaviour
         canDash = true;
     }
 
-    private void PickUp()
+    private void Interact()
     {
-        var target = pickUpTargeting.Target;
-        if (target == null) return;
+        Interactable obj = interactSystem.Target;
+        if (obj == null) return;
 
-        Debug.Log($"Picked up {target.name}");
-        if (target.GetComponent<Weapon>() != null)
-        {
-            weaponManager.AddWeapon(target.gameObject.GetComponent<Weapon>());
-            target.OnPickUp();
-        }
+        obj.OnInteract();
+    }
+
+    private void DropWeapon()
+    {
+        var weaponToDrop = weaponManager.EquippedWeapon;
+        if (weaponToDrop == null) return;
+
+        // Spawn the corresponding pickup item
+        var weaponPickUp = Instantiate(weaponManager.EquippedWeapon.PickUp, transform.position, transform.rotation);
+        weaponManager.RemoveWeapon(weaponToDrop);
+
+        Debug.Log($"Dropped {weaponToDrop.name}");
+
     }
 }

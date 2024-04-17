@@ -1,27 +1,23 @@
 using System;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class WeaponManager : MonoBehaviour
 {
     [SerializeField] private List<Weapon> weapons;
-    [SerializeField] public Weapon EquippedWeapon { get; private set; }
+    public Weapon EquippedWeapon { get; set; }
     
-    private void Start()
-    {
-            
-    }
 
     public void AddWeapon(Weapon weapon)
     {
         weapons.Add(weapon);
+        EquippedWeapon = weapon; // Equip the weapon that was just added
     }
 
-    public void RemoveWeapon(int weaponNumber)
+    public void RemoveWeapon(Weapon weapon)
     {
-        weapons.RemoveAt(weaponNumber);
+        weapons.Remove(weapon);
+        EquippedWeapon = null;
     }
 
     public void EquipWeapon(int weaponNumber)

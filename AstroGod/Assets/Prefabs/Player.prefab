@@ -45,8 +45,8 @@ GameObject:
   - component: {fileID: 6778573308404738826}
   - component: {fileID: 1735413536398694469}
   - component: {fileID: 3101566142831981682}
-  - component: {fileID: 6151748976874730073}
   - component: {fileID: 8560832820698924805}
+  - component: {fileID: -3217670679200406727}
   m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
@@ -142,7 +142,7 @@ MonoBehaviour:
   dashDuration: 0.2
   dashCooldown: 0.75
   moveDir: {x: 0, y: 0}
-  pickUpTargeting: {fileID: 6151748976874730073}
+  interactSystem: {fileID: -3217670679200406727}
   weaponManager: {fileID: 8560832820698924805}
 --- !u!50 &6778573308404738826
 Rigidbody2D:
@@ -220,19 +220,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 111411849786954049}
   playerController: {fileID: 7300776315837021049}
---- !u!114 &6151748976874730073
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3892431038457549735}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d99b3ff084b20194f8c62d9e642ca94a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  range: 2.5
 --- !u!114 &8560832820698924805
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -246,6 +233,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weapons: []
+--- !u!114 &-3217670679200406727
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3892431038457549735}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d99b3ff084b20194f8c62d9e642ca94a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  range: 2.5
 --- !u!1 &4083453597905947850
 GameObject:
   m_ObjectHideFlags: 0
