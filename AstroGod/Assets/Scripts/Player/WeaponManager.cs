@@ -7,18 +7,26 @@ public class WeaponManager : MonoBehaviour
     [SerializeField] private Transform weaponSlot;
     [SerializeField] private List<Weapon> weapons;
     [SerializeReference] public Weapon equippedWeapon;
+    private int maxWeapons = 4; // Max number of weapons the player can add
 
     private void Start()
     {
     }
 
-    public void AddWeapon(Weapon weaponPrefab)
+    public void AddWeapon(Weapon weaponPrefab, out bool ableToAdd)
     {
+        if (weapons.Count == maxWeapons)
+        {
+            ableToAdd = false;
+            return;
+        }
+
         var weapon = Instantiate(weaponPrefab, weaponSlot);
         weapon.gameObject.SetActive(false);
         weapons.Add(weapon);
 
         EquipWeapon(weapons.Count - 1); // Equip the weapon that was just added
+        ableToAdd = true;
     }
 
     public void RemoveWeapon(Weapon weapon)

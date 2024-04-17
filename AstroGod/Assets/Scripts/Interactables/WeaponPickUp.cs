@@ -15,10 +15,11 @@ public class WeaponPickUp : Interactable
     // Called when picked up by the player
     public override void OnInteract()
     {
-        // Stop targeting this pickup after it is already picked up
-        targetingSystem.RemoveItem(this);
-        Debug.Log($"Picked up {this.name}");
-        weaponManager.AddWeapon(weapon);
-        Destroy(gameObject);
+        weaponManager.AddWeapon(weapon, out bool ableToAdd);
+        if (ableToAdd)
+        {
+            targetingSystem.RemoveItem(this);
+            Destroy(gameObject);
+        }
     }
 }
