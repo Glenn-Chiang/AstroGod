@@ -5,13 +5,10 @@ using UnityEngine;
 public class WeaponManager : MonoBehaviour
 {
     [SerializeField] private Transform weaponSlot;
-    [SerializeField] private List<Weapon> weapons;
-    [SerializeReference] public Weapon equippedWeapon;
-    private int maxWeapons = 4; // Max number of weapons the player can add
 
-    private void Start()
-    {
-    }
+    private int maxWeapons = 4; // Max number of weapons the player can add
+    [SerializeField] private List<Weapon> weapons;
+    public Weapon equippedWeapon;
 
     public void AddWeapon(Weapon weaponPrefab, out bool ableToAdd)
     {
@@ -29,16 +26,10 @@ public class WeaponManager : MonoBehaviour
         ableToAdd = true;
     }
 
-    public void RemoveWeapon(Weapon weapon)
-    {
-        weapons.Remove(weapon);
-        equippedWeapon = null;
-    }
-
-    public void EquipWeapon(int weaponIndex)
+    public void EquipWeapon(int index)
     {
         // If invalid index is entered, don't do anything
-        if (weaponIndex < 0 || weaponIndex > weapons.Count - 1)
+        if (index < 0 || index > weapons.Count - 1)
         {
             return;
         }
@@ -50,7 +41,28 @@ public class WeaponManager : MonoBehaviour
         }
 
         // Equip selected weapon
-        equippedWeapon = weapons[weaponIndex];
+        equippedWeapon = weapons[index];        
         equippedWeapon.gameObject.SetActive(true);
+    }
+    
+    public void DropWeapon()
+    {
+        if (equippedWeapon == null) return;
+
+        // Spawn the corresponding pickup item
+        var weaponPickUp = Instantiate(equippedWeapon.PickUp, transform.position, transform.rotation);
+        //weaponPickUp.weapon = equippedWeapon.GetComponent<Weapon>();
+        
+        Destroy(equippedWeapon.gameObject);
+        
+        weapons.Remove(equippedWeapon);
+        equippedWeapon = null;
+
+        // Reset EquippedWeapon to the first weapon in list, if any
+        if (weapons.Count > 0)
+        {
+            equippedWeapon = weapons[0];
+            equippedWeapon.gameObject.SetActive(true);
+        }
     }
 }

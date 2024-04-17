@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class WeaponPickUp : Interactable
 {
-    // The actual weapon prefab corresponding to this pickup
-    [SerializeReference] private Weapon weapon;
+    // The weapon prefab corresponding to this pickup
+    [SerializeReference] public Weapon weapon;
 
     private WeaponManager weaponManager;
 

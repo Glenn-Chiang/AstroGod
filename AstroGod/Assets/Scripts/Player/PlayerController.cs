@@ -56,12 +56,12 @@ public class PlayerController : MonoBehaviour
         int? numberInput = GetNumberInput();
         if (numberInput != null)
         {
-            SelectWeapon((int)numberInput - 1);
+            weaponManager.EquipWeapon((int)numberInput - 1);
         }
 
         if (Input.GetKeyDown(KeyCode.G))
         {
-            DropWeapon();
+            weaponManager.DropWeapon();
         }
     }
 
@@ -72,11 +72,6 @@ public class PlayerController : MonoBehaviour
             rb.MovePosition(rb.position + moveDir * moveSpeed * Time.deltaTime);
         }
         
-    }
-
-    private void SelectWeapon(int weaponIndex)
-    {
-        weaponManager.EquipWeapon(weaponIndex);
     }
 
     private void Fire()
@@ -116,18 +111,5 @@ public class PlayerController : MonoBehaviour
         if (obj == null) return;
 
         obj.OnInteract();
-    }
-
-    private void DropWeapon()
-    {
-        var weaponToDrop = weaponManager.equippedWeapon;
-        if (weaponToDrop == null) return;
-
-        // Spawn the corresponding pickup item
-        var weaponPickUp = Instantiate(weaponManager.equippedWeapon.PickUp, transform.position, transform.rotation);
-        weaponManager.RemoveWeapon(weaponToDrop);
-
-        Debug.Log($"Dropped {weaponToDrop.name}");
-
     }
 }
