@@ -50,8 +50,8 @@ public class WeaponManager : MonoBehaviour
         if (equippedWeapon == null) return;
 
         // Spawn the corresponding pickup item
-        var weaponPickUp = Instantiate(equippedWeapon.PickUp, transform.position, transform.rotation);
-        //weaponPickUp.weapon = equippedWeapon.GetComponent<Weapon>();
+        WeaponPickUp weaponPickUp = Instantiate(equippedWeapon.PickUp, transform.position, transform.rotation);
+        //weaponPickUp.weapon = equippedWeapon.;
         
         Destroy(equippedWeapon.gameObject);
         
