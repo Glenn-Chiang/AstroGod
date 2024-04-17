@@ -123,20 +123,15 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!4 &81566924 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5405285971975847010, guid: ced016773ce82184ba0784d20d2c76b0, type: 3}
-  m_PrefabInstance: {fileID: 6048591906148942364}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &466255061 stripped
+--- !u!114 &466255062 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: -3217670679200406727, guid: ced016773ce82184ba0784d20d2c76b0, type: 3}
+  m_CorrespondingSourceObject: {fileID: 5935490014635061898, guid: ced016773ce82184ba0784d20d2c76b0, type: 3}
   m_PrefabInstance: {fileID: 6048591906148942364}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d99b3ff084b20194f8c62d9e642ca94a, type: 3}
+  m_Script: {fileID: 11500000, guid: 55dc53c0232392c4981cb38fec4f0ab5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &487166991
@@ -660,61 +655,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 111411849786954049, guid: ced016773ce82184ba0784d20d2c76b0, type: 3}
-      propertyPath: m_SortingOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 290311604899229331, guid: ced016773ce82184ba0784d20d2c76b0, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 1.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 290311604899229331, guid: ced016773ce82184ba0784d20d2c76b0, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 290311604899229331, guid: ced016773ce82184ba0784d20d2c76b0, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 290311604899229331, guid: ced016773ce82184ba0784d20d2c76b0, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 290311604899229331, guid: ced016773ce82184ba0784d20d2c76b0, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 290311604899229331, guid: ced016773ce82184ba0784d20d2c76b0, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3892431038457549735, guid: ced016773ce82184ba0784d20d2c76b0, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 3892431038457549735, guid: ced016773ce82184ba0784d20d2c76b0, type: 3}
-      propertyPath: m_TagString
-      value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 5311368672685133351, guid: ced016773ce82184ba0784d20d2c76b0, type: 3}
-      propertyPath: weaponSlot
-      value: 
-      objectReference: {fileID: 81566924}
-    - target: {fileID: 5405285971975847010, guid: ced016773ce82184ba0784d20d2c76b0, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 6557674993341676727, guid: ced016773ce82184ba0784d20d2c76b0, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6557674993341676727, guid: ced016773ce82184ba0784d20d2c76b0, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6557674993341676727, guid: ced016773ce82184ba0784d20d2c76b0, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6557674993341676727, guid: ced016773ce82184ba0784d20d2c76b0, type: 3}
       propertyPath: m_LocalPosition.x
@@ -756,37 +699,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6557674993341676727, guid: ced016773ce82184ba0784d20d2c76b0, type: 3}
-      propertyPath: m_ConstrainProportionsScale
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7300776315837021049, guid: ced016773ce82184ba0784d20d2c76b0, type: 3}
-      propertyPath: dashSpeed
-      value: 25
-      objectReference: {fileID: 0}
     - target: {fileID: 7300776315837021049, guid: ced016773ce82184ba0784d20d2c76b0, type: 3}
       propertyPath: weaponManager
       value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 7300776315837021049, guid: ced016773ce82184ba0784d20d2c76b0, type: 3}
-      propertyPath: interactSystem
-      value: 
-      objectReference: {fileID: 466255061}
-    - target: {fileID: 8560832820698924805, guid: ced016773ce82184ba0784d20d2c76b0, type: 3}
-      propertyPath: equippedWeapon
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 8560832820698924805, guid: ced016773ce82184ba0784d20d2c76b0, type: 3}
-      propertyPath: weapons.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8560832820698924805, guid: ced016773ce82184ba0784d20d2c76b0, type: 3}
-      propertyPath: weapons.Array.data[0]
-      value: 
-      objectReference: {fileID: 82230987738131165, guid: 4d8db9f417fe57e439658a216418aec8, type: 3}
-    m_RemovedComponents:
-    - {fileID: 4318779573522507343, guid: ced016773ce82184ba0784d20d2c76b0, type: 3}
-    - {fileID: 8560832820698924805, guid: ced016773ce82184ba0784d20d2c76b0, type: 3}
+      objectReference: {fileID: 466255062}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

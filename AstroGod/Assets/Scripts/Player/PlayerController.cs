@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -52,6 +53,12 @@ public class PlayerController : MonoBehaviour
             Interact();
         }
 
+        int? numberInput = GetNumberInput();
+        if (numberInput != null)
+        {
+            SelectWeapon((int)numberInput - 1);
+        }
+
         if (Input.GetKeyDown(KeyCode.G))
         {
             DropWeapon();
@@ -65,6 +72,11 @@ public class PlayerController : MonoBehaviour
             rb.MovePosition(rb.position + moveDir * moveSpeed * Time.deltaTime);
         }
         
+    }
+
+    private void SelectWeapon(int weaponIndex)
+    {
+        weaponManager.EquipWeapon(weaponIndex);
     }
 
     private void Fire()
@@ -83,6 +95,19 @@ public class PlayerController : MonoBehaviour
 
         yield return new WaitForSeconds(dashCooldown);
         canDash = true;
+    }
+
+    private int? GetNumberInput()
+    {
+        KeyCode[] numberKeys = { KeyCode.Alpha1, KeyCode.Alpha2, KeyCode.Alpha3, KeyCode.Alpha4, KeyCode.Alpha5, KeyCode.Alpha6, KeyCode.Alpha7, KeyCode.Alpha8, KeyCode.Alpha9 };
+        for (int i = 0; i < numberKeys.Length; i++)
+        {
+            if (Input.GetKeyDown(numberKeys[i]))
+            {
+                return i + 1;
+            }
+        }
+        return null;
     }
 
     private void Interact()

@@ -27,8 +27,14 @@ public class WeaponManager : MonoBehaviour
         equippedWeapon = null;
     }
 
-    public void EquipWeapon(int weaponNumber)
+    public void EquipWeapon(int weaponIndex)
     {
+        // If invalid index is entered, don't do anything
+        if (weaponIndex < 0 || weaponIndex > weapons.Count - 1)
+        {
+            return;
+        }
+
         // Unequip currently equipped weapon
         if (equippedWeapon != null)
         {
@@ -36,7 +42,7 @@ public class WeaponManager : MonoBehaviour
         }
 
         // Equip selected weapon
-        equippedWeapon = weapons[weaponNumber];
+        equippedWeapon = weapons[weaponIndex];
         equippedWeapon.gameObject.SetActive(true);
     }
 }
