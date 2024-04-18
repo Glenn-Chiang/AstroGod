@@ -7,6 +7,8 @@ public abstract class ItemPickUp : Interactable
 
     public override void OnInteract()
     {
-        Debug.Log($"Interacting with {this.name}");
+        PickUp();
     }
+
+    protected abstract void PickUp();
 }

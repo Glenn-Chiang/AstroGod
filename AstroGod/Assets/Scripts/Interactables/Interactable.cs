@@ -2,11 +2,13 @@ using UnityEngine;
 
 public abstract class Interactable : MonoBehaviour
 {
-    private PlayerInteraction interactSystem;
+    protected PlayerController Player { get; private set; }
+    private PlayerInteraction InteractSystem { get; set; }
 
     private void Start()
     {
-        interactSystem = PlayerController.Instance.InteractSystem;
+        Player = PlayerController.Instance;
+        InteractSystem = Player.InteractSystem;
     }
 
     private void OnTriggerEnter2D(Collider2D collider)
@@ -14,7 +16,7 @@ public abstract class Interactable : MonoBehaviour
         // If player enters collision zone
         if (collider.gameObject == PlayerController.Instance.gameObject)
         {
-            interactSystem.AddObject(this);
+            InteractSystem.AddObject(this);
         }
     }
 
@@ -23,7 +25,7 @@ public abstract class Interactable : MonoBehaviour
         // If player exits collision zone
         if (collider.gameObject == PlayerController.Instance.gameObject)
         {
-            interactSystem.RemoveObject(this);
+            InteractSystem.RemoveObject(this);
         }
     }
     public abstract void OnInteract();

@@ -37,12 +37,4 @@ public class PlayerController : MonoBehaviour
         }
         return null;
     }
-
-    private void Interact()
-    {
-        Interactable obj = InteractSystem.Target;
-        if (obj == null) return;
-
-        obj.OnInteract();
-    }
 }
