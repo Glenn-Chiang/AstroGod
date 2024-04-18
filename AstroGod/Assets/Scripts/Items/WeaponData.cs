@@ -1,3 +1,8 @@
+using System;
+using Unity.VisualScripting;
+using UnityEngine;
+
+[CreateAssetMenu, Inspectable]
 public class WeaponData : ItemData
 {
     // Base values for weapon stats

@@ -1,9 +1,9 @@
-public abstract class ItemInstance<T> where T : ItemData
+public abstract class ItemInstance
 {
-    public T Data { get; protected set; }
+    public ItemData ItemData { get; }
 
-    public ItemInstance(T data)
+    public ItemInstance(ItemData data)
     {
-        Data = data;
+        ItemData = data;
     }
 }

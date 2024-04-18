@@ -1,25 +1,13 @@
-using UnityEngine;
-
-public class WeaponPickUp : Interactable
+public class WeaponPickUp : ItemPickUp
 {
-    // The weapon prefab corresponding to this pickup
-    [SerializeReference] public Weapon weapon;
+    public WeaponData weaponData;
+    public WeaponInstance weaponInstance;
 
-    private WeaponManager weaponManager;
+    public override ItemData ItemData => weaponData;
+    public override ItemInstance ItemInstance { get => weaponInstance; set { weaponInstance = (WeaponInstance)value; } }
 
     private void Start()
     {
-        weaponManager = player.GetComponentInChildren<WeaponManager>();
-    }
-
-    // Called when picked up by the player
-    public override void OnInteract()
-    {
-        weaponManager.AddWeapon(weapon, out bool ableToAdd);
-        if (ableToAdd)
-        {
-            targetingSystem.RemoveItem(this);
-            Destroy(gameObject);
-        }
+        weaponInstance = new(weaponData);
     }
 }

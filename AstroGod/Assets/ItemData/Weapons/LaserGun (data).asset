@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d681b80192b8d648a8f5e8228fe2577, type: 3}
+  m_Name: LaserGun (data)
+  m_EditorClassIdentifier: 
+  itemName: Laser Gun
+  icon: {fileID: -3549380958941290185, guid: ad94658f34ee9e648b3eed4cb99f9eae, type: 3}
+  description: Fires a powerful laser beam that can penetrate enemies.
+  baseFireRate: 1
+  baseDamage: 20
+  ammoCost: 5

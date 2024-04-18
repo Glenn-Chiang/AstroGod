@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d681b80192b8d648a8f5e8228fe2577, type: 3}
+  m_Name: PlasmaGun (data)
+  m_EditorClassIdentifier: 
+  itemName: Plasma Gun
+  icon: {fileID: 2790310067104290721, guid: ac45bb9a2b9b10a42b4c50ccc7f569cd, type: 3}
+  description: Standard-issue weapon. Moderate damage and fire rate.
+  baseFireRate: 0.2
+  baseDamage: 5
+  ammoCost: 1
