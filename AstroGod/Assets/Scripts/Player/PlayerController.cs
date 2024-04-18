@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -6,7 +5,7 @@ public class PlayerController : MonoBehaviour
     public static PlayerController Instance { get; private set; }
 
     public PlayerMovement Movement { get; private set; }
-    public InteractSystem InteractSystem { get; } = new();
+    public PlayerInteraction InteractSystem { get; private set; }
     
     public WeaponInventory WeaponInventory { get; } = new();
     public ArmorInventory ArmorInventory { get; } = new();
@@ -23,6 +22,7 @@ public class PlayerController : MonoBehaviour
         Instance = this;
 
         Movement = GetComponent<PlayerMovement>();
+        InteractSystem = GetComponent<PlayerInteraction>();
     }
 
     private int? GetNumberInput()

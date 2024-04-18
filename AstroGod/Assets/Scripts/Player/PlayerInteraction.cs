@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using UnityEngine;
 
-public class InteractSystem : INotifyPropertyChanged
+public class PlayerInteraction : MonoBehaviour, INotifyPropertyChanged
 {
     // Keep track of interactable objects within range
     private List<Interactable> trackedObjects = new();
@@ -12,14 +12,24 @@ public class InteractSystem : INotifyPropertyChanged
     public event PropertyChangedEventHandler PropertyChanged;
 
     // The object that the player will interact with when the interact key is pressed
-    // This will be the object that is nearest to the player
     public Interactable Target
     {
+        // Target the object that is nearest to the player
         get 
         {
             return trackedObjects.OrderBy(obj => CalculateDistance(obj)).FirstOrDefault();
         }
     }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.E) && Target != null)
+        {
+            Target.OnInteract();
+        }    
+    }
+
+
     protected void OnTargetChange()
     {
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Target)));
@@ -46,6 +56,6 @@ public class InteractSystem : INotifyPropertyChanged
 
     public float CalculateDistance(Interactable obj)
     {
-        return Vector2.Distance(PlayerController.Instance.transform.position, obj.transform.position);
+        return Vector2.Distance(transform.position, obj.transform.position);
     }
 }
