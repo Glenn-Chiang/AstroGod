@@ -8,7 +8,7 @@ public class WeaponPickUp : ItemPickUp
     public override ItemData ItemData => weaponData;
     public override ItemInstance ItemInstance { get => weaponInstance; set { weaponInstance = (WeaponInstance)value; } }
 
-    private void Start()
+    private void Awake()
     {
         weaponInstance = new(weaponData);
     }

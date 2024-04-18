@@ -1,10 +1,10 @@
 using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public static PlayerController Instance { get; private set; }
+
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Transform weaponSlot;
 
@@ -18,11 +18,24 @@ public class PlayerController : MonoBehaviour
     private bool isDashing = false;
     private bool canDash = true;
 
-    [SerializeField] private InteractSystem interactSystem;
-    [SerializeField] private WeaponManager weaponManager;
+    public InteractSystem InteractSystem { get; private set; } // Keeps track of interactable objects within range, and which object is targeted for interaction
+    
+    public WeaponInventory weaponInventory;
+    public ArmorInventory armorInventory;
 
-    private void Start()
+    // Ensure there is only 1 instance of singleton
+    private void Awake()
     {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(this);
+            return;
+        } 
+
+        Instance = this;
+
+        InteractSystem = GetComponent<InteractSystem>();
+
         
     }
 
@@ -54,15 +67,15 @@ public class PlayerController : MonoBehaviour
         }
 
         int? numberInput = GetNumberInput();
-        if (numberInput != null)
-        {
-            weaponManager.EquipWeapon((int)numberInput - 1);
-        }
+        //if (numberInput != null)
+        //{
+        //    weaponManager.EquipWeapon((int)numberInput - 1);
+        //}
 
-        if (Input.GetKeyDown(KeyCode.G))
-        {
-            weaponManager.DropWeapon();
-        }
+        //if (Input.GetKeyDown(KeyCode.G))
+        //{
+        //    weaponManager.DropWeapon();
+        //}
     }
 
     private void FixedUpdate()
@@ -107,7 +120,7 @@ public class PlayerController : MonoBehaviour
 
     private void Interact()
     {
-        Interactable obj = interactSystem.Target;
+        Interactable obj = InteractSystem.Target;
         if (obj == null) return;
 
         obj.OnInteract();
