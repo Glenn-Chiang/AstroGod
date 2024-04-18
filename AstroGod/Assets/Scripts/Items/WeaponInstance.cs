@@ -1,8 +1,8 @@
 public class WeaponInstance : ItemInstance
 {
     public WeaponData WeaponData { get; }
-    private float damage;
-    private float fireRate;
+    public float damage;
+    public float fireRate;
 
     public WeaponInstance(WeaponData data) : base(data)
     {

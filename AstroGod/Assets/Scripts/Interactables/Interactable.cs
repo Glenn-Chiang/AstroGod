@@ -1,37 +1,44 @@
+using System;
+using System.ComponentModel;
 using UnityEngine;
 
 public abstract class Interactable : MonoBehaviour
 {
-    protected GameObject player;
-    protected InteractSystem targetingSystem;
-    public float distanceFromPlayer;
+    private InteractSystem interactSystem;
 
     [SerializeField] private GameObject interactPrompt;
- 
-    private void Awake()
-    {
-        player = GameObject.Find("Player");
-        targetingSystem = player.GetComponent<InteractSystem>();
-    }
 
-    private void Update()
+    private void OnTriggerEnter2D(Collider2D collider)
     {
-        // The interactable object will be detected by the player if within range
-        distanceFromPlayer = targetingSystem.CalculateDistance(this);
-        bool inRange = distanceFromPlayer <= targetingSystem.range;
-
-        if (inRange)
+        // If player enters collision zone
+        if (collider.TryGetComponent<InteractSystem>(out interactSystem))
         {
-            targetingSystem.AddItem(this);
-        } else 
-        { 
-            targetingSystem.RemoveItem(this);
+            // Once the object is being tracked by the player, listen for changes to the Target property
+            interactSystem.PropertyChanged += HandleInteractUpdate;
+            interactSystem.AddObject(this);
         }
-
-        // Show interact prompt if this item is being targeted by the player
-        interactPrompt.SetActive(targetingSystem.Target == this);
     }
 
-    // This function is called when the player interacts with this object
+    private void OnTriggerExit2D(Collider2D collider)
+    {
+        // If player exits collision zone
+        if (collider.TryGetComponent<InteractSystem>(out interactSystem))
+        {
+            interactSystem.RemoveObject(this);
+            // Once the object is out of range, stop listening for changes to the interact system's Target property
+            interactSystem.PropertyChanged -= HandleInteractUpdate;
+        }
+    }
+
+    private void HandleInteractUpdate(object sender, PropertyChangedEventArgs e)
+    {
+        // Listen for changes to the Target property
+        if (e.PropertyName != nameof(interactSystem.Target)) return;
+        // Show or hide interact prompt if this object is being targeted by the player
+        Debug.Log($"{this.name} is targeted: {interactSystem.Target == this}");
+        interactPrompt.SetActive(interactSystem.Target == this);
+    }
+
     public abstract void OnInteract();
+
 }

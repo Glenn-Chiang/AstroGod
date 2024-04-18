@@ -1,11 +1,15 @@
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using UnityEngine;
 
-public class InteractSystem : MonoBehaviour
+public class InteractSystem : MonoBehaviour, INotifyPropertyChanged
 {
-    public float range = 2.5f; // Max range at which objects can be interacted with
-    private List<Interactable> objectsInRange = new(); // List of interactable objects within range
+    // Keep track of interactable objects within range
+    private List<Interactable> trackedObjects = new();
+
+    public event PropertyChangedEventHandler PropertyChanged;
 
     // The object that the player will interact with when the interact key is pressed
     // This will be the object that is nearest to the player
@@ -13,24 +17,30 @@ public class InteractSystem : MonoBehaviour
     {
         get 
         {
-            return objectsInRange.OrderBy(obj => obj.distanceFromPlayer).FirstOrDefault();
+            return trackedObjects.OrderBy(obj => CalculateDistance(obj)).FirstOrDefault();
         }
+    }
+    protected void OnTargetChange()
+    {
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Target)));
     }
 
     // Add object to list of objects that are within range
-    public void AddItem(Interactable obj)
+    public void AddObject(Interactable obj)
     {
-        if (!objectsInRange.Contains(obj))
+        if (!trackedObjects.Contains(obj))
         {
-            objectsInRange.Add(obj);
+            trackedObjects.Add(obj);
+            OnTargetChange();
         }
     }
 
-    public void RemoveItem(Interactable obj)
+    public void RemoveObject(Interactable obj)
     {
-        if (objectsInRange.Contains(obj))
+        if (trackedObjects.Contains(obj))
         {
-            objectsInRange.Remove(obj);
+            trackedObjects.Remove(obj);
+            OnTargetChange();
         }
     }
 
