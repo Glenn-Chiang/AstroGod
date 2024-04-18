@@ -25,7 +25,6 @@ public abstract class Inventory<T> where T : ItemInstance
         if (items.Count == Capacity || items.Contains(item)) return false;
 
         items.Add(item);
-        Debug.Log($"Added {item.ItemData.name}");
         return true;
     }
 

@@ -6,7 +6,8 @@ public class PlayerController : MonoBehaviour
 
     public PlayerMovement Movement { get; private set; }
     public PlayerInteraction InteractSystem { get; private set; }
-    
+
+    public InventoryManager InventoryManager { get; } = new();
     public WeaponInventory WeaponInventory { get; } = new();
     public ArmorInventory ArmorInventory { get; } = new();
 

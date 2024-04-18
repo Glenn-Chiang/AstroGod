@@ -10,13 +10,4 @@ public class ArmorPickUp : ItemPickUp
     {
         ArmorInstance = new(ArmorData);
     }
-
-    protected override void PickUp()
-    {
-        if (Player.ArmorInventory.AddItem(ArmorInstance))
-        {
-            // Destroy the pickup only if it was successfully added to the inventory
-            Destroy(gameObject);
-        }
-    }
 }

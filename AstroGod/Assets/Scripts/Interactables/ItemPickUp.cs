@@ -10,5 +10,11 @@ public abstract class ItemPickUp : Interactable
         PickUp();
     }
 
-    protected abstract void PickUp();
+    private void PickUp()
+    {
+        if (Player.InventoryManager.AddItem(ItemInstance))
+        {
+            Destroy(gameObject);
+        }
+    }
 }
