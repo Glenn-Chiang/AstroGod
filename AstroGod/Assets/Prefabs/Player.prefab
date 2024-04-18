@@ -10,12 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 6557674993341676727}
   - component: {fileID: 111411849786954049}
-  - component: {fileID: 7300776315837021049}
   - component: {fileID: 6778573308404738826}
   - component: {fileID: 1735413536398694469}
   - component: {fileID: 3101566142831981682}
-  - component: {fileID: -3217670679200406727}
-  - component: {fileID: 5935490014635061898}
+  - component: {fileID: -5213615034684900422}
+  - component: {fileID: 7477701425574513819}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -91,27 +90,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &7300776315837021049
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3892431038457549735}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76a47c8b2c101c142a660f50c8c0b724, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rb: {fileID: 6778573308404738826}
-  weaponSlot: {fileID: 5405285971975847010}
-  moveSpeed: 10
-  dashSpeed: 25
-  dashDuration: 0.2
-  dashCooldown: 0.75
-  moveDir: {x: 0, y: 0}
-  interactSystem: {fileID: -3217670679200406727}
-  weaponManager: {fileID: 0}
 --- !u!50 &6778573308404738826
 Rigidbody2D:
   serializedVersion: 4
@@ -187,8 +165,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 111411849786954049}
-  playerController: {fileID: 7300776315837021049}
---- !u!114 &-3217670679200406727
+--- !u!114 &-5213615034684900422
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -197,11 +174,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 3892431038457549735}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d99b3ff084b20194f8c62d9e642ca94a, type: 3}
+  m_Script: {fileID: 11500000, guid: 76a47c8b2c101c142a660f50c8c0b724, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 2.5
---- !u!114 &5935490014635061898
+--- !u!114 &7477701425574513819
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -210,12 +186,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 3892431038457549735}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55dc53c0232392c4981cb38fec4f0ab5, type: 3}
+  m_Script: {fileID: 11500000, guid: 10dd9898736e33e47988192f732911cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rb: {fileID: 6778573308404738826}
   weaponSlot: {fileID: 5405285971975847010}
-  weapons: []
-  equippedWeapon: {fileID: 0}
+  moveSpeed: 10
+  dashSpeed: 30
+  dashDuration: 0.2
+  dashCooldown: 0.75
+  moveDir: {x: 0, y: 0}
 --- !u!1 &4083453597905947850
 GameObject:
   m_ObjectHideFlags: 0

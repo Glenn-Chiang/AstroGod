@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using UnityEngine;
 
-public class InteractSystem : MonoBehaviour, INotifyPropertyChanged
+public class InteractSystem : INotifyPropertyChanged
 {
     // Keep track of interactable objects within range
     private List<Interactable> trackedObjects = new();
@@ -46,6 +46,6 @@ public class InteractSystem : MonoBehaviour, INotifyPropertyChanged
 
     public float CalculateDistance(Interactable obj)
     {
-        return Vector2.Distance(transform.position, obj.transform.position);
+        return Vector2.Distance(PlayerController.Instance.transform.position, obj.transform.position);
     }
 }
