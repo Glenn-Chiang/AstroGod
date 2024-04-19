@@ -4,6 +4,6 @@ public class WeaponPickUp : ItemPickUp<WeaponData, WeaponInstance>
 {
     private void Awake()
     {
-        Instance = new(Data);
+        instance = new(data);
     }
 }

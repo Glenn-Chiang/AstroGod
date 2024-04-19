@@ -6,5 +6,6 @@ public abstract class ItemData : ScriptableObject
     public Sprite icon;
     [TextArea]
     public string description;
-    
+
+    public GameObject pickUpPrefab;
 }

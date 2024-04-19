@@ -3,9 +3,9 @@ using UnityEngine;
 public abstract class ItemPickUp<TData, TInstance> : Interactable 
     where TData : ItemData
     where TInstance : ItemInstance<TData>
-{ 
-    public TData Data { get; } // Assign scriptable object in editor
-    public TInstance Instance { get; set; } // Initialized by subclass
+{
+    public TData data; // Assign scriptable object in editor
+    public TInstance instance; // Initialized by subclass
 
     public override void OnInteract()
     {
@@ -14,7 +14,7 @@ public abstract class ItemPickUp<TData, TInstance> : Interactable
 
     private void PickUp()
     {
-        if (Player.InventoryManager.AddItem(Instance))
+        if (Player.InventoryManager.AddItem(instance))
         {
             Destroy(gameObject);
         }
