@@ -38,10 +38,11 @@ public abstract class Inventory<T> where T : ItemInstance
     {
         if (!ValidateIndex(index)) return;
         selectedIndex = index;
+        Debug.Log($"Selected {SelectedItem.ItemData.itemName}");
     }
 
     private bool ValidateIndex(int index)
     {
-        return items.Count == 0 || index < 0 || index >= items.Count;
+        return index >= 0 && index < items.Count;
     }
 }

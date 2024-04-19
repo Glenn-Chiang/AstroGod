@@ -26,7 +26,16 @@ public class PlayerController : MonoBehaviour
         InteractSystem = GetComponent<PlayerInteraction>();
     }
 
-    private int? GetNumberInput()
+    private void Update()
+    {
+        int numberInput = GetNumberInput();
+        if (numberInput != -1)
+        {
+            WeaponInventory.SelectItem(numberInput - 1);
+        }
+    }
+
+    private int GetNumberInput()
     {
         KeyCode[] numberKeys = { KeyCode.Alpha1, KeyCode.Alpha2, KeyCode.Alpha3, KeyCode.Alpha4, KeyCode.Alpha5, KeyCode.Alpha6, KeyCode.Alpha7, KeyCode.Alpha8, KeyCode.Alpha9 };
         for (int i = 0; i < numberKeys.Length; i++)
@@ -36,6 +45,6 @@ public class PlayerController : MonoBehaviour
                 return i + 1;
             }
         }
-        return null;
+        return -1;
     }
 }
