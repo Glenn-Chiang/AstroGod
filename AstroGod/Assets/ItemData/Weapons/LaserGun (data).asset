@@ -15,6 +15,7 @@ MonoBehaviour:
   itemName: Laser Gun
   icon: {fileID: -3549380958941290185, guid: ad94658f34ee9e648b3eed4cb99f9eae, type: 3}
   description: Fires a powerful laser beam that can penetrate enemies.
+  pickUpPrefab: {fileID: 9140609486032140464, guid: 37f7e256baffab64c81b04afff5758a5, type: 3}
   baseFireRate: 1
   baseDamage: 20
   ammoCost: 5

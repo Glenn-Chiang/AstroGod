@@ -15,6 +15,7 @@ MonoBehaviour:
   itemName: Plasma Gun
   icon: {fileID: 2790310067104290721, guid: ac45bb9a2b9b10a42b4c50ccc7f569cd, type: 3}
   description: Standard-issue weapon. Moderate damage and fire rate.
+  pickUpPrefab: {fileID: 8423891170393552728, guid: da53f507e1bcd0046bb64c8921d2e8a6, type: 3}
   baseFireRate: 0.2
   baseDamage: 5
   ammoCost: 1

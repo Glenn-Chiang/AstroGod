@@ -7,5 +7,5 @@ public abstract class ItemData : ScriptableObject
     [TextArea]
     public string description;
 
-    public GameObject pickUpPrefab;
+    public ItemPickUp pickUpPrefab;
 }

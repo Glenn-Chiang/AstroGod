@@ -1,16 +1,16 @@
 public abstract class ItemInstance
 {
-    public abstract ItemData ItemData { get; }
+    public abstract ItemData Data { get; }
 }
 
 public abstract class ItemInstance<T>: ItemInstance where T : ItemData
 {
-    public T Data { get; }
-    public override ItemData ItemData => Data;
+    public T ItemData { get; }
+    public override ItemData Data => ItemData;
 
     public ItemInstance(T data)
     {
-        Data = data;
+        ItemData = data;
     }
 
 }

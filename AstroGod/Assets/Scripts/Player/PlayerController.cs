@@ -33,6 +33,27 @@ public class PlayerController : MonoBehaviour
         {
             WeaponInventory.SelectItem(numberInput - 1);
         }
+
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            DropWeapon();
+        }
+    }
+
+    private void DropWeapon()
+    {
+        //DropItem(WeaponInventory);
+    }
+
+    private void DropItem(Inventory<ItemInstance> inventory)
+    {
+        var removedItem = inventory.RemoveSelected();
+        if (removedItem != null)
+        {
+            var droppedItem = Instantiate(removedItem.Data.pickUpPrefab, transform.position, transform.rotation);
+            droppedItem.Instance = removedItem;
+            Debug.Log($"Dropped {removedItem.Data.itemName}");
+        }
     }
 
     private int GetNumberInput()

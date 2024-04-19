@@ -2,13 +2,14 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-[Serializable]
 public abstract class Inventory<T> where T : ItemInstance
 {
     public abstract int Capacity { get; }
     public List<T> items = new();
 
     private int selectedIndex = -1; // No item selected by default
+
+
 
     public T SelectedItem
     {
@@ -28,17 +29,21 @@ public abstract class Inventory<T> where T : ItemInstance
         return true;
     }
 
-    public void RemoveSelected()
+    public T RemoveSelected()
     {
-        items.RemoveAt(selectedIndex);
+        if (SelectedItem == null) return null;
+
+        var itemToRemove = SelectedItem;
+        items.Remove(itemToRemove);
         SelectItem(-1); // After the selected item is removed, no item is selected
+        return itemToRemove;
     }
 
     public void SelectItem(int index)
     {
         if (!ValidateIndex(index)) return;
         selectedIndex = index;
-        Debug.Log($"Selected {SelectedItem.ItemData.itemName}");
+        Debug.Log($"Selected {SelectedItem.Data.itemName}");
     }
 
     private bool ValidateIndex(int index)
