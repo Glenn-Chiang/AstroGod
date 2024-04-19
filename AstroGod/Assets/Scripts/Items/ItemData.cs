@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ItemData : ScriptableObject
+public abstract class ItemData : ScriptableObject
 {
     public string itemName;
     public Sprite icon;

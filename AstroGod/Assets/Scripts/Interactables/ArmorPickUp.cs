@@ -1,13 +1,7 @@
-public class ArmorPickUp : ItemPickUp
+public class ArmorPickUp : ItemPickUp<ArmorData, ArmorInstance>
 {
-    public ArmorData ArmorData { get; }
-    public ArmorInstance ArmorInstance { get; set; }
-
-    public override ItemData ItemData => ArmorData;
-    public override ItemInstance ItemInstance { get => ArmorInstance; set { ArmorInstance = (ArmorInstance)value; } }
-
     private void Awake()
     {
-        ArmorInstance = new(ArmorData);
+        Instance = new(Data);
     }
 }

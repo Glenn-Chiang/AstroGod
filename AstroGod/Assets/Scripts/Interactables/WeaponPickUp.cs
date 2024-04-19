@@ -1,15 +1,9 @@
 using UnityEngine;
 
-public class WeaponPickUp : ItemPickUp
+public class WeaponPickUp : ItemPickUp<WeaponData, WeaponInstance>
 {
-    public WeaponData weaponData;
-    public WeaponInstance weaponInstance;
-
-    public override ItemData ItemData => weaponData;
-    public override ItemInstance ItemInstance { get => weaponInstance; set { weaponInstance = (WeaponInstance)value; } }
-
     private void Awake()
     {
-        weaponInstance = new(weaponData);
+        Instance = new(Data);
     }
 }

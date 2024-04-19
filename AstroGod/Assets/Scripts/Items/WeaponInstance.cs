@@ -1,12 +1,10 @@
-public class WeaponInstance : ItemInstance
+public class WeaponInstance : ItemInstance<WeaponData>
 {
-    public WeaponData WeaponData { get; }
     public float damage;
     public float fireRate;
 
     public WeaponInstance(WeaponData data) : base(data)
     {
-        WeaponData = data;
         damage = data.baseDamage;
         fireRate = data.baseFireRate;
     }

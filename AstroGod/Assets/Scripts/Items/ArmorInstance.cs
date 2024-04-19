@@ -1,11 +1,9 @@
-public class ArmorInstance : ItemInstance
+public class ArmorInstance : ItemInstance<ArmorData>
 {
-    public ArmorData ArmorData { get; }
     public float damageResistance;
 
     public ArmorInstance(ArmorData data) : base(data)
     {
-        ArmorData = data;
         damageResistance = data.damageResistance;
     }
 }
