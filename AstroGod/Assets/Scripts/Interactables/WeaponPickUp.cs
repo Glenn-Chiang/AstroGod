@@ -1,9 +1,9 @@
 using UnityEngine;
 
-public class WeaponPickUp : ItemPickUp<WeaponData, WeaponInstance>
+public class WeaponPickUp : ItemPickUp<WeaponData, Weapon>
 {
     private void Awake()
     {
-        instance = new(data);
+        itemInstance = new(data);
     }
 }

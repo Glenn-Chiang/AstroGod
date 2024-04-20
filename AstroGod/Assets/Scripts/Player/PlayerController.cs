@@ -42,10 +42,10 @@ public class PlayerController : MonoBehaviour
 
     private void DropWeapon()
     {
-        //DropItem(WeaponInventory);
+        DropItem(WeaponInventory);
     }
 
-    private void DropItem(Inventory<ItemInstance> inventory)
+    private void DropItem(IInventory inventory)
     {
         var removedItem = inventory.RemoveSelected();
         if (removedItem != null)

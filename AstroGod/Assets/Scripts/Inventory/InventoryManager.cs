@@ -2,23 +2,23 @@ using UnityEngine;
 
 public class InventoryManager
 {
-    public bool AddItem(ItemInstance item)
+    // Determine which inventory to add the item to, based on its type
+    public bool AddItem(IItem item)
     {
         var player = PlayerController.Instance;
         var itemType = item.GetType();
 
-        // Based on item type, decide which inventory to add to
         switch (itemType.Name)
         {
-            case nameof(WeaponInstance):
-                if (player.WeaponInventory.AddItem((WeaponInstance)item)) 
+            case nameof(Weapon):
+                if (player.WeaponInventory.AddItem((Weapon)item)) 
                 {
                     Debug.Log($"Added {item.Data.itemName} to weapon inventory");
                     return true;
                 }
                 return false;
-            case nameof(ArmorInstance):
-                if (player.ArmorInventory.AddItem((ArmorInstance)item)) 
+            case nameof(Armor):
+                if (player.ArmorInventory.AddItem((Armor)item)) 
                 {
                     Debug.Log($"Added {item.Data.itemName} to armor inventory");
                     return true;

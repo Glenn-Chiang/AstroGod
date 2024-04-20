@@ -1,4 +1,4 @@
-public class WeaponInventory : Inventory<WeaponInstance>
+public class WeaponInventory : Inventory<Weapon>
 {
     public override int Capacity => 3;
 }

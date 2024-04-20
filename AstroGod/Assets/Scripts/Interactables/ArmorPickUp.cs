@@ -1,7 +1,9 @@
-public class ArmorPickUp : ItemPickUp<ArmorData, ArmorInstance>
+using UnityEngine;
+
+public class ArmorPickUp : ItemPickUp<ArmorData, Armor>
 {
     private void Awake()
     {
-        instance = new(data);
+        itemInstance = new(data);
     }
 }
