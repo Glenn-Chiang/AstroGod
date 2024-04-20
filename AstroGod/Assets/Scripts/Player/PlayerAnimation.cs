@@ -13,7 +13,7 @@ public class PlayerAnimation : MonoBehaviour
 
     private void Update()
     {
-        var moveDir = player.Movement.moveDir;
+        var moveDir = player.Movement.MoveDir;
         // Flip direction if moving in opposite direction from direction it is currently facing
         if (facingRight && moveDir.x < 0 || !facingRight && moveDir.x > 0)
         {

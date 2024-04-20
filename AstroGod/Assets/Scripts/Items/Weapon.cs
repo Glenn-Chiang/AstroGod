@@ -1,11 +1,11 @@
 public class Weapon : Item<WeaponData>
 {
-    public float damage;
-    public float fireRate;
+    public float Damage { get; private set; }
+    public float FireRate { get; private set; }
 
     public Weapon(WeaponData data) : base(data)
     {
-        damage = data.BaseDamage;
-        fireRate = data.BaseFireRate;
+        Damage = data.BaseDamage;
+        FireRate = data.BaseFireRate;
     }
 }

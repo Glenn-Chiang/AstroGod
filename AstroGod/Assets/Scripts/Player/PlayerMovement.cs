@@ -11,7 +11,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float dashDuration = 0.2f;
     [SerializeField] private float dashCooldown = 0.75f;
 
-    public Vector2 moveDir;
+    private Vector2 moveDir;
+    public Vector2 MoveDir => moveDir;
     private Vector2 aimDir;
     private bool isDashing = false;
     private bool canDash = true;
