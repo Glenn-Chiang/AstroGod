@@ -43,6 +43,8 @@ public class PlayerController : MonoBehaviour
     private void DropWeapon()
     {
         DropItem(WeaponInventory);
+
+        
     }
 
     private void DropItem(IInventory inventory)
@@ -51,7 +53,7 @@ public class PlayerController : MonoBehaviour
         if (removedItem != null)
         {
             var droppedItem = Instantiate(removedItem.Data.pickUpPrefab, transform.position, transform.rotation);
-            droppedItem.Instance = removedItem;
+            droppedItem.ItemInstance = (Item<ItemData>)removedItem;
             Debug.Log($"Dropped {removedItem.Data.itemName}");
         }
     }

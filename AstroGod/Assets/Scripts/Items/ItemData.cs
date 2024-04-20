@@ -8,4 +8,5 @@ public abstract class ItemData : ScriptableObject
     public string description;
 
     public ItemPickUp pickUpPrefab;
+    
 }
