@@ -7,5 +7,5 @@ public abstract class ItemData : ScriptableObject
     [field: SerializeField, TextArea] public string Description { get; private set; }
 
     [field : SerializeField] public ItemPickUp PickUpPrefab { get; private set; }
-    
+    [field : SerializeField] public GameObject ModelPrefab { get; private set; } // Game object representing the item instance when it is visibly held/equipped by the player
 }

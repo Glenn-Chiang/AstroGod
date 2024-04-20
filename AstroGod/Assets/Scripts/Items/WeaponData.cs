@@ -9,4 +9,5 @@ public class WeaponData : ItemData
     [field : SerializeField]public float BaseFireRate { get; private set; }
     [field : SerializeField]public float BaseDamage { get; private set; }
     [field: SerializeField] public float AmmoCost { get; private set; }
+
 }

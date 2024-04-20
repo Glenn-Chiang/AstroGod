@@ -2,14 +2,15 @@ using UnityEngine;
 
 public class InventoryManager : MonoBehaviour
 {
-    [SerializeField] private WeaponInventory weaponInventory;
-    [SerializeField] private ArmorInventory armorInventory;
+    private WeaponInventory weaponInventory = new();
+    private ArmorInventory armorInventory = new();
 
     public WeaponInventory WeaponInventory => weaponInventory;
     public ArmorInventory ArmorInventory => armorInventory;
 
     private void Update()
     {
+        // Player can use number keys to select weapons from weapon inventory
         int numberInput = GetNumberInput();
         if (numberInput != -1)
         {
@@ -34,7 +35,6 @@ public class InventoryManager : MonoBehaviour
                 if (WeaponInventory.AddItem((Weapon)item)) 
                 {
                     Debug.Log($"Added {item.Data.Name} to weapon inventory");
-                    Debug.Log(item.Data.Description);
                     return true;
                 }
                 return false;
