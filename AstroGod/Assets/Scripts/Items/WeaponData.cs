@@ -1,5 +1,5 @@
 using System;
-
+using System.Diagnostics.CodeAnalysis;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "WeaponData", menuName = "Item/Weapon")]
