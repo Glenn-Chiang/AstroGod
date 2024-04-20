@@ -1,7 +1,7 @@
 using UnityEngine;
 
-[CreateAssetMenu]
+[CreateAssetMenu(fileName = "ArmorData", menuName = "Item/Armor")]
 public class ArmorData : ItemData
 {
-    public float damageResistance;
+    [field: SerializeField] public float BaseResistance { get; }
 }

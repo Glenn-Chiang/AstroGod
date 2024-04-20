@@ -2,8 +2,11 @@ using UnityEngine;
 
 public class InventoryManager : MonoBehaviour
 {
-    public WeaponInventory WeaponInventory { get; } = new();
-    public ArmorInventory ArmorInventory { get; } = new();
+    [SerializeField] private WeaponInventory weaponInventory;
+    [SerializeField] private ArmorInventory armorInventory;
+
+    public WeaponInventory WeaponInventory => weaponInventory;
+    public ArmorInventory ArmorInventory => armorInventory;
 
     private void Update()
     {
@@ -30,14 +33,15 @@ public class InventoryManager : MonoBehaviour
             case nameof(Weapon):
                 if (WeaponInventory.AddItem((Weapon)item)) 
                 {
-                    Debug.Log($"Added {item.Data.itemName} to weapon inventory");
+                    Debug.Log($"Added {item.Data.Name} to weapon inventory");
+                    Debug.Log(item.Data.Description);
                     return true;
                 }
                 return false;
             case nameof(Armor):
                 if (ArmorInventory.AddItem((Armor)item)) 
                 {
-                    Debug.Log($"Added {item.Data.itemName} to armor inventory");
+                    Debug.Log($"Added {item.Data.Name} to armor inventory");
                     return true;
                 }
                 return false;
@@ -52,14 +56,16 @@ public class InventoryManager : MonoBehaviour
         DropItem(WeaponInventory);
     }
 
+    // Drop the selected item from the specified inventory into the game world
+    // Spawn the corresponding ItemPickUp prefab and transfer the item instance into the prefab
     private void DropItem(IInventory inventory)
     {
         var removedItem = inventory.RemoveSelected();
         if (removedItem != null)
         {
-            var droppedItem = Instantiate(removedItem.Data.pickUpPrefab, transform.position, transform.rotation);
+            var droppedItem = Instantiate(removedItem.Data.PickUpPrefab, transform.position, transform.rotation);
             droppedItem.ItemInstance = removedItem;
-            Debug.Log($"Dropped {removedItem.Data.itemName}");
+            Debug.Log($"Dropped {removedItem.Data.Name}");
         }
     }
 

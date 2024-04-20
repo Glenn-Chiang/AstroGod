@@ -1,4 +1,9 @@
-public class WeaponInventory : Inventory<Weapon>
+using System;
+using UnityEngine;
+
+[Serializable]
+public class WeaponInventory :  IInventory<Weapon>
 {
-    public override int Capacity => 3;
+    [SerializeField] private int capacity = 3;
+    public override int Capacity => capacity;
 }

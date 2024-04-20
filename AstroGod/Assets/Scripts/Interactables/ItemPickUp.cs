@@ -11,7 +11,7 @@ public abstract class ItemPickUp<TData, TItem> : ItemPickUp
     where TItem : Item<TData>
 {
     [SerializeField] protected TData data;
-    protected TItem itemInstance;
+    [SerializeField] protected TItem itemInstance;
 
     public override ItemData Data => data;
     public override IItem ItemInstance { get => itemInstance; set { itemInstance = (TItem)value; } }

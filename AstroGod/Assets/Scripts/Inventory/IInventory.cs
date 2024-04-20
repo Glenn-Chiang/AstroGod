@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public interface IInventory 
@@ -9,7 +10,9 @@ public interface IInventory
     public IItem RemoveSelected();
 }
 
-public abstract class Inventory<T>: IInventory where T : class, IItem
+[Serializable]
+public abstract class IInventory<T>: IInventory 
+    where T : class, IItem
 {
     IReadOnlyList<IItem> IInventory.Items => items;
     IItem IInventory.SelectedItem => SelectedItem;
@@ -40,7 +43,7 @@ public abstract class Inventory<T>: IInventory where T : class, IItem
 
     public T RemoveSelected()
     {
-        if (SelectedItem == null) return default;
+        if (SelectedItem == null) return null;
 
         var itemToRemove = SelectedItem;
         items.Remove(itemToRemove);
@@ -52,7 +55,7 @@ public abstract class Inventory<T>: IInventory where T : class, IItem
     {
         if (!ValidateIndex(index)) return;
         selectedIndex = index;
-        Debug.Log($"Selected {SelectedItem.Data.itemName}");
+        Debug.Log($"Selected {SelectedItem.Data.Name}");
     }
 
     private bool ValidateIndex(int index)

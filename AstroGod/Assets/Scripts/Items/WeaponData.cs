@@ -2,11 +2,11 @@ using System;
 
 using UnityEngine;
 
-[CreateAssetMenu]
+[CreateAssetMenu(fileName = "WeaponData", menuName = "Item/Weapon")]
 public class WeaponData : ItemData
 {
     // Base values for weapon stats
-    public float baseFireRate;
-    public float baseDamage;
-    public float ammoCost;
+    [field : SerializeField]public float BaseFireRate { get; private set; }
+    [field : SerializeField]public float BaseDamage { get; private set; }
+    [field: SerializeField] public float AmmoCost { get; private set; }
 }

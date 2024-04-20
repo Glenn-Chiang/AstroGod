@@ -4,7 +4,7 @@ public class Armor : Item<ArmorData>
 
     public Armor(ArmorData data) : base(data)
     {
-        damageResistance = data.damageResistance;
+        damageResistance = data.BaseResistance;
     }
 }
 

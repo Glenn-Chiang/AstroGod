@@ -636,6 +636,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 3984160205865547030, guid: ced016773ce82184ba0784d20d2c76b0, type: 3}
+      propertyPath: armorInventory
+      value: 
+      objectReference: {fileID: 11400000, guid: 57fe0818b50cab84d89560e1309c77ba, type: 2}
+    - target: {fileID: 3984160205865547030, guid: ced016773ce82184ba0784d20d2c76b0, type: 3}
+      propertyPath: weaponInventory
+      value: 
+      objectReference: {fileID: 11400000, guid: bc25c9b9f903cb1439423699ca526ed4, type: 2}
     - target: {fileID: 6557674993341676727, guid: ced016773ce82184ba0784d20d2c76b0, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

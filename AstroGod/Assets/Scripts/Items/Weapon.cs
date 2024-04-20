@@ -5,7 +5,7 @@ public class Weapon : Item<WeaponData>
 
     public Weapon(WeaponData data) : base(data)
     {
-        damage = data.baseDamage;
-        fireRate = data.baseFireRate;
+        damage = data.BaseDamage;
+        fireRate = data.BaseFireRate;
     }
 }
