@@ -6,10 +6,9 @@ public class PlayerController : MonoBehaviour
 
     public PlayerMovement Movement { get; private set; }
     public PlayerInteraction InteractSystem { get; private set; }
+    public InventoryManager InventoryManager { get; private set; }
 
-    public InventoryManager InventoryManager { get; } = new();
-    public WeaponInventory WeaponInventory { get; } = new();
-    public ArmorInventory ArmorInventory { get; } = new();
+    
 
     private void Awake()
     {
@@ -24,50 +23,6 @@ public class PlayerController : MonoBehaviour
 
         Movement = GetComponent<PlayerMovement>();
         InteractSystem = GetComponent<PlayerInteraction>();
-    }
-
-    private void Update()
-    {
-        int numberInput = GetNumberInput();
-        if (numberInput != -1)
-        {
-            WeaponInventory.SelectItem(numberInput - 1);
-        }
-
-        if (Input.GetKeyDown(KeyCode.G))
-        {
-            DropWeapon();
-        }
-    }
-
-    private void DropWeapon()
-    {
-        DropItem(WeaponInventory);
-
-        
-    }
-
-    private void DropItem(IInventory inventory)
-    {
-        var removedItem = inventory.RemoveSelected();
-        if (removedItem != null)
-        {
-            var droppedItem = Instantiate(removedItem.Data.pickUpPrefab, transform.position, transform.rotation);
-            droppedItem.ItemInstance = (Item<ItemData>)removedItem;
-            Debug.Log($"Dropped {removedItem.Data.itemName}");
-        }
-    }
-
-    private int GetNumberInput()
-    {
-        KeyCode[] numberKeys = { KeyCode.Alpha1, KeyCode.Alpha2, KeyCode.Alpha3, KeyCode.Alpha4, KeyCode.Alpha5, KeyCode.Alpha6, KeyCode.Alpha7, KeyCode.Alpha8, KeyCode.Alpha9 };
-        for (int i = 0; i < numberKeys.Length; i++)
-        {
-            if (Input.GetKeyDown(numberKeys[i]))
-            {
-                return i + 1;
-            }
-        }
-        return -1;
+        InventoryManager = GetComponent<InventoryManager>();
     }
 }
