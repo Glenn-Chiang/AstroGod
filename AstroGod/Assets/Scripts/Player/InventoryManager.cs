@@ -1,5 +1,6 @@
 using UnityEngine;
 
+// Responsible for moving items between the game world and the player inventory
 public class InventoryManager : MonoBehaviour
 {
     private WeaponInventory weaponInventory = new();
@@ -25,20 +26,17 @@ public class InventoryManager : MonoBehaviour
 
     // Determine which inventory to add the item to, based on its type
     public bool AddItem(IItem item)
-    {
-        var player = PlayerController.Instance;
-        var itemType = item.GetType();
-
-        switch (itemType.Name)
+    {  
+        switch (item.Data.ItemType)
         {
-            case nameof(Weapon):
+            case ItemType.Weapon:
                 if (WeaponInventory.AddItem((Weapon)item)) 
                 {
                     Debug.Log($"Added {item.Data.Name} to weapon inventory");
                     return true;
                 }
                 return false;
-            case nameof(Armor):
+            case ItemType.Armor:
                 if (ArmorInventory.AddItem((Armor)item)) 
                 {
                     Debug.Log($"Added {item.Data.Name} to armor inventory");
@@ -64,7 +62,7 @@ public class InventoryManager : MonoBehaviour
         if (removedItem != null)
         {
             var droppedItem = Instantiate(removedItem.Data.PickUpPrefab, transform.position, transform.rotation);
-            droppedItem.ItemInstance = removedItem;
+            droppedItem.itemInstance = removedItem;
             Debug.Log($"Dropped {removedItem.Data.Name}");
         }
     }

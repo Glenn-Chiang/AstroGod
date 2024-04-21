@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5724637082669580684}
   - component: {fileID: 7908784711722237597}
-  - component: {fileID: 290226313909036126}
   - component: {fileID: 7218645619669038800}
+  - component: {fileID: 422432576416822192}
   m_Layer: 0
   m_Name: PlasmaGun (pickup)
   m_TagString: Weapon
@@ -86,19 +86,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &290226313909036126
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8423891170393552728}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1aae63bd7485e304a89b6987b02d0c45, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  data: {fileID: 11400000, guid: 00d0acc3cb9490d499b975619ad6a463, type: 2}
 --- !u!58 &7218645619669038800
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -134,3 +121,16 @@ CircleCollider2D:
   m_Offset: {x: -0.050000012, y: -0.050000012}
   serializedVersion: 2
   m_Radius: 2
+--- !u!114 &422432576416822192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8423891170393552728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51094076dd7a51d48868a44cebb43baf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data: {fileID: 11400000, guid: 00d0acc3cb9490d499b975619ad6a463, type: 2}
