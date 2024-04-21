@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class WeaponManager : MonoBehaviour
+public class WeaponEquip : MonoBehaviour
 {
     private GameObject equippedWeaponModel;
     private WeaponController EquippedWeapon
