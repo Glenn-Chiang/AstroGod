@@ -16,9 +16,9 @@ MonoBehaviour:
   <Icon>k__BackingField: {fileID: -3549380958941290185, guid: ad94658f34ee9e648b3eed4cb99f9eae, type: 3}
   <Description>k__BackingField: Fires a powerful laser beam that penetrates all enemies
     in its path
-  <PickUpPrefab>k__BackingField: {fileID: 8878047201259405263, guid: 37f7e256baffab64c81b04afff5758a5, type: 3}
+  <PickUpPrefab>k__BackingField: {fileID: 417916995296059238, guid: 37f7e256baffab64c81b04afff5758a5, type: 3}
   <ModelPrefab>k__BackingField: {fileID: 1258579585967972228, guid: 42a92a568d2cf514cb585b7945d5d547, type: 3}
-  <BaseFireRate>k__BackingField: 1
+  <BaseFireRate>k__BackingField: 0.5
   <BaseDamage>k__BackingField: 20
   <FirePower>k__BackingField: 20
   <AmmoCost>k__BackingField: 4

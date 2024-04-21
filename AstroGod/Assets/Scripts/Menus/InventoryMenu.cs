@@ -38,14 +38,19 @@ public class InventoryMenu : MonoBehaviour
                 iconImage.sprite = null;
                 iconImage.enabled = false;
                 nameText.text = placeholderItemName;
-
-            } else
+                return;
+            }
+            
+            var item = inventory.Items[i];
+            iconImage.sprite = item.Data.Icon;
+            iconImage.SetNativeSize();
+            iconImage.enabled = true;
+            nameText.text = $"[{i+1}] " + item.Data.Name;
+            
+            if (inventory.SelectedItem == item)
             {
-                var item = inventory.Items[i];
-                iconImage.sprite = item.Data.Icon;
-                iconImage.SetNativeSize();
-                iconImage.enabled = true;
-                nameText.text = item.Data.Name;
+                // Display key prompt to drop the selected weapon
+                nameText.text += "<br>[G] Drop";
             }
         }
     }
