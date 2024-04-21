@@ -6,6 +6,7 @@ using UnityEngine;
 public interface IInventory 
 {
     public IReadOnlyList<IItem> Items { get; }
+    public void SelectItem(int index);
     public IItem SelectedItem { get; }
     public IItem RemoveSelected();
 }

@@ -9,6 +9,8 @@ public class InventoryManager : MonoBehaviour
     public WeaponInventory WeaponInventory => weaponInventory;
     public ArmorInventory ArmorInventory => armorInventory;
 
+    [SerializeField] private RectTransform inventoryMenu;
+
     private void Update()
     {
         // Player can use number keys to select weapons from weapon inventory
@@ -16,6 +18,11 @@ public class InventoryManager : MonoBehaviour
         if (numberInput != -1)
         {
             WeaponInventory.SelectItem(numberInput - 1);
+        }
+
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            inventoryMenu.gameObject.SetActive(!inventoryMenu.gameObject.activeInHierarchy);
         }
 
         if (Input.GetKeyDown(KeyCode.G))

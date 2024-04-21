@@ -23,19 +23,15 @@ public class WeaponHUD : MonoBehaviour
         {
             nameText.text = placeholderText;
             iconImage.sprite = null;
-            SetOpacity(iconImage, 0f);
-            return;
+            iconImage.enabled = false;
         }
-
-        nameText.text = selectedWeapon.Data.Name;
-        iconImage.sprite = selectedWeapon.Data.Icon;
-        SetOpacity(iconImage, 1f);
+        else
+        {
+            nameText.text = selectedWeapon.Data.Name;
+            iconImage.sprite = selectedWeapon.Data.Icon;
+            iconImage.enabled = true;
+        }
     }
 
-    private void SetOpacity(Image image, float opacity)
-    {
-        var color = image.color;
-        color.a = opacity;
-        iconImage.color = color;
-    }
+ 
 }
