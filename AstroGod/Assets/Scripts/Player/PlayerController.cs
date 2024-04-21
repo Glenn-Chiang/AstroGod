@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
     public PlayerMovement Movement { get; private set; }
     public PlayerInteraction InteractSystem { get; private set; }
     public InventoryManager InventoryManager { get; private set; }
-
+    public PlayerHealthManager HealthManager => new();
     
 
     private void Awake()
