@@ -1,4 +1,4 @@
-public class Armor : Item<ArmorData>
+public class Armor : ItemInstance<ArmorData>
 {
     public float damageResistance;
 

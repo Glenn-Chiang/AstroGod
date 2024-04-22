@@ -1,23 +1,13 @@
-using System;
 using System.Collections.Generic;
-using Unity.VisualScripting;
+using System;
 using UnityEngine;
 
-public interface IInventory 
-{
-    public IReadOnlyList<IItem> Items { get; }
-    public void SelectItem(int index);
-    public IItem SelectedItem { get; }
-    public IItem RemoveSelected();
-}
-
 [Serializable]
-public abstract class IInventory<T>: IInventory 
-    where T : class, IItem
+public abstract class InstanceInventory<T> : IInstanceInventory where T : class, IItem
 {
-    IReadOnlyList<IItem> IInventory.Items => items;
-    IItem IInventory.SelectedItem => SelectedItem;
-    IItem IInventory.RemoveSelected() => RemoveSelected();
+    IReadOnlyList<IItem> IInstanceInventory.Items => items;
+    IItem IInstanceInventory.SelectedItem => SelectedItem;
+    IItem IInstanceInventory.RemoveSelected() => RemoveSelected();
 
     public abstract int Capacity { get; }
 

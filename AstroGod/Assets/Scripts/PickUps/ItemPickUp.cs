@@ -1,27 +1,55 @@
 using UnityEngine;
 
-public abstract class ItemPickUp : Interactable
+public class ItemPickUp : Interactable
 {
-    protected abstract ItemData ItemData { get; }
-    public IItem itemInstance;
+    public virtual ItemData ItemData { get; }
+    public IItem ItemInstance 
+    { 
+        get;
+        set
+        {
+            if (ItemData.Instantiable)
+            {
+                ItemInstance = value;
+            } else
+            {
+                ItemInstance = null;
+            }
+        }
 
-    protected abstract IItem CreateItem();
+    }
+
+    protected virtual IItem CreateInstance()
+    {
+        return null;
+    }
 
     private void Awake()
     {
-        itemInstance = CreateItem();
+        if (ItemData.Instantiable)
+        {
+            ItemInstance = CreateInstance();
+        }
     }
 
     public override void OnInteract()
     {
-        PickUp();
-    }
+        bool pickedUp;
 
-    private void PickUp()
-    {
-        if (Player.InventoryManager.AddItem(itemInstance))
+        if (ItemData.Instantiable)
+        {
+            pickedUp = Player.InventoryManager.AddItem(ItemInstance);
+        } else
+        {
+            pickedUp = Player.InventoryManager.AddItem(ItemData);
+        }
+
+        if (pickedUp)
         {
             Destroy(gameObject);
         }
+        
     }
+
 }
+

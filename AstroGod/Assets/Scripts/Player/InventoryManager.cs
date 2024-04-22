@@ -1,7 +1,7 @@
 using UnityEngine;
 
 // Responsible for moving items between the game world and the player inventory
-public class PlayerInventory : MonoBehaviour
+public class InventoryManager : MonoBehaviour
 {
     private WeaponInventory weaponInventory = new();
     private ArmorInventory armorInventory = new();
@@ -53,6 +53,11 @@ public class PlayerInventory : MonoBehaviour
             default:
                 return false;
         }
+    }
+
+    public bool AddItem(ItemData itemData)
+    {
+        return true;
 
     }
 
@@ -63,13 +68,13 @@ public class PlayerInventory : MonoBehaviour
 
     // Drop the selected item from the specified inventory into the game world
     // Spawn the corresponding ItemPickUp prefab and transfer the item instance into the prefab
-    private void DropItem(IInventory inventory)
+    private void DropItem(IInstanceInventory inventory)
     {
         var removedItem = inventory.RemoveSelected();
         if (removedItem != null)
         {
             var droppedItem = Instantiate(removedItem.Data.PickUpPrefab, transform.position, transform.rotation);
-            droppedItem.itemInstance = removedItem;
+            droppedItem.ItemInstance = removedItem;
             Debug.Log($"Dropped {removedItem.Data.Name}");
         }
     }

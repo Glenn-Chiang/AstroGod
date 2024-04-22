@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class InventoryMenu : MonoBehaviour
 {
-    public IInventory weaponInventory;
-    public IInventory armorInventory;
+    public IInstanceInventory weaponInventory;
+    public IInstanceInventory armorInventory;
 
     public List<RectTransform> weaponSlots;
     public List<RectTransform> armorSlots;
@@ -25,7 +25,7 @@ public class InventoryMenu : MonoBehaviour
         UpdateInventoryDisplay(armorInventory, armorSlots);
     }
 
-    private void UpdateInventoryDisplay(IInventory inventory, List<RectTransform> slots)
+    private void UpdateInventoryDisplay(IInstanceInventory inventory, List<RectTransform> slots)
     {
         for (int i = 0; i < slots.Count; i++)
         {

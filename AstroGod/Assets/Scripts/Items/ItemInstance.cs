@@ -1,6 +1,4 @@
 using System;
-using Unity.VisualScripting;
-
 
 public interface IItem
 {
@@ -8,12 +6,12 @@ public interface IItem
 }
 
 [Serializable]
-public abstract class Item<T>: IItem where T : ItemData
+public abstract class ItemInstance<T>: IItem where T : ItemData
 {
     public T Data { get; }
     ItemData IItem.Data => Data;
 
-    public Item(T data)
+    public ItemInstance(T data)
     {
         Data = data;
     }
