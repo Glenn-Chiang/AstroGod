@@ -1,18 +1,19 @@
 using System;
 using UnityEngine;
-public abstract class HealthManager : Damageable
+public class HealthManager : Damageable
 {
-    [field: SerializeField] public float MaxHealth { get; private set; }
-    [SerializeField] private float health;
-    public override float HitPoints { get => health; protected set { health = value; } }
+    public float MaxHealth { get; private set; }
+    public float Health { get; private set; }
+    protected override float HitPoints { get => Health; set { Health = value; } }
 
-    private void Awake()
+    public HealthManager(float maxHealth)
     {
-        health = MaxHealth;
+        MaxHealth = maxHealth;
+        Health = MaxHealth;
     }
 
     public void Heal(float _health)
     {
-        health += Math.Min(_health, MaxHealth - health); // prevent overhealing
+        Health += Math.Min(_health, MaxHealth - Health); // prevent overhealing
     }
 }

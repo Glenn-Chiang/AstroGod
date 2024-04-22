@@ -6,7 +6,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Transform weaponSlot;
 
-    [SerializeField] private float moveSpeed = 10f;
+    private PlayerStats playerStats;
+
+    private float MoveSpeed => playerStats.MoveSpeed.Value;
     [SerializeField] private float dashSpeed = 30f;
     [SerializeField] private float dashDuration = 0.2f;
     [SerializeField] private float dashCooldown = 0.75f;
@@ -16,6 +18,11 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 aimDir;
     private bool isDashing = false;
     private bool canDash = true;
+
+    private void Start()
+    {
+        playerStats = PlayerController.Instance.Stats;
+    }
 
     private void Update()
     {
@@ -39,7 +46,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!isDashing)
         {
-            rb.MovePosition(rb.position + moveDir * moveSpeed * Time.deltaTime);
+            rb.MovePosition(rb.position + moveDir * MoveSpeed * Time.deltaTime);
         }
 
     }

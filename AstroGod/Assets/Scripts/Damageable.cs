@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public abstract class Damageable : MonoBehaviour
+public abstract class Damageable
 {
-    public abstract float HitPoints { get; protected set; }
+    protected abstract float HitPoints { get; set; }
     public virtual void TakeDamage(float damage)
     {
         if (damage < HitPoints)
@@ -12,10 +12,6 @@ public abstract class Damageable : MonoBehaviour
         else
         {
             HitPoints = 0;
-            OnDestroyed();
         }
     }
-
-    protected abstract void OnDestroyed();
-
 }

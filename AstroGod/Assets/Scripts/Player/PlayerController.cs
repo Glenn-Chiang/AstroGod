@@ -7,10 +7,13 @@ public class PlayerController : MonoBehaviour
     public PlayerMovement Movement { get; private set; }
     public PlayerInteraction InteractSystem { get; private set; }
     public PlayerInventory InventoryManager { get; private set; }
-    public PlayerHealthManager HealthManager { get; private set; }
 
-    [field: SerializeField] public int MaxAmmo { get; private set; }
-    public AmmoManager AmmoManager => new(MaxAmmo);
+    [field: SerializeField] public CharacterStats CharacterStats { get; private set; } // Set in inspector
+    public PlayerStats Stats => new(CharacterStats);
+    public HealthManager HealthManager => new(Stats.MaxHealth.Value);
+    public AmmoManager AmmoManager => new((int)Stats.MaxAmmo.Value);
+
+    private bool isAlive = true;
 
     private void Awake()
     {
@@ -25,7 +28,21 @@ public class PlayerController : MonoBehaviour
 
         Movement = GetComponent<PlayerMovement>();
         InteractSystem = GetComponent<PlayerInteraction>();
-        InventoryManager = GetComponent<PlayerInventory>();
-        HealthManager = GetComponent<PlayerHealthManager>();
+        InventoryManager = GetComponent<PlayerInventory>();   
+    }
+
+    private void Update()
+    {
+        //if (isAlive && HealthManager.Health == 0)
+        //{
+        //    Die();
+        //}
+    }
+
+    private void Die()
+    {
+        isAlive = false;
+        Debug.Log("Player died");
+        //Destroy(Instance);
     }
 }
