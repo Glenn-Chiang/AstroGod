@@ -2,11 +2,11 @@ using System;
 using UnityEngine;
 public abstract class HealthManager : Damageable
 {
-    [field: SerializeField] private float MaxHealth { get; }
+    [field: SerializeField] public float MaxHealth { get; private set; }
     [SerializeField] private float health;
     public override float HitPoints { get => health; protected set { health = value; } }
 
-    public HealthManager()
+    private void Awake()
     {
         health = MaxHealth;
     }

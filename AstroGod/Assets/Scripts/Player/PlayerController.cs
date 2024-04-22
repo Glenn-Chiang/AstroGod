@@ -8,7 +8,9 @@ public class PlayerController : MonoBehaviour
     public PlayerInteraction InteractSystem { get; private set; }
     public PlayerInventory InventoryManager { get; private set; }
     public PlayerHealthManager HealthManager { get; private set; }
-    
+
+    [field: SerializeField] public int MaxAmmo { get; private set; }
+    public AmmoManager AmmoManager => new(MaxAmmo);
 
     private void Awake()
     {

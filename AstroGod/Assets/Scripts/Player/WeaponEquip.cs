@@ -8,14 +8,20 @@ public class WeaponEquip : MonoBehaviour
         get
         {
             if (equippedWeaponModel == null) return null;
-            return equippedWeaponModel.GetComponent<WeaponController>();
+            var weapon = equippedWeaponModel.GetComponent<WeaponController>();
+            weapon.ammoManager = ammoManager;
+            return weapon;
         }
     }
     private WeaponInventory weaponInventory;
 
+    private AmmoManager ammoManager;
+
     private void Start()
     {
-        weaponInventory = PlayerController.Instance.InventoryManager.WeaponInventory;
+        var player = PlayerController.Instance;
+        weaponInventory = player.InventoryManager.WeaponInventory;
+        ammoManager = player.AmmoManager;
     }
 
     private void Update()
