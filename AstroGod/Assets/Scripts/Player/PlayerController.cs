@@ -6,8 +6,8 @@ public class PlayerController : MonoBehaviour
 
     public PlayerMovement Movement { get; private set; }
     public PlayerInteraction InteractSystem { get; private set; }
-    public InventoryManager InventoryManager { get; private set; }
-    public PlayerHealthManager HealthManager => new();
+    public PlayerInventory InventoryManager { get; private set; }
+    public PlayerHealthManager HealthManager { get; private set; }
     
 
     private void Awake()
@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour
 
         Movement = GetComponent<PlayerMovement>();
         InteractSystem = GetComponent<PlayerInteraction>();
-        InventoryManager = GetComponent<InventoryManager>();
+        InventoryManager = GetComponent<PlayerInventory>();
+        HealthManager = GetComponent<PlayerHealthManager>();
     }
 }

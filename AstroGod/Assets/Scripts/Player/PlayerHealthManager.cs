@@ -6,5 +6,6 @@ public class PlayerHealthManager : HealthManager
     {
         // Implement player death logic
         Debug.Log("Player died");
+        Destroy(gameObject);
     }
 }

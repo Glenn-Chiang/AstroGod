@@ -1,7 +1,7 @@
 using UnityEngine;
 
 // Responsible for moving items between the game world and the player inventory
-public class InventoryManager : MonoBehaviour
+public class PlayerInventory : MonoBehaviour
 {
     private WeaponInventory weaponInventory = new();
     private ArmorInventory armorInventory = new();
