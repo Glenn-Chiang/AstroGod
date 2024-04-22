@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Chest : Interactable
 {
-    [SerializeField] private List<ItemPickUp> itemPrefabs;
+    [SerializeField] private List<InstancedItemPickUp> itemPrefabs;
 
     public override void OnInteract()
     {

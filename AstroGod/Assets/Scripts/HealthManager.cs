@@ -6,7 +6,7 @@ public class HealthManager : Damageable
     public float Health { get; private set; }
     protected override float HitPoints { get => Health; set { Health = value; } }
 
-    public HealthManager(float maxHealth)
+    public void Initialize(float maxHealth)
     {
         MaxHealth = maxHealth;
         Health = MaxHealth;

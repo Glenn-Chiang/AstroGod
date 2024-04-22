@@ -3,11 +3,9 @@ using UnityEngine;
 // Responsible for moving items between the game world and the player inventory
 public class InventoryManager : MonoBehaviour
 {
-    private WeaponInventory weaponInventory = new();
-    private ArmorInventory armorInventory = new();
-
-    public WeaponInventory WeaponInventory => weaponInventory;
-    public ArmorInventory ArmorInventory => armorInventory;
+    public WeaponInventory WeaponInventory => new();
+    public ArmorInventory ArmorInventory => new();
+    public StackableInventory StackableInventory = new();
 
     [SerializeField] private RectTransform inventoryMenu;
 
@@ -33,32 +31,31 @@ public class InventoryManager : MonoBehaviour
 
     // Determine which inventory to add the item to, based on its type
     public bool AddItem(IItem item)
-    {  
+    {
+        bool added = false;
         switch (item.Data.ItemType)
         {
             case ItemType.Weapon:
-                if (WeaponInventory.AddItem((Weapon)item)) 
-                {
-                    Debug.Log($"Added {item.Data.Name} to weapon inventory");
-                    return true;
-                }
-                return false;
+                added = WeaponInventory.AddItem((Weapon)item);
+                break;
             case ItemType.Armor:
-                if (ArmorInventory.AddItem((Armor)item)) 
-                {
-                    Debug.Log($"Added {item.Data.Name} to armor inventory");
-                    return true;
-                }
-                return false;
+                added = ArmorInventory.AddItem((Armor)item);
+                break;        
             default:
                 return false;
         }
+
+        if (added)
+        {
+            Debug.Log($"Added {item.Data.Name} to {item.Data.ItemType} inventory");
+            return true;
+        }
+        return false;
     }
 
-    public bool AddItem(ItemData itemData)
+    public bool AddItem(ItemData itemData, int amountToAdd = 1)
     {
-        return true;
-
+        return StackableInventory.AddItem(itemData, amountToAdd);
     }
 
     private void DropWeapon()

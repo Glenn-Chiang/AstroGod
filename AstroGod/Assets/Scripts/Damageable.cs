@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public abstract class Damageable
+public abstract class Damageable : MonoBehaviour
 {
     protected abstract float HitPoints { get; set; }
     public virtual void TakeDamage(float damage)

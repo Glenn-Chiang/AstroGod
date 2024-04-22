@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ArmorPickUp : ItemPickUp
+public class ArmorPickUp : InstancedItemPickUp
 {
     [SerializeField] ArmorData data;
     protected override ItemData ItemData => data;

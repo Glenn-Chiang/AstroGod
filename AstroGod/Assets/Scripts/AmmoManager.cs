@@ -2,12 +2,12 @@ using System;
 using UnityEngine;
 
 [Serializable]
-public class AmmoManager
+public class AmmoManager : MonoBehaviour
 {
     public int MaxAmmo { get; private set; }
     [SerializeField] private int ammoCount;
 
-    public AmmoManager(int maxAmmo)
+    public void Initialize(int maxAmmo)
     {
         MaxAmmo = maxAmmo;
         ammoCount = MaxAmmo;

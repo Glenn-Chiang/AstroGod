@@ -10,8 +10,8 @@ public class PlayerController : MonoBehaviour
 
     [field: SerializeField] public CharacterStats CharacterStats { get; private set; } // Set in inspector
     public PlayerStats Stats => new(CharacterStats);
-    public HealthManager HealthManager => new(Stats.MaxHealth.Value);
-    public AmmoManager AmmoManager => new((int)Stats.MaxAmmo.Value);
+    public HealthManager HealthManager { get; private set; }
+    public AmmoManager AmmoManager { get; private set; }
 
     private bool isAlive = true;
 
@@ -28,7 +28,13 @@ public class PlayerController : MonoBehaviour
 
         Movement = GetComponent<PlayerMovement>();
         InteractSystem = GetComponent<PlayerInteraction>();
-        InventoryManager = GetComponent<InventoryManager>();   
+        InventoryManager = GetComponent<InventoryManager>();
+
+        HealthManager = GetComponent<HealthManager>();
+        HealthManager.Initialize(Stats.MaxHealth.Value);
+
+        AmmoManager = GetComponent<AmmoManager>();
+        AmmoManager.Initialize((int)Stats.MaxAmmo.Value);
     }
 
     private void Update()

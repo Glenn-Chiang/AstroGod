@@ -2,20 +2,24 @@ using UnityEngine;
 
 public class ItemPickUp : Interactable
 {
+    public override void OnInteract()
+    {
+
+    }
+}
+
+public class ConsumeableItemPickUp : ItemPickUp
+{
+
+}
+
+public class InstancedItemPickUp : ItemPickUp
+{
     public virtual ItemData ItemData { get; }
     public IItem ItemInstance 
     { 
         get;
-        set
-        {
-            if (ItemData.Instantiable)
-            {
-                ItemInstance = value;
-            } else
-            {
-                ItemInstance = null;
-            }
-        }
+        set;
 
     }
 
