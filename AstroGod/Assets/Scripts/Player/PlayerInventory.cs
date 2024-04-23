@@ -4,11 +4,18 @@ using UnityEngine;
 // Responsible for moving items between the game world and the player inventory
 public class PlayerInventory : InventoryManager
 {
-    public WeaponInventory WeaponInventory => new();
-    public ArmorInventory ArmorInventory => new();
-    public StackableInventory StackableInventory = new();
+    public WeaponInventory WeaponInventory { get; private set; }
+    public ArmorInventory ArmorInventory { get; private set; }
+    public StackableInventory StackableInventory { get; private set; }
 
     [SerializeField] private RectTransform inventoryMenu;
+
+    private void Awake()
+    {
+        WeaponInventory = new();
+        ArmorInventory = new();
+        StackableInventory = new();
+    }
 
     private void Update()
     {
@@ -54,7 +61,7 @@ public class PlayerInventory : InventoryManager
         return false;
     }
 
-    public override bool AddItem(ItemData itemData, int amountToAdd = 1)
+    public override bool AddItem(ItemData itemData, int amountToAdd)
     {
         return StackableInventory.AddItem(itemData, amountToAdd);
     }

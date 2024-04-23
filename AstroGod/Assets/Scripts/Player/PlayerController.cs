@@ -9,7 +9,8 @@ public class PlayerController : MonoBehaviour
     public PlayerInventory InventoryManager { get; private set; }
 
     [field: SerializeField] public CharacterStats CharacterStats { get; private set; } // Set in inspector
-    public PlayerStats Stats => new(CharacterStats);
+    public PlayerStats Stats { get; private set; }
+    
     public HealthManager HealthManager { get; private set; }
     public AmmoManager AmmoManager { get; private set; }
 
@@ -23,9 +24,9 @@ public class PlayerController : MonoBehaviour
             Destroy(this);
             return;
         } 
-
         Instance = this;
 
+        Stats = new(CharacterStats);
         Movement = GetComponent<PlayerMovement>();
         InteractSystem = GetComponent<PlayerInteraction>();
         InventoryManager = GetComponent<PlayerInventory>();
