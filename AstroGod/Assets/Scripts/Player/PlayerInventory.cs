@@ -6,7 +6,7 @@ public class PlayerInventory : InventoryManager
 {
     public readonly WeaponInventory weaponInventory = new();
     public readonly ArmorInventory armorInventory = new();
-    public readonly StackableInventory stackableInventory = new();
+    public readonly StackableInventory consumableInventory = new();
 
     [SerializeField] private RectTransform inventoryMenu;
 
@@ -56,7 +56,7 @@ public class PlayerInventory : InventoryManager
 
     public override bool AddItem(ItemData itemData, int amountToAdd)
     {
-        return stackableInventory.AddItem(itemData, amountToAdd);
+        return consumableInventory.AddItem(itemData, amountToAdd);
     }
 
     private void DropWeapon()

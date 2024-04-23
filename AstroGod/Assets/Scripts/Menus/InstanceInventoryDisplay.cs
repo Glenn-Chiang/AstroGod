@@ -10,10 +10,10 @@ public abstract class InstanceInventoryDisplay : MonoBehaviour
 
     private void Update()
     {
-        UpdateInventoryDisplay(inventory);
+        UpdateInventoryDisplay();
     }
 
-    protected void UpdateInventoryDisplay(IInstanceInventory inventory)
+    private void UpdateInventoryDisplay()
     {
         for (int i = 0; i < slots.Count; i++)
         {
