@@ -8,7 +8,7 @@ public abstract class ItemData : ScriptableObject
     [field: SerializeField] public Sprite Icon { get; private set; }
     [field: SerializeField, TextArea] public string Description { get; private set; }
 
-    [field : SerializeField] public InstancedItemPickUp PickUpPrefab { get; private set; }
+    [field : SerializeField] public virtual ItemPickUp PickUpPrefab { get; private set; }
     [field : SerializeField] public GameObject ModelPrefab { get; private set; } // Game object representing the item instance when it is visibly held/equipped by the player
 }
 

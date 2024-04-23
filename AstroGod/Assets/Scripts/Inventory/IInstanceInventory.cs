@@ -2,8 +2,8 @@ using System.Collections.Generic;
 
 public interface IInstanceInventory 
 {
-    public IReadOnlyList<IItem> Items { get; }
+    public IReadOnlyList<IItemInstance> Items { get; }
     public void SelectItem(int index);
-    public IItem SelectedItem { get; }
-    public IItem RemoveSelected();
+    public IItemInstance SelectedItem { get; }
+    public IItemInstance RemoveSelected();
 }

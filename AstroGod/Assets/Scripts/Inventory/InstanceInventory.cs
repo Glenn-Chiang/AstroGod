@@ -3,11 +3,11 @@ using System;
 using UnityEngine;
 
 [Serializable]
-public abstract class InstanceInventory<T> : IInstanceInventory where T : class, IItem
+public abstract class InstanceInventory<T> : IInstanceInventory where T : class, IItemInstance
 {
-    IReadOnlyList<IItem> IInstanceInventory.Items => items;
-    IItem IInstanceInventory.SelectedItem => SelectedItem;
-    IItem IInstanceInventory.RemoveSelected() => RemoveSelected();
+    IReadOnlyList<IItemInstance> IInstanceInventory.Items => items;
+    IItemInstance IInstanceInventory.SelectedItem => SelectedItem;
+    IItemInstance IInstanceInventory.RemoveSelected() => RemoveSelected();
 
     public abstract int Capacity { get; }
 

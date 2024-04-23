@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[CreateAssetMenu(fileName = "HealthCell", menuName = "Consumable/HealthCell")]
 public class HealthCell : ConsumableItem
 {
     [SerializeField] private float healAmount;

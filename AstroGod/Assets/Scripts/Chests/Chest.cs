@@ -5,7 +5,7 @@ public class Chest : Interactable
 {
     [SerializeField] private List<InstancedItemPickUp> itemPrefabs;
 
-    public override void OnInteract()
+    public override void OnInteract(GameObject interactor)
     {
         
     }

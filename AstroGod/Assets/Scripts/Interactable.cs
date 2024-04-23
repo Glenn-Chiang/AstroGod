@@ -28,6 +28,6 @@ public abstract class Interactable : MonoBehaviour
             InteractSystem.RemoveObject(this);
         }
     }
-    public abstract void OnInteract();
+    public abstract void OnInteract(GameObject interactor);
     
 }
