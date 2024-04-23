@@ -74,7 +74,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 3
   m_Sprite: {fileID: -3549380958941290185, guid: ad94658f34ee9e648b3eed4cb99f9eae, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -99,6 +99,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firePoint: {fileID: 1083422313762901076}
+  weaponInstance:
+    <Damage>k__BackingField: 0
+    <FireRate>k__BackingField: 0
+  ammoManager: {fileID: 0}
 --- !u!1 &2729236874372023302
 GameObject:
   m_ObjectHideFlags: 0

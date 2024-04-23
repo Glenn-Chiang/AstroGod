@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: HealthCell
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Health Cell
-  <Icon>k__BackingField: {fileID: 0}
+  <Icon>k__BackingField: {fileID: -4779694876563634302, guid: 51c6332f7ad0e5a489fc03eb995d6f4d, type: 3}
   <Description>k__BackingField: Replenishes health when consumed
-  <PickUpPrefab>k__BackingField: {fileID: 0}
+  <PickUpPrefab>k__BackingField: {fileID: 6951318549950091512, guid: e75969db15408ff429326bda79b53c0e, type: 3}
   <ModelPrefab>k__BackingField: {fileID: 0}
   <StackLimit>k__BackingField: 10
   healAmount: 10

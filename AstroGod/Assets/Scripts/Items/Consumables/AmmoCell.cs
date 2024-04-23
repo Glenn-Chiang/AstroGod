@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[CreateAssetMenu(fileName = "AmmoCell", menuName = "Consumable/AmmoCell")]
 public class AmmoCell : ConsumableItem
 {
     [SerializeField] private int ammoCount;
