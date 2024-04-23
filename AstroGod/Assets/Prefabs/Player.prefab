@@ -16,11 +16,9 @@ GameObject:
   - component: {fileID: -5213615034684900422}
   - component: {fileID: 7477701425574513819}
   - component: {fileID: 6887988674776464754}
-  - component: {fileID: 3984160205865547030}
   - component: {fileID: 8041422952923844085}
   - component: {fileID: 6793941510301399174}
-  - component: {fileID: 8846248453290081020}
-  - component: {fileID: 2920828044434109497}
+  - component: {fileID: 4772484965829379629}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -84,7 +82,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: -2316465721649202459, guid: 1f8a3961c69e8f54da30750cc9e0dd8e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -213,19 +211,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d99b3ff084b20194f8c62d9e642ca94a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &3984160205865547030
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3892431038457549735}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19ebd0e8163af784b99ff9750cbc8326, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inventoryMenu: {fileID: 0}
 --- !u!114 &8041422952923844085
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -251,7 +236,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f15329778cc7fc4aa3cd5087aa2c727, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &8846248453290081020
+--- !u!114 &4772484965829379629
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -260,22 +245,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 3892431038457549735}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f15329778cc7fc4aa3cd5087aa2c727, type: 3}
+  m_Script: {fileID: 11500000, guid: 19ebd0e8163af784b99ff9750cbc8326, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2920828044434109497
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3892431038457549735}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9504f76b2076d34468bb198f6c488893, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ammoCount: 0
+  inventoryMenu: {fileID: 0}
 --- !u!1 &4083453597905947850
 GameObject:
   m_ObjectHideFlags: 0
