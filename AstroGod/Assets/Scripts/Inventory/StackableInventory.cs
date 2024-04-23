@@ -1,4 +1,5 @@
 using JetBrains.Annotations;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,7 +7,7 @@ public class StackableInventory
 {
     private readonly int capacity = 10;
 
-    [SerializeField] private List<ItemSlot> itemsSlots;
+    [SerializeField] private List<ItemStack> itemsSlots;
 
     public bool AddItem(ItemData itemData, int amountToAdd)
     {
@@ -23,34 +24,25 @@ public class StackableInventory
         // If there is sufficient capacity, add a new slot for this ItemData
         if (itemsSlots.Count < capacity)
         {
-            itemsSlots.Add(new ItemSlot(itemData, amountToAdd));
+            itemsSlots.Add(new ItemStack(itemData, amountToAdd));
             return true;
         }
 
         return false;
     }
 
-    public void ReduceItem(int index)
-    {
-        if (!ValidateIndex(index)) return;
-
-        var itemSlot = itemsSlots[index];
-        itemSlot.amount -= 1;
-
-        // If amount of item is reduced to 0, remove its slot
-        if (itemSlot.amount == 0)
-        {
-            itemsSlots.RemoveAt(index);
-        }
-    }
-
-    // Remove the whole stack of the ItemData at this slot
-    public ItemData RemoveItem(int index)
+    public ItemStack RemoveItem(int index, int amountToRemove = 1)
     {
         if (!ValidateIndex(index)) return null;
 
-        itemsSlots.RemoveAt(index);
-        return itemsSlots[index].itemData;
+        var itemStack = itemsSlots[index];
+        int amountRemoved = Math.Min(itemStack.amount, amountToRemove);
+        itemStack.amount -= amountRemoved;
+        if (itemStack.amount == 0)
+        {
+            itemsSlots.RemoveAt(index);
+        }
+        return new ItemStack(itemStack.itemData, amountRemoved);
     }
 
     private bool ValidateIndex(int index)
@@ -59,12 +51,12 @@ public class StackableInventory
     }
 }
 
-public class ItemSlot
+public class ItemStack
 {
     public ItemData itemData;
     public int amount;
 
-    public ItemSlot(ItemData _itemData, int _amount)
+    public ItemStack(ItemData _itemData, int _amount)
     {
         itemData = _itemData;
         amount = _amount;

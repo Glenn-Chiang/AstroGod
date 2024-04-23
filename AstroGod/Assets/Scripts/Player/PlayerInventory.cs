@@ -61,20 +61,7 @@ public class PlayerInventory : InventoryManager
 
     private void DropWeapon()
     {
-        DropItem(WeaponInventory);
-    }
-
-    // Drop the selected item from the specified inventory into the game world
-    // Spawn the corresponding ItemPickUp prefab and transfer the item instance into the prefab
-    protected override void DropItem(IInstanceInventory inventory)
-    {
-        var removedItem = inventory.RemoveSelected();
-        if (removedItem != null)
-        {
-            var droppedItem = Instantiate((InstancedItemPickUp)removedItem.Data.PickUpPrefab, transform.position, transform.rotation);
-            droppedItem.itemInstance = removedItem;
-            Debug.Log($"Dropped {removedItem.Data.Name}");
-        }
+        DropItemInstance(WeaponInventory);
     }
 
     private int GetNumberInput()
