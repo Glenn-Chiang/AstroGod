@@ -29,7 +29,6 @@ public abstract class InstanceInventory<T> : IInstanceInventory where T : class,
         // Don't exceed capacity and don't store multiple references to the same item
         if (items.Count == Capacity || items.Contains(item)) return false;
         items.Add(item);
-        Debug.Log(items.Count);
         return true;
     }
 

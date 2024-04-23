@@ -4,18 +4,11 @@ using UnityEngine;
 // Responsible for moving items between the game world and the player inventory
 public class PlayerInventory : InventoryManager
 {
-    public WeaponInventory WeaponInventory { get; private set; }
-    public ArmorInventory ArmorInventory { get; private set; }
-    public StackableInventory StackableInventory { get; private set; }
+    public readonly WeaponInventory weaponInventory = new();
+    public readonly ArmorInventory armorInventory = new();
+    public readonly StackableInventory stackableInventory = new();
 
     [SerializeField] private RectTransform inventoryMenu;
-
-    private void Awake()
-    {
-        WeaponInventory = new();
-        ArmorInventory = new();
-        StackableInventory = new();
-    }
 
     private void Update()
     {
@@ -23,7 +16,7 @@ public class PlayerInventory : InventoryManager
         int numberInput = GetNumberInput();
         if (numberInput != -1)
         {
-            WeaponInventory.SelectItem(numberInput - 1);
+            weaponInventory.SelectItem(numberInput - 1);
         }
 
         if (Input.GetKeyDown(KeyCode.I))
@@ -44,10 +37,10 @@ public class PlayerInventory : InventoryManager
         switch (item.Data.ItemType)
         {
             case ItemType.Weapon:
-                added = WeaponInventory.AddItem((Weapon)item);
+                added = weaponInventory.AddItem((Weapon)item);
                 break;
             case ItemType.Armor:
-                added = ArmorInventory.AddItem((Armor)item);
+                added = armorInventory.AddItem((Armor)item);
                 break;        
             default:
                 return false;
@@ -63,12 +56,12 @@ public class PlayerInventory : InventoryManager
 
     public override bool AddItem(ItemData itemData, int amountToAdd)
     {
-        return StackableInventory.AddItem(itemData, amountToAdd);
+        return stackableInventory.AddItem(itemData, amountToAdd);
     }
 
     private void DropWeapon()
     {
-        DropItemInstance(WeaponInventory);
+        DropItemInstance(weaponInventory);
     }
 
     private int GetNumberInput()

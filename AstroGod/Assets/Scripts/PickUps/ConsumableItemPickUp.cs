@@ -7,8 +7,10 @@ public class ConsumeableItemPickUp : ItemPickUp
     {
         if (interactor.TryGetComponent<InventoryManager>(out var inventoryManager))
         {
-            inventoryManager.AddItem(ItemData, amount);
-            Destroy(gameObject);
+            if (inventoryManager.AddItem(ItemData, amount))
+            {
+                Destroy(gameObject);
+            }
         }
     }
 

@@ -15,8 +15,8 @@ public class InventoryMenu : MonoBehaviour
 
     private void Start()
     {
-        weaponInventory = PlayerController.Instance.InventoryManager.WeaponInventory;
-        armorInventory = PlayerController.Instance.InventoryManager.ArmorInventory;
+        weaponInventory = PlayerController.Instance.InventoryManager.weaponInventory;
+        armorInventory = PlayerController.Instance.InventoryManager.armorInventory;
     }
 
     private void Update()

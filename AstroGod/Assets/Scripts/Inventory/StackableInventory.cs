@@ -7,7 +7,7 @@ public class StackableInventory
 {
     private readonly int capacity = 10;
 
-    [SerializeField] private List<ItemStack> itemsSlots;
+    [SerializeField] private List<ItemStack> itemsSlots = new();
 
     public bool AddItem(ItemData itemData, int amountToAdd)
     {

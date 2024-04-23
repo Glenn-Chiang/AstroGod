@@ -15,8 +15,10 @@ public abstract class InstancedItemPickUp : ItemPickUp
     {
         if (interactor.TryGetComponent<InventoryManager>(out var inventoryManager))
         {
-            inventoryManager.AddItem(itemInstance);
-            Destroy(gameObject);
+            if (inventoryManager.AddItem(itemInstance))
+            {
+                Destroy(gameObject);
+            }
         }
         
     }

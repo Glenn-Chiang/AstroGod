@@ -20,7 +20,7 @@ public class WeaponEquip : MonoBehaviour
     private void Start()
     {
         var player = PlayerController.Instance;
-        weaponInventory = player.InventoryManager.WeaponInventory;
+        weaponInventory = player.InventoryManager.weaponInventory;
         ammoManager = player.AmmoManager;
     }
 

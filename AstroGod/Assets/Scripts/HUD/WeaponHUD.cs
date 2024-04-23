@@ -12,7 +12,7 @@ public class WeaponHUD : MonoBehaviour
 
     private void Start()
     {
-        weaponInventory = PlayerController.Instance.InventoryManager.WeaponInventory;
+        weaponInventory = PlayerController.Instance.InventoryManager.weaponInventory;
         
     }
     private void Update()
