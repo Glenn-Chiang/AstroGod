@@ -1,11 +1,10 @@
 using UnityEngine;
 
-public class WeaponPickUp : InstancedItemPickUp
+public class WeaponPickUp : ItemPickUp
 {
-    [SerializeField] WeaponData data;
-    public override ItemData ItemData => data;
-
-    protected override IItemInstance CreateInstance()
+    [SerializeField] private WeaponData data;
+    protected override ItemData ItemData => data; 
+    protected override IItem CreateItem()
     {
         return new Weapon(data);
     }

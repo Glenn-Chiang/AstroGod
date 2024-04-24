@@ -2,29 +2,35 @@ using UnityEngine;
 
 public abstract class InventoryManager : MonoBehaviour
 {
-    public abstract bool AddItem(IItemInstance item);
-    public abstract bool AddItem(ItemData itemData, int amountToAdd = 1);
-
-    // Drop the selected item from the specified inventory into the game world
-    // Spawn the corresponding ItemPickUp prefab and transfer the item instance into the prefab
-    protected void DropItemInstance(IInstanceInventory inventory)
+    protected bool AddItemInstance<T>(T itemInstance, InstanceInventory<T> inventory) where T : ItemInstance
     {
-        var removedItem = inventory.RemoveSelected();
-        if (removedItem != null)
+        if (inventory.AddItem(itemInstance))
         {
-            var droppedItem = Instantiate((InstancedItemPickUp)removedItem.Data.PickUpPrefab, transform.position, transform.rotation);
-            droppedItem.itemInstance = removedItem;
-            Debug.Log($"Dropped {removedItem.Data.Name}");
+            Debug.Log($"Added {itemInstance.ItemData.Name}");
+            return true;
+        }
+        return false;
+    }
+
+    protected void DropItemInstance<T>(InstanceInventory<T> inventory) where T : ItemInstance
+    {
+        var itemInstance = inventory.RemoveSelected();
+        if (itemInstance != null)
+        {
+            // Spawn the corresponding ItemPickUp prefab and transfer the item instance into the prefab
+            var itemPickUp = Instantiate(itemInstance.ItemData.PickUpPrefab, transform.position, transform.rotation);
+            itemPickUp.item = itemInstance;
+            Debug.Log($"Dropped {itemInstance.ItemData.Name}");
         }
     }
-    protected void DropItem(StackableInventory inventory, int index, int amountToDrop = 1)
+    protected void DropItemStack(StackableInventory inventory, int index, int amountToDrop = 1)
     {
         var itemStack = inventory.RemoveItem(index, amountToDrop);
         if (itemStack.amount > 0)
         {
-            var droppedStack = Instantiate((ConsumeableItemPickUp)itemStack.itemData.PickUpPrefab, transform.position, transform.rotation);
-            droppedStack.amount = itemStack.amount;
-            Debug.Log($"Dropped {itemStack.amount} {itemStack.itemData.name}");
+            var itemPickUp = Instantiate(itemStack.ItemData.PickUpPrefab, transform.position, transform.rotation);
+            itemPickUp.item = itemStack;
+            Debug.Log($"Dropped {itemStack.amount} {itemStack.ItemData.name}");
         }
     }
 }

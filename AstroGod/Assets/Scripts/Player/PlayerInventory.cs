@@ -30,34 +30,21 @@ public class PlayerInventory : InventoryManager
         }
     }
 
-    // Determine which inventory to add the item to, based on its type
-    public override bool AddItem(IItemInstance item)
+    public void AddItem()
     {
-        bool added = false;
-        switch (item.Data.ItemType)
-        {
-            case ItemType.Weapon:
-                added = weaponInventory.AddItem((Weapon)item);
-                break;
-            case ItemType.Armor:
-                added = armorInventory.AddItem((Armor)item);
-                break;        
-            default:
-                return false;
-        }
 
-        if (added)
-        {
-            Debug.Log($"Added {item.Data.Name} to {item.Data.ItemType} inventory");
-            return true;
-        }
-        return false;
     }
 
-    public override bool AddItem(ItemData itemData, int amountToAdd)
+    public bool AddWeapon(Weapon weapon)
     {
-        return consumableInventory.AddItem(itemData, amountToAdd);
+        return AddItemInstance(weapon, weaponInventory);
     }
+
+    public bool AddArmor(Armor armor)
+    {
+        return AddItemInstance(armor, armorInventory);
+    }
+
 
     private void DropWeapon()
     {

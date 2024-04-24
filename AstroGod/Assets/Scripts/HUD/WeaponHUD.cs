@@ -27,8 +27,8 @@ public class WeaponHUD : MonoBehaviour
         }
         else
         {
-            nameText.text = selectedWeapon.Data.Name;
-            iconImage.sprite = selectedWeapon.Data.Icon;
+            nameText.text = selectedWeapon.ItemData.Name;
+            iconImage.sprite = selectedWeapon.ItemData.Icon;
             iconImage.enabled = true;
         }
     }

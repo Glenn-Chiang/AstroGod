@@ -1,19 +1,18 @@
 using System;
 
-public interface IItemInstance
+public abstract class ItemInstance : IItem
 {
-    public ItemData Data { get; }
+    public ItemData ItemData { get; }
 }
 
 [Serializable]
-public abstract class ItemInstance<T>: IItemInstance where T : ItemData
+public abstract class ItemInstance<T>: ItemInstance where T : ItemData
 {
-    public T Data { get; }
-    ItemData IItemInstance.Data => Data;
+    public new T ItemData { get; }
 
     public ItemInstance(T data)
     {
-        Data = data;
+        ItemData = data;
     }
 }
 

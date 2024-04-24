@@ -3,7 +3,7 @@ using UnityEngine;
 
 public abstract class InstanceInventoryDisplay : MonoBehaviour
 {
-    [SerializeField] protected IInstanceInventory inventory;
+    [SerializeField] protected IInventory inventory;
     [SerializeField] private List<InventorySlotDisplay> slots;
     
     private readonly string placeholderName = "Empty";
@@ -30,10 +30,10 @@ public abstract class InstanceInventoryDisplay : MonoBehaviour
             }
             
             var item = inventory.Items[i];
-            iconDisplay.sprite = item.Data.Icon;
+            iconDisplay.sprite = item.ItemData.Icon;
             iconDisplay.SetNativeSize();
             iconDisplay.enabled = true;
-            nameDisplay.text = $"[{i+1}] " + item.Data.Name;
+            nameDisplay.text = $"[{i+1}] " + item.ItemData.Name;
             
             if (inventory.SelectedItem == item)
             {

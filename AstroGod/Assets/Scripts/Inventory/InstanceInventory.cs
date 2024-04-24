@@ -3,12 +3,8 @@ using System;
 using UnityEngine;
 
 [Serializable]
-public abstract class InstanceInventory<T> : IInstanceInventory where T : class, IItemInstance
+public abstract class InstanceInventory<T> where T : ItemInstance
 {
-    IReadOnlyList<IItemInstance> IInstanceInventory.Items => items;
-    IItemInstance IInstanceInventory.SelectedItem => SelectedItem;
-    IItemInstance IInstanceInventory.RemoveSelected() => RemoveSelected();
-
     public abstract int Capacity { get; }
 
     [SerializeField] private List<T> items = new();
@@ -46,7 +42,7 @@ public abstract class InstanceInventory<T> : IInstanceInventory where T : class,
     {
         if (!ValidateIndex(index)) return;
         selectedIndex = index;
-        Debug.Log($"Selected {SelectedItem.Data.Name}");
+        Debug.Log($"Selected {SelectedItem.ItemData.Name}");
     }
 
     private bool ValidateIndex(int index)

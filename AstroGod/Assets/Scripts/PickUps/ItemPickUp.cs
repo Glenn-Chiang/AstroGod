@@ -2,12 +2,25 @@ using UnityEngine;
 
 public abstract class ItemPickUp : Interactable
 {
-    [field: SerializeField] public virtual ItemData ItemData { get; private set; }
+    [field: SerializeField] protected virtual ItemData ItemData { get; }
+
+    public IItem item; // ItemStack or ItemInstance
+
+    protected abstract IItem CreateItem();
+
+    private void Awake()
+    {
+        item = CreateItem();
+    }
 
     public override void OnInteract(GameObject interactor)
     {
-        PickUp(interactor);
+        if (interactor.TryGetComponent<InventoryManager>(out var inventoryManager))
+        {
+            //if (inventoryManager.AddItemInstance(item))
+            //{
+            //    Destroy(gameObject);
+            //}
+        }
     }
-
-    public abstract void PickUp(GameObject interactor);
 }

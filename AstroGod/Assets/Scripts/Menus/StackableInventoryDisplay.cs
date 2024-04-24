@@ -24,7 +24,7 @@ public abstract class StackableInventoryDisplay : MonoBehaviour
             var nameDisplay = slot.nameDisplay;
             var amountDisplay = slot.amountDisplay;
 
-            if (i > inventory.ItemSlots.Count - 1 || inventory.ItemSlots[i] == null)
+            if (i > inventory.ItemStacks.Count - 1 || inventory.ItemStacks[i] == null)
             {
                 iconDisplay.sprite = null;
                 iconDisplay.enabled = false;
@@ -33,11 +33,11 @@ public abstract class StackableInventoryDisplay : MonoBehaviour
                 return;
             }
 
-            var itemStack = inventory.ItemSlots[i];
-            iconDisplay.sprite = itemStack.itemData.Icon;
+            var itemStack = inventory.ItemStacks[i];
+            iconDisplay.sprite = itemStack.ItemData.Icon;
             iconDisplay.SetNativeSize();
             iconDisplay.enabled = true;
-            nameDisplay.text = $"[{i + 1}] " + itemStack.itemData.Name;
+            nameDisplay.text = $"[{i + 1}] " + itemStack.ItemData.Name;
             amountDisplay.text = itemStack.amount.ToString();
             amountDisplay.enabled = true;
         }
