@@ -13,7 +13,7 @@ public class WeaponEquip : MonoBehaviour
             return weapon;
         }
     }
-    private WeaponInventory weaponInventory;
+    private InstanceInventory<Weapon> weaponInventory;
 
     private AmmoManager ammoManager;
 

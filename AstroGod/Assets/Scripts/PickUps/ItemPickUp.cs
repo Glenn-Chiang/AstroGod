@@ -13,14 +13,9 @@ public abstract class ItemPickUp : Interactable
         item = CreateItem();
     }
 
-    public override void OnInteract(GameObject interactor)
+    public override void OnInteract()
     {
-        if (interactor.TryGetComponent<InventoryManager>(out var inventoryManager))
-        {
-            //if (inventoryManager.AddItemInstance(item))
-            //{
-            //    Destroy(gameObject);
-            //}
-        }
+        
     }
 }
+

@@ -3,7 +3,7 @@ using UnityEngine;
 
 public abstract class InstanceInventoryDisplay : MonoBehaviour
 {
-    [SerializeField] protected IInventory inventory;
+    [SerializeField] protected InstanceInventory inventory;
     [SerializeField] private List<InventorySlotDisplay> slots;
     
     private readonly string placeholderName = "Empty";

@@ -3,11 +3,12 @@ using System;
 using UnityEngine;
 
 [Serializable]
-public class InstanceInventory<T> where T : ItemInstance
+public class InstanceInventory<T>: InstanceInventory where T : ItemInstance
 {
     public readonly int capacity;
 
     [SerializeField] private List<T> items = new();
+    IReadOnlyList<ItemInstance> InstanceInventory.Items => items;
 
     private int selectedIndex = -1; // No item selected by default
 
@@ -19,6 +20,7 @@ public class InstanceInventory<T> where T : ItemInstance
             return items[selectedIndex];
         }
     }
+    ItemInstance InstanceInventory.SelectedItem => SelectedItem;
 
     public InstanceInventory(int _capacity)
     {

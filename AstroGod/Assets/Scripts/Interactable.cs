@@ -18,6 +18,11 @@ public abstract class Interactable : MonoBehaviour
             interactSystem.RemoveObject(this);
         }
     }
-    public abstract void OnInteract(GameObject interactor);
-    
+    public abstract void OnInteract();
+}
+
+// InteractResponse can be subclassed by Interactables to return specific data
+public class InteractResponse
+{
+
 }
