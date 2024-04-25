@@ -3,9 +3,9 @@ using System;
 using UnityEngine;
 
 [Serializable]
-public abstract class InstanceInventory<T> where T : ItemInstance
+public class InstanceInventory<T> where T : ItemInstance
 {
-    public abstract int Capacity { get; }
+    public readonly int capacity;
 
     [SerializeField] private List<T> items = new();
 
@@ -20,10 +20,15 @@ public abstract class InstanceInventory<T> where T : ItemInstance
         }
     }
 
+    public InstanceInventory(int _capacity)
+    {
+        capacity = _capacity;
+    }
+
     public bool AddItem(T item)
     {
         // Don't exceed capacity and don't store multiple references to the same item
-        if (items.Count == Capacity || items.Contains(item)) return false;
+        if (items.Count == capacity || items.Contains(item)) return false;
         items.Add(item);
         return true;
     }

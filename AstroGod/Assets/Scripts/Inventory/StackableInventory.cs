@@ -4,10 +4,15 @@ using UnityEngine;
 
 public class StackableInventory
 {
-    private readonly int capacity = 10;
+    private readonly int capacity;
 
     [SerializeField] private List<ItemStack> itemStacks = new();
     public IReadOnlyList<ItemStack> ItemStacks => itemStacks;
+
+    public StackableInventory(int _capacity)
+    {
+        capacity = _capacity;
+    }
 
     public bool AddItem(ItemData itemData, int amountToAdd)
     {

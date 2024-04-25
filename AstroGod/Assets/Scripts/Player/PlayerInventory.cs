@@ -4,9 +4,9 @@ using UnityEngine;
 // Responsible for moving items between the game world and the player inventory
 public class PlayerInventory : InventoryManager
 {
-    public readonly WeaponInventory weaponInventory = new();
-    public readonly ArmorInventory armorInventory = new();
-    public readonly StackableInventory consumableInventory = new();
+    public readonly InstanceInventory<Weapon> weaponInventory = new(3);
+    public readonly InstanceInventory<Armor> armorInventory = new(2);
+    public readonly StackableInventory consumableInventory = new(6);
 
     [SerializeField] private RectTransform inventoryMenu;
 
@@ -26,30 +26,10 @@ public class PlayerInventory : InventoryManager
 
         if (Input.GetKeyDown(KeyCode.G))
         {
-            DropWeapon();
+            DropItemInstance(weaponInventory);
         }
     }
 
-    public void AddItem()
-    {
-
-    }
-
-    public bool AddWeapon(Weapon weapon)
-    {
-        return AddItemInstance(weapon, weaponInventory);
-    }
-
-    public bool AddArmor(Armor armor)
-    {
-        return AddItemInstance(armor, armorInventory);
-    }
-
-
-    private void DropWeapon()
-    {
-        DropItemInstance(weaponInventory);
-    }
 
     private int GetNumberInput()
     {
