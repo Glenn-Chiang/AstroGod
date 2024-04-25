@@ -30,6 +30,23 @@ public class PlayerInventory : InventoryManager
         }
     }
 
+    public override bool AddItemInstance(ItemInstance itemInstance)
+    {
+        switch(itemInstance)
+        {
+            case Weapon weapon:
+                return weaponInventory.AddItem(weapon);
+            case Armor armor:
+                return armorInventory.AddItem(armor);
+            default:
+                return false;
+        }
+    }
+
+    public override bool AddItemStack(ItemStack itemStack)
+    {
+        return consumableInventory.AddItem(itemStack);
+    }
 
     private int GetNumberInput()
     {

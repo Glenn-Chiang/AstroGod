@@ -2,10 +2,20 @@ using UnityEngine;
 
 public class StackableItemPickUp : ItemPickUp
 {
+    [SerializeField] private ItemData itemData;
+
     private readonly int amount = 1;
 
-    protected override IItem CreateItem()
+    public ItemStack itemStack;
+    public override IItem Item => itemStack;
+
+    private void Awake()
     {
-        return new ItemStack(ItemData, amount);
+        itemStack = new(itemData, amount);
+    }
+
+    public override bool PickUp(InventoryManager inventoryManager)
+    {
+        return inventoryManager.AddItemStack(itemStack);
     }
 }

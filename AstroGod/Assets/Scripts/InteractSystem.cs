@@ -25,7 +25,7 @@ public class InteractSystem : MonoBehaviour, INotifyPropertyChanged
     {
         if (Input.GetKeyDown(KeyCode.E) && Target != null)
         {
-            Target.OnInteract(gameObject);
+            Target.OnInteract(this);
         }    
     }
 
