@@ -2,30 +2,20 @@ using UnityEngine;
 
 public abstract class Interactable : MonoBehaviour
 {
-    protected PlayerController Player { get; private set; }
-    private PlayerInteraction InteractSystem { get; set; }
-
-    private void Start()
-    {
-        Player = PlayerController.Instance;
-        InteractSystem = Player.InteractSystem;
-    }
-
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        // If player enters collision zone
-        if (collider.gameObject == PlayerController.Instance.gameObject)
+        // If an entity with an interact system e.g. player or npc enters the collision zone of the interactable object, add the object to the interact system
+        if (collider.TryGetComponent<InteractSystem>(out var interactSystem))
         {
-            InteractSystem.AddObject(this);
+            interactSystem.AddObject(this);
         }
     }
 
     private void OnTriggerExit2D(Collider2D collider)
     {
-        // If player exits collision zone
-        if (collider.gameObject == PlayerController.Instance.gameObject)
+        if (collider.TryGetComponent<InteractSystem>(out var interactSystem))
         {
-            InteractSystem.RemoveObject(this);
+            interactSystem.RemoveObject(this);
         }
     }
     public abstract void OnInteract(GameObject interactor);
