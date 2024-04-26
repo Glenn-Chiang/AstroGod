@@ -12,8 +12,6 @@ public class PlayerInventoryManager : InventoryManager
     public override List<IInventory> InstanceInventories => new() { weaponInventory, armorInventory };
     public override List<StackableInventory> StackableInventories => new() { consumableInventory };
 
-    [SerializeField] private RectTransform inventoryMenu;
-
     private void Update()
     {
         // Player can use number keys to select weapons from weapon inventory
@@ -23,10 +21,7 @@ public class PlayerInventoryManager : InventoryManager
             weaponInventory.SelectItem(numberInput - 1);
         }
 
-        if (Input.GetKeyDown(KeyCode.I))
-        {
-            inventoryMenu.gameObject.SetActive(!inventoryMenu.gameObject.activeInHierarchy);
-        }
+        
 
         if (Input.GetKeyDown(KeyCode.G))
         {
