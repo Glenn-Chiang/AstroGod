@@ -1,9 +1,10 @@
 public class ItemStack : IItem
 {
-    public ItemData ItemData { get; }
+    public StackableItemData ItemData { get; }
+    ItemData IItem.ItemData => ItemData;
     public int amount;
 
-    public ItemStack(ItemData _itemData, int _amount)
+    public ItemStack(StackableItemData _itemData, int _amount)
     {
         ItemData = _itemData;
         amount = _amount;

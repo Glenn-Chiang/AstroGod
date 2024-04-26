@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.Progress;
 
 public class StackableInventory : IInventory
 {
@@ -15,28 +14,6 @@ public class StackableInventory : IInventory
     public StackableInventory(int _capacity)
     {
         capacity = _capacity;
-    }
-
-    public bool AddItem(ItemData itemData, int amountToAdd)
-    {
-        // If there is already a slot containing this ItemData, simply increment its amount
-        foreach (var itemStack in itemStacks)
-        {
-            if (itemStack.ItemData == itemData)
-            {
-                itemStack.amount += amountToAdd;
-                return true;
-            }
-        }
-
-        // If there is sufficient capacity, add a new slot for this ItemData
-        if (itemStacks.Count < capacity)
-        {
-            itemStacks.Add(new ItemStack(itemData, amountToAdd));
-            return true;
-        }
-
-        return false;
     }
 
     public bool AddItem(ItemStack _itemStack)

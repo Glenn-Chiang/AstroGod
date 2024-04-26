@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "HealthCell", menuName = "Consumable/HealthCell")]
-public class HealthCell : ConsumableItem
+public class HealthCell : StackableItemData
 {
     [SerializeField] private float healAmount;
 

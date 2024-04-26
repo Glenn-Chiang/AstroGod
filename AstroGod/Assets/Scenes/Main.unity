@@ -135,6 +135,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: HealthCell (pickup)
       objectReference: {fileID: 0}
+    - target: {fileID: 6951318549950091512, guid: e75969db15408ff429326bda79b53c0e, type: 3}
+      propertyPath: itemData
+      value: 
+      objectReference: {fileID: 11400000, guid: ee8f98f6487c16642ace90b105105578, type: 2}
     - target: {fileID: 7593295217859926751, guid: e75969db15408ff429326bda79b53c0e, type: 3}
       propertyPath: m_LocalPosition.x
       value: -6.2387185
@@ -702,6 +706,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: AmmoCell (pickup)
       objectReference: {fileID: 0}
+    - target: {fileID: 6951318549950091512, guid: 289ee15af16ad32408b43cc7bb9b85b3, type: 3}
+      propertyPath: itemData
+      value: 
+      objectReference: {fileID: 11400000, guid: 6fc2268a5515f6349abcbd736071446d, type: 2}
     - target: {fileID: 7593295217859926751, guid: 289ee15af16ad32408b43cc7bb9b85b3, type: 3}
       propertyPath: m_LocalPosition.x
       value: -6.4524465
@@ -2455,7 +2463,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &4081092636031318439
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3501,7 +3509,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inventoryManager: {fileID: 6048591906148942365}
   inventoryNumber: 1
-  <Slots>k__BackingField:
+  slots:
   - {fileID: 6505555896467221750}
   - {fileID: 4129854272278893219}
   - {fileID: 7935046333670966798}
@@ -3549,7 +3557,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inventoryManager: {fileID: 6048591906148942365}
   inventoryNumber: 0
-  <Slots>k__BackingField:
+  slots:
   - {fileID: 4953205802808417186}
   - {fileID: 1148120316552599679}
   - {fileID: 8871497891429942112}
@@ -4889,6 +4897,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e741c0dc595b3d4bbc0c6218772e7ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventoryManager: {fileID: 6048591906148942365}
+  inventoryNumber: 0
   slots:
   - {fileID: 1844168713165581677}
   - {fileID: 1731466176208747988}
