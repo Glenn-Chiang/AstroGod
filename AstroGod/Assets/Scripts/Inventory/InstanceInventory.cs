@@ -1,10 +1,16 @@
 using System.Collections.Generic;
-using System;
 using UnityEngine;
 
+public interface InstanceInventory : IInventory
+{
+    abstract int IInventory.Capacity { get; }
+    abstract IReadOnlyList<IItem> IInventory.Items { get; }
+   
+    abstract IItem IInventory.RemoveSelected();
+}
 
-[Serializable]
-public class InstanceInventory<T>: IInventory where T : ItemInstance
+
+public class InstanceInventory<T>: InstanceInventory where T : ItemInstance
 {
     public readonly int capacity;
     int IInventory.Capacity => capacity;
@@ -45,6 +51,7 @@ public class InstanceInventory<T>: IInventory where T : ItemInstance
         SelectItem(-1); // After the selected item is removed, no item is selected
         return itemToRemove;
     }
+    IItem IInventory.RemoveSelected() => RemoveSelected();
 
     public void SelectItem(int index)
     {
@@ -52,7 +59,6 @@ public class InstanceInventory<T>: IInventory where T : ItemInstance
         selectedIndex = index;
         Debug.Log($"Selected {SelectedItem.ItemData.Name}");
     }
-
     private bool ValidateIndex(int index)
     {
         return index >= 0 && index < items.Count;

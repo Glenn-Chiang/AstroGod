@@ -9,23 +9,79 @@ public class PlayerInventoryManager : InventoryManager
     public readonly InstanceInventory<Armor> armorInventory = new(2);
     public readonly StackableInventory consumableInventory = new(6);
 
-    public override List<IInventory> InstanceInventories => new() { weaponInventory, armorInventory };
+    public override List<IInventory> Inventories => new() { weaponInventory, armorInventory, consumableInventory };
     public override List<StackableInventory> StackableInventories => new() { consumableInventory };
+
+    private int selectedInventoryIndex = 0;
+    public override int SelectedInventoryIndex => selectedInventoryIndex;
+    public IInventory SelectedInventory => Inventories[selectedInventoryIndex];
+
+    private bool isActive = false; // Determines whether the inventory menu is open, and whether inventory operations can be performed
 
     private void Update()
     {
-        // Player can use number keys to select weapons from weapon inventory
-        int numberInput = GetNumberInput();
-        if (numberInput != -1)
+        if (isActive)
         {
-            weaponInventory.SelectItem(numberInput - 1);
+            // Close if already open
+            if (Input.GetKeyDown(KeyCode.I))
+            {
+                isActive = false;
+                selectedInventoryIndex = 0;
+            }
+
+            if (Input.GetKeyDown(KeyCode.Tab))
+            {
+                // Select next inventory
+                if (selectedInventoryIndex < Inventories.Count - 1)
+                {
+                    selectedInventoryIndex++;
+                }
+                // If we are already at last inventory, go back to first one
+                else
+                {
+                    selectedInventoryIndex = 0;
+                }
+            }
+        } else
+        {
+            // Open the inventory menu
+            if (Input.GetKeyDown(KeyCode.I))
+            {
+                isActive = true;
+            }
+        }
+        
+        // Player can use number keys to select an item from the currently selected inventory
+        int selectedItemIndex = GetNumberInput() - 1;
+        if (selectedItemIndex != -1)
+        {
+            SelectedInventory.SelectItem(selectedItemIndex);
         }
 
-        
-
-        if (Input.GetKeyDown(KeyCode.G))
+        switch (SelectedInventory)
         {
-            DropItemInstance(weaponInventory);
+            case InstanceInventory instanceInventory:
+                if (Input.GetKeyDown(KeyCode.G))
+                {
+                    DropItem(instanceInventory);
+                }
+
+                break;
+
+            case StackableInventory stackableInventory:
+                if (Input.GetKeyDown(KeyCode.G))
+                {
+                    DropItem(stackableInventory);
+                }
+
+                if (Input.GetKeyDown(KeyCode.Q))
+                {
+                    // Use consumable item
+                    var selectedItem = stackableInventory.SelectedItem;
+                    selectedItem.Consume(gameObject);
+                }
+
+                break; 
         }
     }
 

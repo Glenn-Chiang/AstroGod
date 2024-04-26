@@ -12,7 +12,7 @@ public class InventoryDisplay : MonoBehaviour
 
     private void Start()
     {
-        inventory = inventoryManager.InstanceInventories[inventoryNumber];
+        inventory = inventoryManager.Inventories[inventoryNumber];
     }
 
     private void Update()

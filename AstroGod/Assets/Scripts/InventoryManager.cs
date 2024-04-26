@@ -3,24 +3,25 @@ using UnityEngine;
 
 public abstract class InventoryManager : MonoBehaviour
 {
-    public abstract List<IInventory> InstanceInventories { get; }
+    public abstract List<IInventory> Inventories { get; }
     public abstract List<StackableInventory> StackableInventories { get; } 
-
+    public abstract int SelectedInventoryIndex { get; }
     public virtual bool AddItemInstance(ItemInstance itemInstance) { return false; }
     public virtual ItemStack AddItemStack(ItemStack itemStack) { return null; }
 
-    protected void DropItemInstance<T>(InstanceInventory<T> inventory) where T : ItemInstance
+    protected void DropItem(InstanceInventory inventory)
     {
-        var itemInstance = inventory.RemoveSelected();
-        if (itemInstance != null)
+        var item = inventory.RemoveSelected();
+        if (item != null)
         {
-            InstantiatePickUp(itemInstance);
+            InstantiatePickUp(item);
         }
     }
-    protected void DropItemStack(StackableInventory inventory, int index, int amountToDrop = 1)
+
+    protected void DropItem(StackableInventory inventory)
     {
-        var itemStack = inventory.RemoveItem(index, amountToDrop);
-        if (itemStack.Amount > 0)
+        var itemStack = inventory.RemoveSelected();
+        if (itemStack != null && itemStack.Amount > 0)
         {
             InstantiatePickUp(itemStack);
         }

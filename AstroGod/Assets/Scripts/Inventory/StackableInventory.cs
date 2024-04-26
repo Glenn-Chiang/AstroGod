@@ -11,6 +11,17 @@ public class StackableInventory : IInventory
     public IReadOnlyList<ItemStack> ItemStacks => itemStacks;
     IReadOnlyList<IItem> IInventory.Items => itemStacks;
 
+    private int selectedIndex = -1;
+
+    public ItemStack SelectedItem
+    {
+        get
+        {
+            if (!ValidateIndex(selectedIndex)) return null;
+            return itemStacks[selectedIndex];
+        }
+    }
+
     public StackableInventory(int _capacity)
     {
         capacity = _capacity;
@@ -54,6 +65,20 @@ public class StackableInventory : IInventory
         return new ItemStack(itemStack.itemData, amountRemoved);
     }
 
+    public ItemStack RemoveSelected()
+    {
+        if (SelectedItem == null) return null;
+        return RemoveItem(selectedIndex);
+    }
+    IItem IInventory.RemoveSelected() => RemoveSelected();
+
+    public void SelectItem(int index)
+    {
+        if (!ValidateIndex(index)) return;
+        selectedIndex = index;
+        Debug.Log($"Selected {SelectedItem.itemData.Name}");
+    }
+    
     private bool ValidateIndex(int index)
     {
         return index >= 0 && index < itemStacks.Count;
