@@ -1,13 +1,16 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Progress;
 
-public class StackableInventory
+public class StackableInventory : IInventory
 {
     private readonly int capacity;
+    int IInventory.Capacity => capacity;
 
     [SerializeField] private List<ItemStack> itemStacks = new();
     public IReadOnlyList<ItemStack> ItemStacks => itemStacks;
+    IReadOnlyList<IItem> IInventory.Items => itemStacks;
 
     public StackableInventory(int _capacity)
     {

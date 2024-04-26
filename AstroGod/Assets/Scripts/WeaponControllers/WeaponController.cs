@@ -8,8 +8,8 @@ public class WeaponController : MonoBehaviour
     public Weapon weaponInstance;
     private float Damage => weaponInstance.Damage;
     private float FireRate => weaponInstance.FireRate;
-    private float FirePower => weaponInstance.ItemData.FirePower;
-    private int AmmoCost => weaponInstance.ItemData.AmmoCost;
+    private float FirePower => weaponInstance.Data.FirePower;
+    private int AmmoCost => weaponInstance.Data.AmmoCost;
 
     public AmmoManager ammoManager;
 
@@ -25,7 +25,7 @@ public class WeaponController : MonoBehaviour
             return;
         }
 
-        var projectile = Instantiate(weaponInstance.ItemData.ProjectilePrefab, firePoint.position, firePoint.rotation);
+        var projectile = Instantiate(weaponInstance.Data.ProjectilePrefab, firePoint.position, firePoint.rotation);
         var projectileRb = projectile.GetComponent<Rigidbody2D>();
         projectileRb.AddForce(FirePower * firePoint.right, ForceMode2D.Impulse);
         projectile.damage = Damage;

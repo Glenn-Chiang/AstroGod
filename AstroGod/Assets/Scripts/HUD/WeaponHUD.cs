@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class WeaponHUD : MonoBehaviour
 {
-    private WeaponInventory weaponInventory;
+    private InstanceInventory<Weapon> weaponInventory;
 
     [SerializeField] private Image iconImage;
     [SerializeField] private TMP_Text nameText;

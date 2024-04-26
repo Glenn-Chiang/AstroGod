@@ -65,7 +65,7 @@ public class WeaponEquip : MonoBehaviour
 
     private void EquipWeapon(Weapon selectedWeapon)
     {
-        equippedWeaponModel = Instantiate(selectedWeapon.ItemData.ModelPrefab, transform);
+        equippedWeaponModel = Instantiate(selectedWeapon.Data.ModelPrefab, transform);
         EquippedWeapon.weaponInstance = selectedWeapon;
     }
 }

@@ -1,9 +1,12 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class InventoryManager : MonoBehaviour
 {
-    public virtual bool AddItemInstance(ItemInstance itemInstance) { return false; }
+    public abstract List<IInventory> InstanceInventories { get; }
+    public abstract List<StackableInventory> StackableInventories { get; } 
 
+    public virtual bool AddItemInstance(ItemInstance itemInstance) { return false; }
     public virtual bool AddItemStack(ItemStack itemStack) { return false; }
 
     protected void DropItemInstance<T>(InstanceInventory<T> inventory) where T : ItemInstance

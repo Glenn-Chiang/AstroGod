@@ -6,7 +6,7 @@ public class PlayerController : MonoBehaviour
 
     public PlayerMovement Movement { get; private set; }
     public InteractSystem InteractSystem { get; private set; }
-    public PlayerInventory InventoryManager { get; private set; }
+    public PlayerInventoryManager InventoryManager { get; private set; }
 
     [field: SerializeField] public CharacterStats CharacterStats { get; private set; } // Set in inspector
     public PlayerStats Stats { get; private set; }
@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour
         Stats = new(CharacterStats);
         Movement = GetComponent<PlayerMovement>();
         InteractSystem = GetComponent<InteractSystem>();
-        InventoryManager = GetComponent<PlayerInventory>();
+        InventoryManager = GetComponent<PlayerInventoryManager>();
 
         HealthManager = GetComponent<HealthManager>();
         HealthManager.Initialize(Stats.MaxHealth.Value);

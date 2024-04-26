@@ -1,14 +1,20 @@
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
-public abstract class StackableInventoryDisplay : MonoBehaviour
+public class StackableInventoryDisplay : MonoBehaviour
 {
-    [SerializeField] protected StackableInventory inventory;
-    [SerializeField] private List<StackableInventorySlotDisplay> slots;
+    [SerializeField] private InventoryManager inventoryManager;
+    private StackableInventory inventory;
+    [SerializeField] protected int inventoryNumber;
 
+
+    [SerializeField] private List<StackableInventorySlotDisplay> slots;
     private readonly string placeholderName = "Empty";
+
+    private void Start()
+    {
+        inventory = inventoryManager.StackableInventories[inventoryNumber];
+    }
 
     private void Update()
     {
@@ -20,26 +26,32 @@ public abstract class StackableInventoryDisplay : MonoBehaviour
         for (int i = 0; i < slots.Count; i++)
         {
             var slot = slots[i];
-            var iconDisplay = slot.iconDisplay;
-            var nameDisplay = slot.nameDisplay;
-            var amountDisplay = slot.amountDisplay;
 
             if (i > inventory.ItemStacks.Count - 1 || inventory.ItemStacks[i] == null)
             {
-                iconDisplay.sprite = null;
-                iconDisplay.enabled = false;
-                amountDisplay.enabled = false;
-                nameDisplay.text = placeholderName;
+                ClearSlot(slot);
                 return;
             }
 
             var itemStack = inventory.ItemStacks[i];
-            iconDisplay.sprite = itemStack.ItemData.Icon;
-            iconDisplay.SetNativeSize();
-            iconDisplay.enabled = true;
-            nameDisplay.text = $"[{i + 1}] " + itemStack.ItemData.Name;
-            amountDisplay.text = itemStack.amount.ToString();
-            amountDisplay.enabled = true;
+            FillSlot(slot, itemStack, i);
         }
+    }
+
+    protected virtual void ClearSlot(StackableInventorySlotDisplay slot)
+    {
+        slot.iconDisplay.sprite = null;
+        slot.iconDisplay.enabled = false;
+        slot.nameDisplay.text = placeholderName;
+    }
+
+    protected virtual void FillSlot(StackableInventorySlotDisplay slot, ItemStack itemStack, int index)
+    {
+        slot.iconDisplay.sprite = itemStack.ItemData.Icon;
+        slot.iconDisplay.SetNativeSize();
+        slot.iconDisplay.enabled = true;
+        slot.nameDisplay.text = $"[{index + 1}] " + itemStack.ItemData.Name;
+        slot.amountDisplay.text = itemStack.amount.ToString();
+        slot.amountDisplay.enabled = true;
     }
 }
