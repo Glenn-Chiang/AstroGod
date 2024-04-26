@@ -17,6 +17,7 @@ public class PlayerInventoryManager : InventoryManager
     public IInventory SelectedInventory => Inventories[selectedInventoryIndex];
 
     private bool isActive = false; // Determines whether the inventory menu is open, and whether inventory operations can be performed
+    public override bool IsActive => isActive;
 
     private void Update()
     {

@@ -6,6 +6,7 @@ public abstract class InventoryManager : MonoBehaviour
     public abstract List<IInventory> Inventories { get; }
     public abstract List<StackableInventory> StackableInventories { get; } 
     public abstract int SelectedInventoryIndex { get; }
+    public virtual bool IsActive => true;
     public virtual bool AddItemInstance(ItemInstance itemInstance) { return false; }
     public virtual ItemStack AddItemStack(ItemStack itemStack) { return null; }
 

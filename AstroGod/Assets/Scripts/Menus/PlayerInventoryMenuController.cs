@@ -11,7 +11,7 @@ public class PlayerInventoryMenuController : MonoBehaviour
     {
         for (int i = 0; i < inventoryDisplays.Count; i++)
         {
-            inventoryDisplays[i].gameObject.SetActive(i == inventoryManager.SelectedInventoryIndex);   
+            inventoryDisplays[i].gameObject.SetActive(inventoryManager.IsActive && i == inventoryManager.SelectedInventoryIndex);   
         }       
     }
 }
