@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "AmmoCell", menuName = "Consumable/AmmoCell")]
-public class AmmoCell : StackableItemData
+public class AmmoCell : StackableItem
 { 
     [SerializeField] private int ammoCount;
     public override void Consume(GameObject consumer)

@@ -47,11 +47,11 @@ public class StackableInventoryDisplay : MonoBehaviour
 
     protected virtual void FillSlot(StackableInventorySlotDisplay slot, ItemStack itemStack, int index)
     {
-        slot.iconDisplay.sprite = itemStack.ItemData.Icon;
+        slot.iconDisplay.sprite = itemStack.itemData.Icon;
         slot.iconDisplay.SetNativeSize();
         slot.iconDisplay.enabled = true;
-        slot.nameDisplay.text = $"[{index + 1}] " + itemStack.ItemData.Name;
-        slot.amountDisplay.text = itemStack.amount.ToString();
+        slot.nameDisplay.text = $"[{index + 1}] " + itemStack.itemData.Name;
+        slot.amountDisplay.text = itemStack.Amount.ToString();
         slot.amountDisplay.enabled = true;
     }
 }

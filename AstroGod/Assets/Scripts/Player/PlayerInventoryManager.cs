@@ -59,9 +59,8 @@ public class PlayerInventoryManager : InventoryManager
         return false;
     }
 
-    public override bool AddItemStack(ItemStack itemStack)
+    public override ItemStack AddItemStack(ItemStack itemStack) // Returns the leftover (if any) of the stack to be added, if the stack limit is exceeded
     {
-        Debug.Log($"Added {itemStack.ItemData.Name} to player inventory");
         return consumableInventory.AddItem(itemStack);
     }
 

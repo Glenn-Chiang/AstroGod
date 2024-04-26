@@ -7,7 +7,7 @@ public abstract class InventoryManager : MonoBehaviour
     public abstract List<StackableInventory> StackableInventories { get; } 
 
     public virtual bool AddItemInstance(ItemInstance itemInstance) { return false; }
-    public virtual bool AddItemStack(ItemStack itemStack) { return false; }
+    public virtual ItemStack AddItemStack(ItemStack itemStack) { return null; }
 
     protected void DropItemInstance<T>(InstanceInventory<T> inventory) where T : ItemInstance
     {
@@ -20,7 +20,7 @@ public abstract class InventoryManager : MonoBehaviour
     protected void DropItemStack(StackableInventory inventory, int index, int amountToDrop = 1)
     {
         var itemStack = inventory.RemoveItem(index, amountToDrop);
-        if (itemStack.amount > 0)
+        if (itemStack.Amount > 0)
         {
             InstantiatePickUp(itemStack);
         }

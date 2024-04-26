@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class StackableItemPickUp : ItemPickUp
 {
-    [SerializeField] private StackableItemData itemData;
+    [SerializeField] private StackableItem itemData;
 
-    private readonly int amount = 1;
+    private int amount = 1;
 
     public ItemStack itemStack;
     public override IItem Item => itemStack;
@@ -16,6 +16,16 @@ public class StackableItemPickUp : ItemPickUp
 
     public override bool PickUp(InventoryManager inventoryManager)
     {
-        return inventoryManager.AddItemStack(itemStack);
+        var remainingStack = inventoryManager.AddItemStack(itemStack);
+        
+        // Full stack was added
+        if (remainingStack == null)
+        {
+            return true;
+        } else
+        {
+            amount -= remainingStack.Amount;
+            return false;
+        }
     }
 }

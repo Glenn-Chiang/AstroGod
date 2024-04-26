@@ -16,24 +16,29 @@ public class StackableInventory : IInventory
         capacity = _capacity;
     }
 
-    public bool AddItem(ItemStack _itemStack)
+    public ItemStack AddItem(ItemStack _itemStack)
     {
+        int remainderAmount = _itemStack.Amount;
+
         foreach (var itemStack in itemStacks)
         {
-            if (itemStack.ItemData == _itemStack.ItemData)
+            if (itemStack.itemData == _itemStack.itemData)
             {
-                itemStack.amount += _itemStack.amount;
-                return true;
+                remainderAmount = itemStack.AddAmount(_itemStack.Amount);
+                if (remainderAmount == 0)
+                {
+                    return null;
+                }
             }
         }
 
         if (ItemStacks.Count < capacity)
         {
             itemStacks.Add(_itemStack);
-            return true;
+            return null;
         }
 
-        return false;
+        return new ItemStack(_itemStack.itemData, remainderAmount);
     }
 
     public ItemStack RemoveItem(int index, int amountToRemove = 1)
@@ -41,13 +46,12 @@ public class StackableInventory : IInventory
         if (!ValidateIndex(index)) return null;
 
         var itemStack = itemStacks[index];
-        int amountRemoved = Math.Min(itemStack.amount, amountToRemove);
-        itemStack.amount -= amountRemoved;
-        if (itemStack.amount == 0)
+        int amountRemoved = itemStack.ReduceAmount(amountToRemove);
+        if (itemStack.Amount == 0)
         {
             itemStacks.RemoveAt(index);
         }
-        return new ItemStack(itemStack.ItemData, amountRemoved);
+        return new ItemStack(itemStack.itemData, amountRemoved);
     }
 
     private bool ValidateIndex(int index)

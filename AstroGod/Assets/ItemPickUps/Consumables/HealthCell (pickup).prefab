@@ -46,8 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6d0ea722e7161b40966254fd45eff60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <ItemData>k__BackingField: {fileID: 11400000, guid: ee8f98f6487c16642ace90b105105578, type: 2}
-  amount: 1
+  itemData: {fileID: 11400000, guid: ee8f98f6487c16642ace90b105105578, type: 2}
 --- !u!212 &6141287647796638857
 SpriteRenderer:
   m_ObjectHideFlags: 0
