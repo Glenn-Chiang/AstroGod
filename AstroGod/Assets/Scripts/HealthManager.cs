@@ -6,6 +6,8 @@ public class HealthManager : Damageable
     public float Health { get; private set; }
     protected override float HitPoints { get => Health; set { Health = value; } }
 
+    public event EventHandler OnDeath;
+
     public void SetMaxHealth(float maxHealth)
     {
         MaxHealth = maxHealth;
@@ -15,5 +17,10 @@ public class HealthManager : Damageable
     public void Heal(float _health)
     {
         Health += Math.Min(_health, MaxHealth - Health); // prevent overhealing
+    }
+
+    protected override void OnDestroyed()
+    {
+        OnDeath?.Invoke(this, EventArgs.Empty);
     }
 }

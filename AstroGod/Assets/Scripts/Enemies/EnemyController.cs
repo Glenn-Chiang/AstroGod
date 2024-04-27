@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class EnemyController : MonoBehaviour
@@ -9,7 +10,14 @@ public class EnemyController : MonoBehaviour
     private void Awake()
     {
         stats = new EnemyStats(enemyData);
-        Debug.Log(stats.maxHealth.Value);
+        
         healthManager.SetMaxHealth(stats.maxHealth.Value);
+        healthManager.OnDeath += HandleDeath;
+    }
+
+    private void HandleDeath(object sender, EventArgs e)
+    {
+        Debug.Log($"{enemyData.Name} died");
+        Destroy(gameObject);
     }
 }

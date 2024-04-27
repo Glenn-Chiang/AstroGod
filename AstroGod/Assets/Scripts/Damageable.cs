@@ -12,6 +12,9 @@ public abstract class Damageable : MonoBehaviour
         else
         {
             HitPoints = 0;
+            OnDestroyed();
         }
     }
+
+    protected abstract void OnDestroyed();
 }
