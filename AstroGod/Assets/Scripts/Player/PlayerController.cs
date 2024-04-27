@@ -27,12 +27,14 @@ public class PlayerController : MonoBehaviour
         Instance = this;
 
         Stats = new(CharacterStats);
-        Movement = GetComponent<PlayerMovement>();
         InteractSystem = GetComponent<InteractionManager>();
         InventoryManager = GetComponent<PlayerInventoryManager>();
 
+        Movement = GetComponent<PlayerMovement>();
+        Movement.Initialize(Stats.moveSpeed);
+        
         HealthManager = GetComponent<HealthManager>();
-        HealthManager.SetMaxHealth(Stats.maxHealth.Value);
+        HealthManager.Initialize(Stats.maxHealth);
 
         AmmoManager = GetComponent<AmmoManager>();
         AmmoManager.Initialize((int)Stats.maxAmmo.Value);

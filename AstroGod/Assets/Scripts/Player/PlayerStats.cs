@@ -1,16 +1,9 @@
-using System;
-using UnityEngine;
-
-public class PlayerStats
-{
-    public readonly Stat maxHealth;
+public class PlayerStats : CharacterStats
+{   
     public readonly Stat maxAmmo;
-    public readonly Stat moveSpeed;
-
-    public PlayerStats(PlayerCharacterData stats)
+ 
+    public PlayerStats(PlayerCharacterData data) : base(data)
     {
-        maxHealth = new(stats.MaxHealth.BaseValue, stats.MaxHealth.MaxValue);
-        maxAmmo = new(stats.MaxAmmo.BaseValue, stats.MaxAmmo.MaxValue);
-        moveSpeed = new(stats.MoveSpeed.BaseValue, stats.MoveSpeed.MaxValue);
+        maxAmmo = new(data.MaxAmmo.BaseValue, data.MaxAmmo.MaxValue);
     }
 }

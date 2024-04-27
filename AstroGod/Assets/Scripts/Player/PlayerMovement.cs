@@ -6,9 +6,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Transform weaponSlot;
 
-    private PlayerStats playerStats;
-
-    private float MoveSpeed => playerStats.moveSpeed.Value;
+    private Stat moveSpeedStat;
+    private float MoveSpeed => moveSpeedStat.Value;
     [SerializeField] private float dashSpeed = 30f;
     [SerializeField] private float dashDuration = 0.2f;
     [SerializeField] private float dashCooldown = 0.75f;
@@ -19,9 +18,9 @@ public class PlayerMovement : MonoBehaviour
     private bool isDashing = false;
     private bool canDash = true;
 
-    private void Start()
+    public void Initialize(Stat _moveSpeedStat)
     {
-        playerStats = PlayerController.Instance.Stats;
+        moveSpeedStat = _moveSpeedStat;
     }
 
     private void Update()

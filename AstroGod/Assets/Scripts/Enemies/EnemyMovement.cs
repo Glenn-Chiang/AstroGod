@@ -8,8 +8,8 @@ public class EnemyMovement : MonoBehaviour
     private readonly float maxRoamDistance = 10;
     private readonly float destinationThreshold = 1; // When the enemy is within this distance from the destination, it will be considered to have reached the destination
 
-    [SerializeField] private EnemyData enemyData;
-    private float MoveSpeed => enemyData.MoveSpeed;
+    private Stat moveSpeedStat;
+    private float MoveSpeed => moveSpeedStat.Value;
 
     private Vector2 startPosition;
     private Vector2 destination;
@@ -20,6 +20,11 @@ public class EnemyMovement : MonoBehaviour
     {
         startPosition = transform.position;
         destination = GetRoamDestination();
+    }
+
+    public void Initialize(Stat _moveSpeedStat)
+    {
+        moveSpeedStat = _moveSpeedStat;
     }
 
     public void Roam()

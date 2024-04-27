@@ -4,15 +4,21 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
     [SerializeField] private EnemyData data;
+    private EnemyStats stats;
     
     [SerializeField] private HealthManager healthManager;
+    [SerializeField] private EnemyMovement movement;
 
     public static event EventHandler<EnemyDeathEventArgs> OnEnemyDeath;
 
     private void Awake()
     {
-        healthManager.SetMaxHealth(data.MaxHealth);
+        stats = new(data); // Initialize stats with base values
+
+        healthManager.Initialize(stats.maxHealth);
         healthManager.OnDeath += HandleDeath;
+
+        movement.Initialize(stats.moveSpeed);
     }
 
     private void HandleDeath(object sender, EventArgs e)

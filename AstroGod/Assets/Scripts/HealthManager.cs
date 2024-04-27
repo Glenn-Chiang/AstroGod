@@ -2,15 +2,16 @@ using System;
 using UnityEngine;
 public class HealthManager : Damageable
 {
-    public float MaxHealth { get; private set; }
+    private Stat maxHealthStat;
+    public float MaxHealth => maxHealthStat.Value;
     public float Health { get; private set; }
     protected override float HitPoints { get => Health; set { Health = value; } }
 
     public event EventHandler OnDeath;
 
-    public void SetMaxHealth(float maxHealth)
+    public void Initialize(Stat _maxHealthStat)
     {
-        MaxHealth = maxHealth;
+        maxHealthStat = _maxHealthStat;
         Health = MaxHealth;
     }
 

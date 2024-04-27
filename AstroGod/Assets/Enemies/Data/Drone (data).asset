@@ -14,6 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Drone
   <Description>k__BackingField: Mindless drone programmed to eliminate you
-  <MaxHealth>k__BackingField: 50
-  <MoveSpeed>k__BackingField: 5
+  <MaxHealth>k__BackingField:
+    <BaseValue>k__BackingField: 50
+    <MaxValue>k__BackingField: 50
+  <MoveSpeed>k__BackingField:
+    <BaseValue>k__BackingField: 5
+    <MaxValue>k__BackingField: 5
   <XpReward>k__BackingField: 10
