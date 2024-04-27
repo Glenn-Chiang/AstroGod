@@ -21,6 +21,7 @@ public class StackableInventory : IInventory
             return itemStacks[selectedIndex];
         }
     }
+    IItem IInventory.SelectedItem => SelectedItem;
 
     public StackableInventory(int _capacity)
     {

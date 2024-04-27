@@ -1,27 +1,14 @@
-using System.Collections.Generic;
-using UnityEngine;
-
-public class StackableInventoryDisplay : MonoBehaviour
+public class StackableInventoryDisplay : BaseInventoryDisplay<StackableInventorySlot>
 {
-    [SerializeField] private InventoryManager inventoryManager;
     private StackableInventory inventory;
-    [SerializeField] protected int inventoryNumber;
+    protected override IInventory Inventory => inventory;
 
-
-    [SerializeField] private List<StackableInventorySlotDisplay> slots;
-    private readonly string placeholderName = "Empty";
-
-    private void Start()
+    protected override void SetInventory()
     {
         inventory = inventoryManager.StackableInventories[inventoryNumber];
     }
 
-    private void Update()
-    {
-        UpdateInventoryDisplay();
-    }
-
-    private void UpdateInventoryDisplay()
+    protected override void UpdateDisplay()
     {
         for (int i = 0; i < slots.Count; i++)
         {
@@ -34,24 +21,20 @@ public class StackableInventoryDisplay : MonoBehaviour
             }
 
             var itemStack = inventory.ItemStacks[i];
-            FillSlot(slot, itemStack, i);
+            FillSlot(slot, itemStack, i, inventory.SelectedItem == itemStack);
         }
     }
 
-    protected virtual void ClearSlot(StackableInventorySlotDisplay slot)
+    protected virtual void ClearSlot(StackableInventorySlot slot)
     {
-        slot.iconDisplay.sprite = null;
-        slot.iconDisplay.enabled = false;
-        slot.nameDisplay.text = placeholderName;
+        base.ClearSlot(slot);
+        slot.amountDisplay.enabled = false;
     }
 
-    protected virtual void FillSlot(StackableInventorySlotDisplay slot, ItemStack itemStack, int index)
+    protected virtual void FillSlot(StackableInventorySlot slot, ItemStack itemStack, int index, bool isSelected)
     {
-        slot.iconDisplay.sprite = itemStack.itemData.Icon;
-        slot.iconDisplay.SetNativeSize();
-        slot.iconDisplay.enabled = true;
-        slot.nameDisplay.text = $"[{index + 1}] " + itemStack.itemData.Name;
-        slot.amountDisplay.text = itemStack.Amount.ToString();
+        base.FillSlot(slot, itemStack, index, isSelected);
+        slot.amountDisplay.text = $"{itemStack.Amount}/{itemStack.itemData.StackLimit}";
         slot.amountDisplay.enabled = true;
     }
 }

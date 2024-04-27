@@ -5,7 +5,6 @@ public interface InstanceInventory : IInventory
 {
     abstract int IInventory.Capacity { get; }
     abstract IReadOnlyList<IItem> IInventory.Items { get; }
-   
     abstract IItem IInventory.RemoveSelected();
 }
 
@@ -28,6 +27,7 @@ public class InstanceInventory<T>: InstanceInventory where T : ItemInstance
             return items[selectedIndex];
         }
     }
+    IItem IInventory.SelectedItem => SelectedItem;
 
     public InstanceInventory(int _capacity)
     {
