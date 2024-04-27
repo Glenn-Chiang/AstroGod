@@ -5,7 +5,7 @@ public class PlayerController : MonoBehaviour
     public static PlayerController Instance { get; private set; }
 
     public PlayerMovement Movement { get; private set; }
-    public InteractSystem InteractSystem { get; private set; }
+    public InteractionManager InteractSystem { get; private set; }
     public PlayerInventoryManager InventoryManager { get; private set; }
 
     [field: SerializeField] public PlayerCharacterData CharacterStats { get; private set; } // Set in inspector
@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour
 
         Stats = new(CharacterStats);
         Movement = GetComponent<PlayerMovement>();
-        InteractSystem = GetComponent<InteractSystem>();
+        InteractSystem = GetComponent<InteractionManager>();
         InventoryManager = GetComponent<PlayerInventoryManager>();
 
         HealthManager = GetComponent<HealthManager>();

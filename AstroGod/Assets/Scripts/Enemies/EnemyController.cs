@@ -3,13 +3,15 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    [SerializeField] private EnemyData enemyData;
+    [SerializeField] private EnemyData data;
     private EnemyStats stats;
     [SerializeField] private HealthManager healthManager;
 
+    public static event EventHandler<EnemyDeathEventArgs> OnEnemyDeath;
+
     private void Awake()
     {
-        stats = new EnemyStats(enemyData);
+        stats = new EnemyStats(data);
         
         healthManager.SetMaxHealth(stats.maxHealth.Value);
         healthManager.OnDeath += HandleDeath;
@@ -17,7 +19,8 @@ public class EnemyController : MonoBehaviour
 
     private void HandleDeath(object sender, EventArgs e)
     {
-        Debug.Log($"{enemyData.Name} died");
+        OnEnemyDeath?.Invoke(sender, new EnemyDeathEventArgs(data) );
         Destroy(gameObject);
     }
 }
+

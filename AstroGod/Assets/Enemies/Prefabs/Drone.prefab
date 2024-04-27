@@ -185,7 +185,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0b569c0b2dfa8344aed0e553c98757f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyData: {fileID: 11400000, guid: 5836858fc2d477d4483e4af906c2870a, type: 2}
+  data: {fileID: 11400000, guid: 5836858fc2d477d4483e4af906c2870a, type: 2}
   healthManager: {fileID: 7055736811395942934}
 --- !u!1001 &2573777825261790890
 PrefabInstance:

@@ -20,3 +20,4 @@ MonoBehaviour:
   <MoveSpeed>k__BackingField:
     <BaseValue>k__BackingField: 10
     <MaxValue>k__BackingField: 10
+  <XpReward>k__BackingField: 10

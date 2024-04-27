@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using UnityEngine;
 
-public class InteractSystem : MonoBehaviour, INotifyPropertyChanged
+public class InteractionManager : MonoBehaviour, INotifyPropertyChanged
 {
     // Keep track of interactable objects within range
     private List<Interactable> trackedObjects = new();

@@ -4,7 +4,7 @@ public abstract class ItemPickUp : Interactable
 {
     public virtual IItem Item { get; set; }
 
-    public override void OnInteract(InteractSystem interactor)
+    public override void OnInteract(InteractionManager interactor)
     {
         if (interactor.TryGetComponent<InventoryManager>(out var inventoryManager))
         {
