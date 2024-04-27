@@ -77,9 +77,7 @@ public class PlayerInventoryManager : InventoryManager
 
                 if (Input.GetKeyDown(KeyCode.Q))
                 {
-                    // Use consumable item
-                    var selectedItem = stackableInventory.SelectedItem;
-                    selectedItem.Consume(gameObject);
+                    stackableInventory.ConsumeSelected(gameObject);
                 }
 
                 break; 

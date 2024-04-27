@@ -72,6 +72,17 @@ public class StackableInventory : IInventory
     }
     IItem IInventory.RemoveSelected() => RemoveSelected();
 
+    public void ConsumeSelected(GameObject consumer)
+    {
+        if (SelectedItem == null) return;
+
+        SelectedItem.Consume(consumer);
+        if (SelectedItem.Amount == 0)
+        {
+            itemStacks.Remove(SelectedItem);
+        }
+    }
+
     public void SelectItem(int index)
     {
         if (!ValidateIndex(index)) return;

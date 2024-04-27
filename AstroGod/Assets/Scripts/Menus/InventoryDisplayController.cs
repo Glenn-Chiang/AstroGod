@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerInventoryMenuController : MonoBehaviour
+public class InventoryDisplayController : MonoBehaviour
 {
     [SerializeField] private List<RectTransform> inventoryDisplays;
 
