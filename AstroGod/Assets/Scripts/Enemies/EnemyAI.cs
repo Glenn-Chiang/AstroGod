@@ -26,5 +26,21 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
-   
+    private void OnTriggerEnter2D(Collider2D collider)
+    {
+        if (collider.CompareTag("Player"))
+        {
+            Debug.Log("Start aggro");
+            state = State.Aggro;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collider)
+    {
+        if (collider.CompareTag("Player"))
+        {
+            Debug.Log("Stop aggro");
+            state = State.Idle;
+        }
+    }
 }
