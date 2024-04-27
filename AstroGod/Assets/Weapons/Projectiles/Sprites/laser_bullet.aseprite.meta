@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: e6389459a23d6c0479c71a5a98d7d102
+guid: 9ec7532c81b13294fa654fdfa1541215
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -75,7 +75,7 @@ ScriptedImporter:
     importHiddenLayers: 0
     layerImportMode: 1
     defaultPivotSpace: 0
-    defaultPivotAlignment: 7
+    defaultPivotAlignment: 0
     customPivotPosition: {x: 0.5, y: 0.5}
     mosaicPadding: 4
     spritePadding: 0
@@ -88,7 +88,7 @@ ScriptedImporter:
     importHiddenLayers: 0
     layerImportMode: 1
     defaultPivotSpace: 0
-    defaultPivotAlignment: 7
+    defaultPivotAlignment: 0
     customPivotPosition: {x: 0.5, y: 0.5}
     mosaicPadding: 4
     spritePadding: 0
@@ -97,7 +97,7 @@ ScriptedImporter:
     addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
-  platformSettingsDirtyTick: 638488603082633364
+  platformSettingsDirtyTick: 638498266317472362
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -121,18 +121,18 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: blue_ship
+  - name: laser_bullet
     originalName: 
-    pivot: {x: 0.5, y: -0.31578946}
+    pivot: {x: 0.5, y: 0.5}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 18
-      height: 19
-    spriteID: 53b6d136a2e6e95489452962471a32a0
+      width: 14
+      height: 4
+    spriteID: 838a5453b6fd1c84cb2ad07cdac60204
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -144,20 +144,20 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: 938438343
-    name: blue_ship
+    guid: -910562822
+    name: laser_bullet
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: blue_ship
+    - name: laser_bullet
       frameIndex: 0
       cellRect:
-        x: 7
-        y: 6
-        width: 18
-        height: 19
-      spriteId: 53b6d136a2e6e95489452962471a32a0
+        x: 9
+        y: 14
+        width: 14
+        height: 4
+      spriteId: 838a5453b6fd1c84cb2ad07cdac60204
     linkedCells: []
     parentIndex: -1
   platformSettings:
