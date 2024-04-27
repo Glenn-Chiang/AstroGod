@@ -2087,10 +2087,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1215358016363656265, guid: 5bed1ad15e80ec74e8c6f04bd25a8fe2, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6530322428942729284, guid: 5bed1ad15e80ec74e8c6f04bd25a8fe2, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -2102,14 +2098,6 @@ PrefabInstance:
     - target: {fileID: 6822606531031424726, guid: 5bed1ad15e80ec74e8c6f04bd25a8fe2, type: 3}
       propertyPath: m_Name
       value: Drone
-      objectReference: {fileID: 0}
-    - target: {fileID: 6915611398301667509, guid: 5bed1ad15e80ec74e8c6f04bd25a8fe2, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6915611398301667509, guid: 5bed1ad15e80ec74e8c6f04bd25a8fe2, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

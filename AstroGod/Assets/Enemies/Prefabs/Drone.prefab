@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: -2460733604001354508}
   - component: {fileID: 7055736811395942934}
   - component: {fileID: 4503548857600664606}
+  - component: {fileID: 9151204077207983213}
+  - component: {fileID: 1472493149772129871}
   m_Layer: 0
   m_Name: Drone
   m_TagString: Untagged
@@ -77,7 +79,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 6761939487571365179, guid: 9dc47e94992be034f83cd5a45fe57ecd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -187,6 +189,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: 5836858fc2d477d4483e4af906c2870a, type: 2}
   healthManager: {fileID: 7055736811395942934}
+--- !u!114 &9151204077207983213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6822606531031424726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b93cc011555e179419f8e83760ca587d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyData: {fileID: 11400000, guid: 5836858fc2d477d4483e4af906c2870a, type: 2}
+--- !u!114 &1472493149772129871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6822606531031424726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6ea2b0241481a04087ec4d9ae2a2954, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movement: {fileID: 9151204077207983213}
 --- !u!1001 &2573777825261790890
 PrefabInstance:
   m_ObjectHideFlags: 0

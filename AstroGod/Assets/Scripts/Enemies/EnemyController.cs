@@ -4,16 +4,14 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
     [SerializeField] private EnemyData data;
-    private EnemyStats stats;
+    
     [SerializeField] private HealthManager healthManager;
 
     public static event EventHandler<EnemyDeathEventArgs> OnEnemyDeath;
 
     private void Awake()
     {
-        stats = new EnemyStats(data);
-        
-        healthManager.SetMaxHealth(stats.maxHealth.Value);
+        healthManager.SetMaxHealth(data.MaxHealth);
         healthManager.OnDeath += HandleDeath;
     }
 

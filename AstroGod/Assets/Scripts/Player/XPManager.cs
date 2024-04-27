@@ -10,17 +10,21 @@ public class XPManager : MonoBehaviour
 
     private void Start()
     {
-        EnemyController.OnEnemyDeath += AddXP;
+        EnemyController.OnEnemyDeath += HandleEnemyDeath;
     }
 
-    private void AddXP(object sender, EnemyDeathEventArgs e)
+    private void AddXp(float xpReward)
     {
-        var xpReward = e.enemyData.XpReward;
         if (CurrentLevelXp + xpReward >= xpPerLevel)
         {
             LevelUp();
         }
         totalXp += xpReward;
+    }
+
+    private void HandleEnemyDeath(object sender, EnemyDeathEventArgs e)
+    {
+        AddXp(e.enemyData.XpReward);
     }
 
     private void LevelUp()
