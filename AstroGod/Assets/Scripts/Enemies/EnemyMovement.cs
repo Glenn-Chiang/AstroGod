@@ -1,5 +1,6 @@
-using System.Diagnostics.CodeAnalysis;
+using System.Collections;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class EnemyMovement : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class EnemyMovement : MonoBehaviour
     private Vector2 startPosition;
     private Vector2 destination;
 
+    private bool isWaiting = false;
+
     private void Awake()
     {
         startPosition = transform.position;
@@ -21,11 +24,22 @@ public class EnemyMovement : MonoBehaviour
 
     public void Roam()
     {
+        if (isWaiting) return;
+
         transform.position = Vector2.MoveTowards(transform.position, destination, MoveSpeed * Time.deltaTime);
         if (Vector2.Distance(transform.position, destination) < destinationThreshold)
         {
+            StartCoroutine(Wait());
             destination = GetRoamDestination();
         }
+    }
+
+    private IEnumerator Wait()
+    {
+        isWaiting = true;
+        float waitTime = Random.Range(0.5f, 1);
+        yield return new WaitForSeconds(waitTime);
+        isWaiting = false;
     }
 
     // Randomly decide on a destination to roam towards
