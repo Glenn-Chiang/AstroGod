@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2080867840463727957}
   - component: {fileID: 694048461719647496}
   - component: {fileID: 621232807014989553}
+  - component: {fileID: 1871283415277045624}
   m_Layer: 0
   m_Name: WeaponChest
   m_TagString: Untagged
@@ -100,3 +101,38 @@ MonoBehaviour:
   itemPrefabs:
   - {fileID: 422432576416822192, guid: da53f507e1bcd0046bb64c8921d2e8a6, type: 3}
   - {fileID: 417916995296059238, guid: 37f7e256baffab64c81b04afff5758a5, type: 3}
+--- !u!58 &1871283415277045624
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2707059410073057458}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 1.5

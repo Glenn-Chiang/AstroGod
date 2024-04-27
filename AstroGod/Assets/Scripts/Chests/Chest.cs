@@ -7,13 +7,13 @@ public class Chest : Interactable
 
     public override void OnInteract(InteractSystem interactSystem)
     {
-        var itemPickUp = SelectItem();
+        var itemPickUp = GetRandomItem();
         Instantiate(itemPickUp, transform.position, transform.rotation);
+        Destroy(gameObject);
     }
 
-    private ItemPickUp SelectItem()
+    private ItemPickUp GetRandomItem()
     {
-        // TODO: Randomly select item
-        return itemPrefabs[0];
+        return RandomUtils.RandomSelect(itemPrefabs);
     }
 }
