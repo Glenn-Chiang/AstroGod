@@ -9,15 +9,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e6842f0b0b3e9b34d958f90ad05a957f, type: 3}
-  m_Name: DefaultStats
+  m_Script: {fileID: 11500000, guid: a02327250ad2bba42a2bc78eca3cc81d, type: 3}
+  m_Name: Robot
   m_EditorClassIdentifier: 
+  <Name>k__BackingField: Robot
+  <Description>k__BackingField: The chosen one
   <MaxHealth>k__BackingField:
-    <BaseValue>k__BackingField: 100
-    <MaxValue>k__BackingField: 200
-  <MaxAmmo>k__BackingField:
     <BaseValue>k__BackingField: 100
     <MaxValue>k__BackingField: 200
   <MoveSpeed>k__BackingField:
     <BaseValue>k__BackingField: 10
     <MaxValue>k__BackingField: 15
+  <MaxAmmo>k__BackingField:
+    <BaseValue>k__BackingField: 100
+    <MaxValue>k__BackingField: 200

@@ -8,7 +8,7 @@ public class PlayerMovement : MonoBehaviour
 
     private PlayerStats playerStats;
 
-    private float MoveSpeed => playerStats.MoveSpeed.Value;
+    private float MoveSpeed => playerStats.moveSpeed.Value;
     [SerializeField] private float dashSpeed = 30f;
     [SerializeField] private float dashDuration = 0.2f;
     [SerializeField] private float dashCooldown = 0.75f;

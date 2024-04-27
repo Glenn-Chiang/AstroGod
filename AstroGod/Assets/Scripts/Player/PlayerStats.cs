@@ -3,14 +3,14 @@ using UnityEngine;
 
 public class PlayerStats
 {
-    public Stat MaxHealth { get; private set; }
-    public Stat MaxAmmo { get; private set; }
-    public Stat MoveSpeed { get; private set; }
+    public readonly Stat maxHealth;
+    public readonly Stat maxAmmo;
+    public readonly Stat moveSpeed;
 
-    public PlayerStats(CharacterStats stats)
+    public PlayerStats(PlayerCharacterData stats)
     {
-        MaxHealth = new(stats.MaxHealth.BaseValue, stats.MaxHealth.MaxValue);
-        MaxAmmo = new(stats.MaxAmmo.BaseValue, stats.MaxAmmo.MaxValue);
-        MoveSpeed = new(stats.MoveSpeed.BaseValue, stats.MoveSpeed.MaxValue);
+        maxHealth = new(stats.MaxHealth.BaseValue, stats.MaxHealth.MaxValue);
+        maxAmmo = new(stats.MaxAmmo.BaseValue, stats.MaxAmmo.MaxValue);
+        moveSpeed = new(stats.MoveSpeed.BaseValue, stats.MoveSpeed.MaxValue);
     }
 }

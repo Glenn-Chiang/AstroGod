@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
     public InteractSystem InteractSystem { get; private set; }
     public PlayerInventoryManager InventoryManager { get; private set; }
 
-    [field: SerializeField] public CharacterStats CharacterStats { get; private set; } // Set in inspector
+    [field: SerializeField] public PlayerCharacterData CharacterStats { get; private set; } // Set in inspector
     public PlayerStats Stats { get; private set; }
     
     public HealthManager HealthManager { get; private set; }
@@ -32,10 +32,10 @@ public class PlayerController : MonoBehaviour
         InventoryManager = GetComponent<PlayerInventoryManager>();
 
         HealthManager = GetComponent<HealthManager>();
-        HealthManager.Initialize(Stats.MaxHealth.Value);
+        HealthManager.SetMaxHealth(Stats.maxHealth.Value);
 
         AmmoManager = GetComponent<AmmoManager>();
-        AmmoManager.Initialize((int)Stats.MaxAmmo.Value);
+        AmmoManager.Initialize((int)Stats.maxAmmo.Value);
     }
 
     private void Update()

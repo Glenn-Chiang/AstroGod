@@ -16,6 +16,13 @@ public class Stat
         Value = BaseValue;
     }
 
+    public Stat(float value)
+    {
+        BaseValue = value;
+        MaxValue = value;
+        Value = value;
+    }
+
     public void Upgrade()
     {
         Value = Math.Min(MaxValue, Value * incrementFactor);
