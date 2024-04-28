@@ -1,16 +1,15 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.Rendering;
 
-public class EnemyMovement : MonoBehaviour
+public class Movement : MonoBehaviour
 {
     private readonly float minRoamDistance = 2;
     private readonly float maxRoamDistance = 10;
     private readonly float destinationThreshold = 1; // When the enemy is within this distance from the destination, it will be considered to have reached the destination
 
-    private Stat moveSpeedStat;
-    private float MoveSpeed => moveSpeedStat.Value;
-
+    private ICharacter character;
+  
+    private float MoveSpeed => character.Stats.moveSpeed.Value;
     private Vector2 startPosition;
     private Vector2 destination;
 
@@ -22,15 +21,16 @@ public class EnemyMovement : MonoBehaviour
         destination = GetRoamDestination();
     }
 
-    public void Initialize(Stat _moveSpeedStat)
+    private void Start()
     {
-        moveSpeedStat = _moveSpeedStat;
+        character = GetComponent<ICharacter>();
+        Debug.Log(character.Stats.moveSpeed.Value);
     }
 
     public void Roam()
     {
         if (isWaiting) return;
-
+        Debug.Log("roaming");
         transform.position = Vector2.MoveTowards(transform.position, destination, MoveSpeed * Time.deltaTime);
         if (Vector2.Distance(transform.position, destination) < destinationThreshold)
         {

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, ICharacter
 {
     public static PlayerController Instance { get; private set; }
 
@@ -8,13 +8,15 @@ public class PlayerController : MonoBehaviour
     public InteractionManager InteractSystem { get; private set; }
     public PlayerInventoryManager InventoryManager { get; private set; }
 
-    [field: SerializeField] public PlayerCharacterData CharacterStats { get; private set; } // Set in inspector
-    public PlayerStats Stats { get; private set; }
+    [SerializeField] private PlayerCharacterData data;
+    CharacterData ICharacter.Data => data;
+
+    private PlayerStats stats;
+    CharacterStats ICharacter.Stats => stats;
     
     public HealthManager HealthManager { get; private set; }
     public AmmoManager AmmoManager { get; private set; }
 
-    private bool isAlive = true;
 
     private void Awake()
     {
@@ -26,31 +28,22 @@ public class PlayerController : MonoBehaviour
         } 
         Instance = this;
 
-        Stats = new(CharacterStats);
+        stats = new(data);
         InteractSystem = GetComponent<InteractionManager>();
         InventoryManager = GetComponent<PlayerInventoryManager>();
 
         Movement = GetComponent<PlayerMovement>();
-        Movement.Initialize(Stats.moveSpeed);
+        Movement.Initialize(stats.moveSpeed);
         
         HealthManager = GetComponent<HealthManager>();
-        HealthManager.Initialize(Stats.maxHealth);
 
         AmmoManager = GetComponent<AmmoManager>();
-        AmmoManager.Initialize((int)Stats.maxAmmo.Value);
-    }
-
-    private void Update()
-    {
-        //if (isAlive && HealthManager.Health == 0)
-        //{
-        //    Die();
-        //}
+        AmmoManager.Initialize((int)stats.maxAmmo.Value);
     }
 
     private void Die()
     {
-        isAlive = false;
+        
         Debug.Log("Player died");
         //Destroy(Instance);
     }

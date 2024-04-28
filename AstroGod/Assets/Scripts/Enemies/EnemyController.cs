@@ -1,13 +1,14 @@
 using System;
 using UnityEngine;
 
-public class EnemyController : MonoBehaviour
+public class EnemyController : MonoBehaviour, ICharacter
 {
     [SerializeField] private EnemyData data;
+    CharacterData ICharacter.Data => data;
     private EnemyStats stats;
+    CharacterStats ICharacter.Stats => stats;
     
     [SerializeField] private HealthManager healthManager;
-    [SerializeField] private EnemyMovement movement;
 
     public static event EventHandler<EnemyDeathEventArgs> OnEnemyDeath;
 
@@ -15,16 +16,14 @@ public class EnemyController : MonoBehaviour
     {
         stats = new(data); // Initialize stats with base values
 
-        healthManager.Initialize(stats.maxHealth);
         healthManager.OnDeath += HandleDeath;
-
-        movement.Initialize(stats.moveSpeed);
     }
 
     private void HandleDeath(object sender, EventArgs e)
     {
         OnEnemyDeath?.Invoke(sender, new EnemyDeathEventArgs(data) );
         Destroy(gameObject);
+        
     }
 }
 

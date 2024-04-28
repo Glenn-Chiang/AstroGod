@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class EnemyAI : MonoBehaviour
 {
-    [SerializeField] private EnemyMovement movement;
+    [SerializeField] private Movement movement;
 
     private enum State
     {
@@ -12,6 +12,7 @@ public class EnemyAI : MonoBehaviour
 
     private State state = State.Idle;
 
+    private GameObject target; // Currently attacking this target
 
     private void Update()
     {
@@ -22,16 +23,22 @@ public class EnemyAI : MonoBehaviour
                 break;
 
             case State.Aggro:
+                Aggro();
                 break;
         }
+    }
+
+    private void Aggro()
+    {
+
     }
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
         if (collider.CompareTag("Player"))
         {
-            Debug.Log("Start aggro");
             state = State.Aggro;
+            target = collider.gameObject;
         }
     }
 
@@ -39,8 +46,8 @@ public class EnemyAI : MonoBehaviour
     {
         if (collider.CompareTag("Player"))
         {
-            Debug.Log("Stop aggro");
             state = State.Idle;
+            target = null;
         }
     }
 }

@@ -1,17 +1,18 @@
 using System;
-using UnityEngine;
+
 public class HealthManager : Damageable
 {
-    private Stat maxHealthStat;
-    public float MaxHealth => maxHealthStat.Value;
+    private ICharacter character;
+
+    public float MaxHealth => character.Stats.maxHealth.Value;
     public float Health { get; private set; }
     protected override float HitPoints { get => Health; set { Health = value; } }
 
     public event EventHandler OnDeath;
 
-    public void Initialize(Stat _maxHealthStat)
+    private void Start()
     {
-        maxHealthStat = _maxHealthStat;
+        character = GetComponent<ICharacter>();
         Health = MaxHealth;
     }
 
