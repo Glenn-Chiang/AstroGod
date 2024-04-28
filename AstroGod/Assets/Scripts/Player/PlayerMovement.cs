@@ -23,22 +23,18 @@ public class PlayerMovement : MonoBehaviour
         moveSpeedStat = _moveSpeedStat;
     }
 
-    private void Update()
+    public void Move(float x, float y)
     {
-        moveDir.x = Input.GetAxisRaw("Horizontal");
-        moveDir.y = Input.GetAxisRaw("Vertical");
+        moveDir = new Vector2(x, y);
         moveDir.Normalize();
+    }
 
-        // Rotate firePoint towards cursor
-        var cursorPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        aimDir = (cursorPos - transform.position).normalized;
+    public void Aim(Vector3 aimPos)
+    {
+        aimDir = (aimPos - transform.position).normalized;
         float angle = Mathf.Atan2(aimDir.y, aimDir.x) * Mathf.Rad2Deg;
         weaponSlot.eulerAngles = new Vector3(0, 0, angle);
 
-        if (canDash && Input.GetKeyDown(KeyCode.Space))
-        {
-            StartCoroutine(Dash());
-        }
     }
 
     private void FixedUpdate()
@@ -48,6 +44,14 @@ public class PlayerMovement : MonoBehaviour
             rb.MovePosition(rb.position + moveDir * MoveSpeed * Time.deltaTime);
         }
 
+    }
+
+    public void TryDash()
+    {
+        if (canDash)
+        {
+            StartCoroutine(Dash());
+        }
     }
 
     private IEnumerator Dash()

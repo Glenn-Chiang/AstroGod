@@ -21,6 +21,27 @@ public class InputHandler : MonoBehaviour
             player.WeaponEquip.FireWeapon();
         }
 
+        HandleMovementInputs();
+        HandleInventoryInputs();
+    }
+
+    private void HandleMovementInputs()
+    {
+        var x = Input.GetAxisRaw("Horizontal");
+        var y = Input.GetAxisRaw("Vertical");
+        player.Movement.Move(x, y);
+
+        var cursorPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        player.Movement.Aim(cursorPos);
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            player.Movement.TryDash();
+        }
+    }
+
+    private void HandleInventoryInputs()
+    {
         int numberInput = GetNumberInput();
         if (numberInput != -1)
         {
@@ -46,6 +67,7 @@ public class InputHandler : MonoBehaviour
         {
             player.InventoryManager.SwitchInventory();
         }
+
     }
 
     private int GetNumberInput()
