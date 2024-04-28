@@ -3,11 +3,12 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    private ICharacter character;
+
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Transform weaponSlot;
 
-    private Stat moveSpeedStat;
-    private float MoveSpeed => moveSpeedStat.Value;
+    private float MoveSpeed => character.Stats.moveSpeed.Value;
     [SerializeField] private float dashSpeed = 30f;
     [SerializeField] private float dashDuration = 0.2f;
     [SerializeField] private float dashCooldown = 0.75f;
@@ -18,12 +19,12 @@ public class PlayerMovement : MonoBehaviour
     private bool isDashing = false;
     private bool canDash = true;
 
-    public void Initialize(Stat _moveSpeedStat)
+    private void Start()
     {
-        moveSpeedStat = _moveSpeedStat;
+        character = GetComponent<ICharacter>();
     }
 
-    public void Move(float x, float y)
+    public void UpdateMovement(float x, float y)
     {
         moveDir = new Vector2(x, y);
         moveDir.Normalize();
@@ -34,7 +35,6 @@ public class PlayerMovement : MonoBehaviour
         aimDir = (aimPos - transform.position).normalized;
         float angle = Mathf.Atan2(aimDir.y, aimDir.x) * Mathf.Rad2Deg;
         weaponSlot.eulerAngles = new Vector3(0, 0, angle);
-
     }
 
     private void FixedUpdate()

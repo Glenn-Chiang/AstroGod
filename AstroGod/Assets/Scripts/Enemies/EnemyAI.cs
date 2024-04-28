@@ -43,6 +43,7 @@ public class EnemyAI : MonoBehaviour
 
             case State.Aggro:
                 TrackTarget();
+                movement.Roam();
 
                 fireTimer -= Time.deltaTime;
                 if (fireTimer <= 0)

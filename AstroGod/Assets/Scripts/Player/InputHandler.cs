@@ -29,7 +29,7 @@ public class InputHandler : MonoBehaviour
     {
         var x = Input.GetAxisRaw("Horizontal");
         var y = Input.GetAxisRaw("Vertical");
-        player.Movement.Move(x, y);
+        player.Movement.UpdateMovement(x, y);
 
         var cursorPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         player.Movement.Aim(cursorPos);

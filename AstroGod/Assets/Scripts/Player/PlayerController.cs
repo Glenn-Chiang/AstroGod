@@ -39,7 +39,6 @@ public class PlayerController : MonoBehaviour, ICharacter, IArmable
         InventoryManager = GetComponent<PlayerInventoryManager>();
         
         Movement = GetComponent<PlayerMovement>();
-        Movement.Initialize(Stats.moveSpeed);
         
         HealthManager = GetComponent<HealthManager>();
         HealthManager.OnDeath += HandleDeath;
