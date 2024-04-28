@@ -33,7 +33,7 @@ public class WeaponEquip : MonoBehaviour
     {
         if (EquippedWeapon != null)
         {
-            EquippedWeapon.Fire();
+            EquippedWeapon.HandleFire();
         }
 
     }

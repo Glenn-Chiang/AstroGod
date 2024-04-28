@@ -1,38 +1,37 @@
 using System.Collections;
+using Unity.IO.LowLevel.Unsafe;
 using UnityEngine;
 
-public class WeaponController : MonoBehaviour
+public abstract class WeaponController : MonoBehaviour
 {
-    [SerializeField] private Transform firePoint;
+    [SerializeField] protected Transform firePoint;
     
     public Weapon weaponInstance;
-    private float Damage => weaponInstance.Damage;
+    protected float Damage => weaponInstance.Damage;
     private float FireRate => weaponInstance.FireRate;
-    private float FirePower => weaponInstance.Data.FirePower;
+    protected float FirePower => weaponInstance.Data.FirePower;
     private int AmmoCost => weaponInstance.Data.AmmoCost;
 
     public AmmoManager ammoManager;
 
     private bool canFire = true;
 
-    public void Fire()
+    public void HandleFire()
     {
         if (!canFire) return;
         
-        if (!ammoManager.ConsumeAmmo(AmmoCost))
+        // If ammoManager is null, we will treat the weapon as having no ammo cost / infinite ammo
+        if (ammoManager != null && !ammoManager.ConsumeAmmo(AmmoCost))
         {
             Debug.Log("Insufficient ammo");
             return;
         }
 
-        var projectile = Instantiate(weaponInstance.Data.ProjectilePrefab, firePoint.position, firePoint.rotation);
-        var projectileRb = projectile.GetComponent<Rigidbody2D>();
-        projectileRb.AddForce(FirePower * firePoint.right, ForceMode2D.Impulse);
-        projectile.damage = Damage;
-
+        Fire();
         StartCoroutine(CoolDown());
-
     }
+
+    protected abstract void Fire();
 
     private IEnumerator CoolDown()
     {
