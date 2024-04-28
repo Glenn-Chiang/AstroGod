@@ -6,28 +6,28 @@ public class AmmoManager : MonoBehaviour
 {
     private PlayerController player;
     public int MaxAmmo => (int)player.Stats.maxAmmo.Value;
-    [SerializeField] private int ammoCount;
+    public int AmmoCount { get; private set; }
 
     private void Start()
     {
         player = GetComponent<PlayerController>();
-        ammoCount = MaxAmmo;
+        AmmoCount = MaxAmmo;
     }
 
     public bool ConsumeAmmo(int ammoConsumed)
     {
         // Insufficient ammo
-        if (ammoCount < ammoConsumed)
+        if (AmmoCount < ammoConsumed)
         {
             return false;
         }
 
-        ammoCount -= ammoConsumed;
+        AmmoCount -= ammoConsumed;
         return true;
     }
 
     public void AddAmmo(int ammoAdded)
     {
-        ammoCount += Mathf.Min(ammoAdded, MaxAmmo - ammoCount);
+        AmmoCount += Mathf.Min(ammoAdded, MaxAmmo - AmmoCount);
     }
 }
