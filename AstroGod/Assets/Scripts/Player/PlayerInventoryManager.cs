@@ -19,69 +19,48 @@ public class PlayerInventoryManager : InventoryManager
     private bool isActive = false; // Determines whether the inventory menu is open, and whether inventory operations can be performed
     public override bool IsActive => isActive;
 
-    private void Update()
+    public void SwitchInventory()
     {
-        if (isActive)
+        // Select next inventory
+        if (selectedInventoryIndex < Inventories.Count - 1)
         {
-            // Close if already open
-            if (Input.GetKeyDown(KeyCode.I))
-            {
-                isActive = false;
-                selectedInventoryIndex = 0;
-            }
-
-            if (Input.GetKeyDown(KeyCode.Tab))
-            {
-                // Select next inventory
-                if (selectedInventoryIndex < Inventories.Count - 1)
-                {
-                    selectedInventoryIndex++;
-                }
-                // If we are already at last inventory, go back to first one
-                else
-                {
-                    selectedInventoryIndex = 0;
-                }
-            }
-        } else
-        {
-            // Open the inventory menu
-            if (Input.GetKeyDown(KeyCode.I))
-            {
-                isActive = true;
-            }
+            selectedInventoryIndex++;
         }
-        
-        // Player can use number keys to select an item from the currently selected inventory
-        int selectedItemIndex = GetNumberInput() - 1;
-        if (selectedItemIndex != -1)
+        // If we are already at last inventory, go back to first one
+        else
         {
-            SelectedInventory.SelectItem(selectedItemIndex);
+            selectedInventoryIndex = 0;
         }
+    }
 
+    public void ToggleInventory()
+    {
+        isActive = !isActive;
+        selectedInventoryIndex = 0;
+    }
+
+    public void DropItemFromInventory()
+    {
         switch (SelectedInventory)
         {
             case InstanceInventory instanceInventory:
-                if (Input.GetKeyDown(KeyCode.G))
-                {
-                    DropItem(instanceInventory);
-                }
-
+                DropItem(instanceInventory);
                 break;
 
-            case StackableInventory stackableInventory:
-                if (Input.GetKeyDown(KeyCode.G))
-                {
-                    DropItem(stackableInventory);
-                }
-
-                if (Input.GetKeyDown(KeyCode.Q))
-                {
-                    stackableInventory.ConsumeSelected(gameObject);
-                }
-
-                break; 
+            case StackableInventory stackableInventory:    
+                DropItem(stackableInventory);
+                break;
         }
+    }
+
+    public void ConsumeItem()
+    {
+        consumableInventory.ConsumeSelected(gameObject);
+    }
+
+    public void SelectItem(int index)
+    {
+        SelectedInventory.SelectItem(index);
     }
 
     public override bool AddItemInstance(ItemInstance itemInstance)
@@ -114,16 +93,5 @@ public class PlayerInventoryManager : InventoryManager
         return consumableInventory.AddItem(itemStack);
     }
 
-    private int GetNumberInput()
-    {
-        KeyCode[] numberKeys = { KeyCode.Alpha1, KeyCode.Alpha2, KeyCode.Alpha3, KeyCode.Alpha4, KeyCode.Alpha5, KeyCode.Alpha6, KeyCode.Alpha7, KeyCode.Alpha8, KeyCode.Alpha9 };
-        for (int i = 0; i < numberKeys.Length; i++)
-        {
-            if (Input.GetKeyDown(numberKeys[i]))
-            {
-                return i + 1;
-            }
-        }
-        return -1;
-    }
+  
 }
