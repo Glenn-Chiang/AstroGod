@@ -4,12 +4,13 @@ using UnityEngine;
 [Serializable]
 public class AmmoManager : MonoBehaviour
 {
-    public int MaxAmmo { get; private set; }
+    private PlayerController player;
+    public int MaxAmmo => (int)player.Stats.maxAmmo.Value;
     [SerializeField] private int ammoCount;
 
-    public void Initialize(int maxAmmo)
+    private void Start()
     {
-        MaxAmmo = maxAmmo;
+        player = GetComponent<PlayerController>();
         ammoCount = MaxAmmo;
     }
 

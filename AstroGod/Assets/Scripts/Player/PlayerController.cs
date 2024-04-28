@@ -12,8 +12,8 @@ public class PlayerController : MonoBehaviour, ICharacter
     [SerializeField] private PlayerCharacterData data;
     CharacterData ICharacter.Data => data;
 
-    private PlayerStats stats;
-    CharacterStats ICharacter.Stats => stats;
+    public PlayerStats Stats { get; private set; }
+    CharacterStats ICharacter.Stats => Stats;
 
     private HealthManager healthManager;
     public AmmoManager AmmoManager { get; private set; }
@@ -30,18 +30,18 @@ public class PlayerController : MonoBehaviour, ICharacter
         } 
         Instance = this;
 
-        stats = new(data);
+        Stats = new(data);
         InteractSystem = GetComponent<InteractionManager>();
         InventoryManager = GetComponent<PlayerInventoryManager>();
 
         Movement = GetComponent<PlayerMovement>();
-        Movement.Initialize(stats.moveSpeed);
+        Movement.Initialize(Stats.moveSpeed);
         
         healthManager = GetComponent<HealthManager>();
         healthManager.OnDeath += HandleDeath;
 
         AmmoManager = GetComponent<AmmoManager>();
-        AmmoManager.Initialize((int)stats.maxAmmo.Value);
+        
     }
 
     private void HandleDeath(object sender, EventArgs e)

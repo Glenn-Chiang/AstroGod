@@ -137,11 +137,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8750064812985210383, guid: d6cceb5f1c5cf434cb011e2af27c070d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.67
+      value: 5.72
       objectReference: {fileID: 0}
     - target: {fileID: 8750064812985210383, guid: d6cceb5f1c5cf434cb011e2af27c070d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.6
+      value: -2.68
       objectReference: {fileID: 0}
     - target: {fileID: 8750064812985210383, guid: d6cceb5f1c5cf434cb011e2af27c070d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -941,15 +941,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3683148680411249961, guid: 5bed1ad15e80ec74e8c6f04bd25a8fe2, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3683148680411249961, guid: 5bed1ad15e80ec74e8c6f04bd25a8fe2, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6822606531031424726, guid: 5bed1ad15e80ec74e8c6f04bd25a8fe2, type: 3}
       propertyPath: m_Name
       value: Drone
+      objectReference: {fileID: 0}
+    - target: {fileID: 6822606531031424726, guid: 5bed1ad15e80ec74e8c6f04bd25a8fe2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1342,11 +1346,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2080867840463727957, guid: 4b3e1bf49b2c8b9419af0d36563bbb38, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -10.631588
+      value: 1.93
       objectReference: {fileID: 0}
     - target: {fileID: 2080867840463727957, guid: 4b3e1bf49b2c8b9419af0d36563bbb38, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.9499092
+      value: -2.57
       objectReference: {fileID: 0}
     - target: {fileID: 2080867840463727957, guid: 4b3e1bf49b2c8b9419af0d36563bbb38, type: 3}
       propertyPath: m_LocalPosition.z
