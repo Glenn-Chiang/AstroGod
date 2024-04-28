@@ -14,24 +14,28 @@ public class WeaponEquip : MonoBehaviour
         }
     }
     private InstanceInventory<Weapon> weaponInventory;
-
     private AmmoManager ammoManager;
 
     private void Start()
     {
-        var player = PlayerController.Instance;
-        weaponInventory = player.InventoryManager.weaponInventory;
-        ammoManager = player.AmmoManager;
+        var armableEntity = GetComponentInParent<IArmable>();
+        weaponInventory = armableEntity.WeaponInventory;
+        ammoManager = armableEntity.AmmoManager;
     }
 
     private void Update()
     {
         UpdateEquipped();
 
-        if (EquippedWeapon != null && Input.GetButtonDown("Fire1"))
+    }
+
+    public void FireWeapon()
+    {
+        if (EquippedWeapon != null)
         {
             EquippedWeapon.Fire();
         }
+
     }
 
     private void UpdateEquipped()

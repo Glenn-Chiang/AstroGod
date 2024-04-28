@@ -1,13 +1,12 @@
 using System;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour, ICharacter
+public class PlayerController : MonoBehaviour, ICharacter, IArmable
 {
     public static PlayerController Instance { get; private set; }
 
     public PlayerMovement Movement { get; private set; }
     public InteractionManager InteractSystem { get; private set; }
-    public PlayerInventoryManager InventoryManager { get; private set; }
 
     [SerializeField] private PlayerCharacterData data;
     CharacterData ICharacter.Data => data;
@@ -15,8 +14,13 @@ public class PlayerController : MonoBehaviour, ICharacter
     public PlayerStats Stats { get; private set; }
     CharacterStats ICharacter.Stats => Stats;
 
-    private HealthManager healthManager;
+    public HealthManager HealthManager { get; private set; }
     public AmmoManager AmmoManager { get; private set; }
+
+    public PlayerInventoryManager InventoryManager { get; private set; }
+    InstanceInventory<Weapon> IArmable.WeaponInventory => InventoryManager.weaponInventory;
+    
+    public WeaponEquip WeaponEquip { get; private set; }
 
     public static event EventHandler OnPlayerDeath;
 
@@ -33,15 +37,15 @@ public class PlayerController : MonoBehaviour, ICharacter
         Stats = new(data);
         InteractSystem = GetComponent<InteractionManager>();
         InventoryManager = GetComponent<PlayerInventoryManager>();
-
+        
         Movement = GetComponent<PlayerMovement>();
         Movement.Initialize(Stats.moveSpeed);
         
-        healthManager = GetComponent<HealthManager>();
-        healthManager.OnDeath += HandleDeath;
+        HealthManager = GetComponent<HealthManager>();
+        HealthManager.OnDeath += HandleDeath;
 
         AmmoManager = GetComponent<AmmoManager>();
-        
+        WeaponEquip = GetComponentInChildren<WeaponEquip>();
     }
 
     private void HandleDeath(object sender, EventArgs e)
