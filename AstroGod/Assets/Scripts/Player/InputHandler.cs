@@ -11,6 +11,11 @@ public class InputHandler : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            player.InteractSystem.Interact();
+        }
+
         if (Input.GetButtonDown("Fire1"))
         {
             player.WeaponEquip.FireWeapon();

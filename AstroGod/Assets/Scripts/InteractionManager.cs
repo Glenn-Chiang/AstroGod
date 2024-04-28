@@ -21,12 +21,12 @@ public class InteractionManager : MonoBehaviour, INotifyPropertyChanged
         }
     }
 
-    private void Update()
+    public void Interact()
     {
-        if (Input.GetKeyDown(KeyCode.E) && Target != null)
+        if (Target != null)
         {
             Target.OnInteract(this);
-        }    
+        }
     }
 
 
