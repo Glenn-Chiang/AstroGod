@@ -24,13 +24,11 @@ public class Movement : MonoBehaviour
     private void Start()
     {
         character = GetComponent<ICharacter>();
-        Debug.Log(character.Stats.moveSpeed.Value);
     }
 
     public void Roam()
     {
         if (isWaiting) return;
-        Debug.Log("roaming");
         transform.position = Vector2.MoveTowards(transform.position, destination, MoveSpeed * Time.deltaTime);
         if (Vector2.Distance(transform.position, destination) < destinationThreshold)
         {

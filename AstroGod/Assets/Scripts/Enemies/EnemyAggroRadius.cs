@@ -16,7 +16,7 @@ public class EnemyAggroRadius : MonoBehaviour
     {
         if (collider.CompareTag("Player"))
         {
-            enemyAI.OnExitAggroRadius(collider.gameObject);
+            enemyAI.OnExitAggroRadius();
         }
     }
 }
