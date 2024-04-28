@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour, ICharacter
@@ -13,10 +14,11 @@ public class PlayerController : MonoBehaviour, ICharacter
 
     private PlayerStats stats;
     CharacterStats ICharacter.Stats => stats;
-    
-    public HealthManager HealthManager { get; private set; }
+
+    private HealthManager healthManager;
     public AmmoManager AmmoManager { get; private set; }
 
+    public static event EventHandler OnPlayerDeath;
 
     private void Awake()
     {
@@ -35,16 +37,17 @@ public class PlayerController : MonoBehaviour, ICharacter
         Movement = GetComponent<PlayerMovement>();
         Movement.Initialize(stats.moveSpeed);
         
-        HealthManager = GetComponent<HealthManager>();
+        healthManager = GetComponent<HealthManager>();
+        healthManager.OnDeath += HandleDeath;
 
         AmmoManager = GetComponent<AmmoManager>();
         AmmoManager.Initialize((int)stats.maxAmmo.Value);
     }
 
-    private void Die()
+    private void HandleDeath(object sender, EventArgs e)
     {
-        
         Debug.Log("Player died");
-        //Destroy(Instance);
+        OnPlayerDeath?.Invoke(this, EventArgs.Empty);
+        Destroy(gameObject);
     }
 }

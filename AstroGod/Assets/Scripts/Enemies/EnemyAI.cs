@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -21,6 +22,16 @@ public class EnemyAI : MonoBehaviour
     private State state = State.Idle;
 
     private GameObject target; // Currently attacking this target
+
+    private void Start()
+    {
+        PlayerController.OnPlayerDeath += HandlePlayerDeath;
+    }
+
+    private void HandlePlayerDeath(object sender, EventArgs e)
+    {
+        state = State.Idle;
+    }
 
     private void Update()
     {
@@ -64,7 +75,6 @@ public class EnemyAI : MonoBehaviour
 
     private void Fire()
     {
-        Debug.Log("Fire");
         var projectile = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
         var projectileRb = projectile.GetComponent<Rigidbody2D>();
         float firePower = 20f;

@@ -11,7 +11,6 @@ public class ProjectileController : MonoBehaviour
         {
             damageableObject.TakeDamage(damage);
         }
-
         Destroy(gameObject);
     }
 }
