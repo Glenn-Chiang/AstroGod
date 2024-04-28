@@ -33,21 +33,23 @@ public class EnemyAI : MonoBehaviour
 
     }
 
-    private void OnTriggerEnter2D(Collider2D collider)
+    public void OnEnterAggroRadius(GameObject obj)
     {
-        if (collider.CompareTag("Player"))
+        if (obj.CompareTag("Player"))
         {
             state = State.Aggro;
-            target = collider.gameObject;
+            target = obj;
         }
+
     }
 
-    private void OnTriggerExit2D(Collider2D collider)
+    public void OnExitAggroRadius(GameObject obj)
     {
-        if (collider.CompareTag("Player"))
+        if (obj.CompareTag("Player"))
         {
             state = State.Idle;
             target = null;
         }
+
     }
 }
