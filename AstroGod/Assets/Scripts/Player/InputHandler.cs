@@ -1,16 +1,26 @@
+using System;
 using UnityEngine;
 
 public class InputHandler : MonoBehaviour
 {
     private PlayerController player;
+    private bool isGameOver = false;
 
     private void Start()
     {
         player = PlayerController.Instance;
+        PlayerController.OnPlayerDeath += HandlePlayerDeath;
+    }
+
+    private void HandlePlayerDeath(object sender, EventArgs e)
+    {
+        isGameOver = true;
     }
 
     private void Update()
     {
+        if (isGameOver) return;
+
         if (Input.GetKeyDown(KeyCode.E))
         {
             player.InteractSystem.Interact();
