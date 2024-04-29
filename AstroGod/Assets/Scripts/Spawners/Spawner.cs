@@ -11,7 +11,7 @@ public class Spawner : MonoBehaviour
     [SerializeField] private float maxY;
 
     [SerializeField] private List<WeightedElement<GameObject>> entities;
-    [SerializeField] private float initialSpawnDelay;
+    [SerializeField] protected float initialSpawnDelay;
     [SerializeField] private int initialSpawnCount;
 
     private void Awake()
@@ -19,7 +19,7 @@ public class Spawner : MonoBehaviour
         StartCoroutine(TimeUtils.ExecuteAfterDelay(initialSpawnDelay, () => SpawnRandomEntities(initialSpawnCount)));
     }
 
-    private void SpawnRandomEntities(int count)
+    protected void SpawnRandomEntities(int count)
     {
         for (int i = 0; i < count; i++)
         {
@@ -27,7 +27,7 @@ public class Spawner : MonoBehaviour
         }
     }
 
-    private void SpawnRandomEntity()
+    protected void SpawnRandomEntity()
     {
         var spawnPosition = GetRandomPosition();
         var entityToSpawn = GetRandomEntity();
