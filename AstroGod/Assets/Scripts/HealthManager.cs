@@ -1,12 +1,15 @@
 using System;
 using UnityEngine;
 
-public class HealthManager : Damageable
+public class HealthManager : Damageable, IDepletable
 {
     private ICharacter character;
 
     public float MaxHealth => character.Stats.maxHealth.Value;
     public float Health { get; private set; }
+    float IDepletable.MaxValue => MaxHealth;
+    float IDepletable.Value => Health;
+
     protected override float HitPoints { get => Health; set { Health = value; } }
 
     public event EventHandler OnDeath;

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7593295217859926751}
   - component: {fileID: 6951318549950091512}
   - component: {fileID: 6141287647796638857}
-  - component: {fileID: 3795313222592003961}
+  - component: {fileID: -4244269090279678136}
   m_Layer: 0
   m_Name: AmmoCell (pickup)
   m_TagString: Untagged
@@ -46,8 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6d0ea722e7161b40966254fd45eff60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <ItemData>k__BackingField: {fileID: 11400000, guid: 6fc2268a5515f6349abcbd736071446d, type: 2}
-  amount: 1
+  itemData: {fileID: 11400000, guid: 6fc2268a5515f6349abcbd736071446d, type: 2}
 --- !u!212 &6141287647796638857
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -100,8 +99,8 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!58 &3795313222592003961
-CircleCollider2D:
+--- !u!61 &-4244269090279678136
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -129,9 +128,19 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.8, y: 1.4}
+    newSize: {x: 1.8, y: 1.4}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   serializedVersion: 2
-  m_Radius: 2
+  m_Size: {x: 1.8, y: 1.4}
+  m_EdgeRadius: 0

@@ -35,7 +35,7 @@ public class PlayerController : MonoBehaviour, ICharacter, IArmable
         Instance = this;
 
         Stats = new(data);
-        InteractSystem = GetComponent<InteractionManager>();
+        InteractSystem = GetComponentInChildren<InteractionManager>();
         InventoryManager = GetComponent<PlayerInventoryManager>();
         
         Movement = GetComponent<PlayerMovement>();

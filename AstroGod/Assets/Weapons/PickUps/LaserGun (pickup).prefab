@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6935742413682026171}
   - component: {fileID: 6086345783507041912}
-  - component: {fileID: 875981581629808450}
   - component: {fileID: 417916995296059238}
+  - component: {fileID: 7877580086345329638}
   m_Layer: 0
   m_Name: LaserGun (pickup)
   m_TagString: Untagged
@@ -86,8 +86,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!58 &875981581629808450
-CircleCollider2D:
+--- !u!114 &417916995296059238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9140609486032140464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51094076dd7a51d48868a44cebb43baf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data: {fileID: 11400000, guid: 0455082cd39a47c4f884f086da86671c, type: 2}
+--- !u!61 &7877580086345329638
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -115,23 +128,19 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0.050000012}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.45454547}
+    oldSize: {x: 2, y: 1.1}
+    newSize: {x: 2, y: 1.1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   serializedVersion: 2
-  m_Radius: 2
---- !u!114 &417916995296059238
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9140609486032140464}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51094076dd7a51d48868a44cebb43baf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <ItemData>k__BackingField: {fileID: 0}
-  data: {fileID: 11400000, guid: 0455082cd39a47c4f884f086da86671c, type: 2}
+  m_Size: {x: 2, y: 1.1}
+  m_EdgeRadius: 0

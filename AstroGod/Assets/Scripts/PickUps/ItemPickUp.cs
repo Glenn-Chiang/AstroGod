@@ -6,12 +6,10 @@ public abstract class ItemPickUp : Interactable
 
     public override void OnInteract(InteractionManager interactor)
     {
-        if (interactor.TryGetComponent<InventoryManager>(out var inventoryManager))
-        {
-            if (PickUp(inventoryManager))
-            {
-                Destroy(gameObject);
-            }
+        var inventoryManager = interactor.GetComponentInParent<InventoryManager>();
+        if (inventoryManager != null && PickUp(inventoryManager))
+        {    
+            Destroy(gameObject);   
         }
     }
 

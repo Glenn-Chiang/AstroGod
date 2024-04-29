@@ -2,11 +2,13 @@ using System;
 using UnityEngine;
 
 [Serializable]
-public class AmmoManager : MonoBehaviour
+public class AmmoManager : MonoBehaviour, IDepletable
 {
     private PlayerController player;
     public int MaxAmmo => (int)player.Stats.maxAmmo.Value;
     public int AmmoCount { get; private set; }
+    float IDepletable.MaxValue => MaxAmmo;
+    float IDepletable.Value => AmmoCount;
 
     private void Start()
     {

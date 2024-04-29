@@ -29,6 +29,22 @@ public class InteractionManager : MonoBehaviour, INotifyPropertyChanged
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D collider)
+    {
+        // If an entity with an interact system e.g. player or npc enters the collision zone of the interactable object, add the object to the interact system
+        if (collider.TryGetComponent<Interactable>(out var obj))
+        {
+            AddObject(obj);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collider)
+    {
+        if (collider.TryGetComponent<Interactable>(out var obj))
+        {
+            RemoveObject(obj);
+        }
+    }
 
     protected void OnTargetChange()
     {

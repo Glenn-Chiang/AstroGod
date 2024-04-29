@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2080867840463727957}
   - component: {fileID: 694048461719647496}
   - component: {fileID: 621232807014989553}
-  - component: {fileID: 1871283415277045624}
+  - component: {fileID: -1347643241888614628}
   m_Layer: 0
   m_Name: WeaponChest
   m_TagString: Untagged
@@ -104,8 +104,8 @@ MonoBehaviour:
   - <Element>k__BackingField: {fileID: 417916995296059238, guid: 37f7e256baffab64c81b04afff5758a5, type: 3}
     <Weight>k__BackingField: 0.5
   openedChestPrefab: {fileID: 4314457260397914147, guid: 17d7b55cbdc8d0840954d6c4457c6074, type: 3}
---- !u!58 &1871283415277045624
-CircleCollider2D:
+--- !u!61 &-1347643241888614628
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -133,9 +133,19 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.049999952, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5217391, y: 0.5}
+    oldSize: {x: 2.3, y: 2.2}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   serializedVersion: 2
-  m_Radius: 2.5
+  m_Size: {x: 2.3, y: 2.2}
+  m_EdgeRadius: 0
