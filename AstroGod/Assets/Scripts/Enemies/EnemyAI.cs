@@ -5,12 +5,10 @@ using UnityEngine;
 public class EnemyAI : MonoBehaviour
 {
     [SerializeField] private Movement movement;
-    
-    [SerializeField] private Transform weaponSlot;
-    [SerializeField] private Transform firePoint;
-    [SerializeField] private ProjectileController projectilePrefab;
 
-    private float fireInterval = 1.5f;
+    [SerializeField] private WeaponController weaponController;
+
+    [SerializeField] private float fireInterval = 0.5f;
     private float fireTimer;
     private enum State
     {
@@ -42,17 +40,20 @@ public class EnemyAI : MonoBehaviour
                 break;
 
             case State.Aggro:
-                TrackTarget();
-                movement.Roam();
-
-                fireTimer -= Time.deltaTime;
-                if (fireTimer <= 0)
-                {
-                    StartCoroutine(FireBurst());
-                    fireTimer = fireInterval;
-                }
-
+                Attack();
                 break;
+        }
+    }
+
+    protected virtual void Attack() // EnemyAI subclasses can override this to have different attack pattern
+    {
+        TrackTarget();
+
+        fireTimer -= Time.deltaTime;
+        if (fireTimer <= 0)
+        {
+            weaponController.HandleFire();
+            fireTimer = fireInterval;
         }
     }
 
@@ -60,28 +61,7 @@ public class EnemyAI : MonoBehaviour
     {
         Vector2 aimDir = (target.transform.position - transform.position).normalized;
         float angle = Mathf.Atan2(aimDir.y, aimDir.x) * Mathf.Rad2Deg;
-        weaponSlot.eulerAngles = new Vector3(0, 0, angle);
-    }
-
-    private IEnumerator FireBurst()
-    {
-        int numberOfShots = 3;
-        float shotInterval = 0.1f;
-        for (int i = 0; i < numberOfShots; i++)
-        {
-            Fire();
-            yield return new WaitForSeconds(shotInterval);
-        }
-    }
-
-    private void Fire()
-    {
-        var projectile = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
-        var projectileRb = projectile.GetComponent<Rigidbody2D>();
-        float firePower = 20f;
-        projectileRb.AddForce(firePower * firePoint.right, ForceMode2D.Impulse);
-        float bulletDamage = 10f;
-        projectile.damage = bulletDamage;
+        weaponController.transform.eulerAngles = new Vector3(0, 0, angle);
     }
 
     public void OnEnterAggroRadius(GameObject obj)

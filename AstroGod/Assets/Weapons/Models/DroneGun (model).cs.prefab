@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: -1685792560832141545}
   - component: {fileID: 4359018999685052032}
   m_Layer: 0
-  m_Name: PlasmaGun (model)
+  m_Name: DroneGun (model).cs
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -106,7 +106,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: 2790310067104290721, guid: ac45bb9a2b9b10a42b4c50ccc7f569cd, type: 3}
+  m_Sprite: {fileID: -4105225141633978610, guid: 574aefcfd5f04e249a8480b207e804ec, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -130,5 +130,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firePoint: {fileID: 6285628285088930247}
-  weaponData: {fileID: 11400000, guid: 00d0acc3cb9490d499b975619ad6a463, type: 2}
+  weaponData: {fileID: 11400000, guid: b143c97ee31d0c748a27f85b4de1cf2b, type: 2}
   ammoManager: {fileID: 0}

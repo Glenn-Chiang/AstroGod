@@ -15,7 +15,7 @@ MonoBehaviour:
   <Name>k__BackingField: Robot
   <Description>k__BackingField: The chosen one
   <MaxHealth>k__BackingField:
-    <BaseValue>k__BackingField: 100
+    <BaseValue>k__BackingField: 20
     <MaxValue>k__BackingField: 200
   <MoveSpeed>k__BackingField:
     <BaseValue>k__BackingField: 10

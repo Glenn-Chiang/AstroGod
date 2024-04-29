@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7126000646846537327}
   - component: {fileID: 7195271094099681008}
-  - component: {fileID: 818262474057750360}
+  - component: {fileID: 5526554350957332287}
   m_Layer: 0
   m_Name: LaserGun (model)
   m_TagString: Untagged
@@ -86,7 +86,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &818262474057750360
+--- !u!114 &5526554350957332287
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -95,13 +95,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1258579585967972228}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 187d8ac296cec7240bcba04be2feb5ef, type: 3}
+  m_Script: {fileID: 11500000, guid: 8c2beda2a6aeeb848b8cab4cfd7d235a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   firePoint: {fileID: 1083422313762901076}
-  weaponInstance:
-    <Damage>k__BackingField: 0
-    <FireRate>k__BackingField: 0
+  weaponData: {fileID: 11400000, guid: 0455082cd39a47c4f884f086da86671c, type: 2}
   ammoManager: {fileID: 0}
 --- !u!1 &2729236874372023302
 GameObject:
