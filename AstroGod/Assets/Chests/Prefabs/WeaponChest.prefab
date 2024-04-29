@@ -99,8 +99,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemPrefabs:
-  - {fileID: 422432576416822192, guid: da53f507e1bcd0046bb64c8921d2e8a6, type: 3}
-  - {fileID: 417916995296059238, guid: 37f7e256baffab64c81b04afff5758a5, type: 3}
+  - <Element>k__BackingField: {fileID: 422432576416822192, guid: da53f507e1bcd0046bb64c8921d2e8a6, type: 3}
+    <Weight>k__BackingField: 0.5
+  - <Element>k__BackingField: {fileID: 417916995296059238, guid: 37f7e256baffab64c81b04afff5758a5, type: 3}
+    <Weight>k__BackingField: 0.5
   openedChestPrefab: {fileID: 4314457260397914147, guid: 17d7b55cbdc8d0840954d6c4457c6074, type: 3}
 --- !u!58 &1871283415277045624
 CircleCollider2D:

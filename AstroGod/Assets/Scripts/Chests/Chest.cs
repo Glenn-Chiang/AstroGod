@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Chest : Interactable
 {
-    [SerializeField] private List<ItemPickUp> itemPrefabs;
+    [SerializeField] private List<WeightedElement<ItemPickUp>> itemPrefabs;
     [SerializeField] private GameObject openedChestPrefab; // This will replace the chest after it has been opened i.e. interacted with
 
     public override void OnInteract(InteractionManager interactSystem)
@@ -16,6 +16,6 @@ public class Chest : Interactable
 
     private ItemPickUp GetRandomItem()
     {
-        return RandomUtils.RandomSelect(itemPrefabs);
+        return RandomUtils.WeightedRandomSelect(itemPrefabs);
     }
 }
