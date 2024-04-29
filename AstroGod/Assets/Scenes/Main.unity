@@ -2686,6 +2686,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4750983370840492087, guid: a2573546ad8534446ae9a2d714c8f290, type: 3}
+      propertyPath: xpManager
+      value: 
+      objectReference: {fileID: 6048591906148942377}
     - target: {fileID: 6506410022334462044, guid: a2573546ad8534446ae9a2d714c8f290, type: 3}
       propertyPath: m_Name
       value: XpHUD
@@ -2693,14 +2697,6 @@ PrefabInstance:
     - target: {fileID: 6549306170543843323, guid: a2573546ad8534446ae9a2d714c8f290, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7009884601367231242, guid: a2573546ad8534446ae9a2d714c8f290, type: 3}
-      propertyPath: xpManager
-      value: 
-      objectReference: {fileID: 6048591906148942377}
-    - target: {fileID: 7342705618908198372, guid: a2573546ad8534446ae9a2d714c8f290, type: 3}
-      propertyPath: m_TargetGraphic
-      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
