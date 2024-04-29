@@ -11,14 +11,14 @@ public class Movement : MonoBehaviour
   
     private float MoveSpeed => character.Stats.moveSpeed.Value;
     private Vector2 startPosition;
-    private Vector2 destination;
+    private Vector2 roamDestination;
 
     private bool isWaiting = false;
 
     private void Awake()
     {
         startPosition = transform.position;
-        destination = GetRoamDestination();
+        roamDestination = GetRoamDestination();
     }
 
     private void Start()
@@ -29,12 +29,17 @@ public class Movement : MonoBehaviour
     public void Roam()
     {
         if (isWaiting) return;
-        transform.position = Vector2.MoveTowards(transform.position, destination, MoveSpeed * Time.deltaTime);
-        if (Vector2.Distance(transform.position, destination) < destinationThreshold)
+        MoveTowards(roamDestination);
+        if (Vector2.Distance(transform.position, roamDestination) < destinationThreshold)
         {
             StartCoroutine(Wait());
-            destination = GetRoamDestination();
+            roamDestination = GetRoamDestination();
         }
+    }
+
+    public void MoveTowards(Vector2 destination)
+    {
+        transform.position = Vector2.MoveTowards(transform.position, destination, MoveSpeed * Time.deltaTime);
     }
 
     private IEnumerator Wait()

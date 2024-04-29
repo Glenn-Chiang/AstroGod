@@ -10,6 +10,9 @@ public class EnemyAI : MonoBehaviour
 
     [SerializeField] private float fireInterval = 0.5f;
     private float fireTimer;
+
+    private float minDistance = 5;
+
     private enum State
     {
         Idle,
@@ -40,20 +43,20 @@ public class EnemyAI : MonoBehaviour
                 break;
 
             case State.Aggro:
-                Attack();
+                TrackTarget();
+
+                if (Vector2.Distance(transform.position, target.transform.position) > minDistance)
+                {
+                    movement.MoveTowards(target.transform.position);
+                }
+
+                fireTimer -= Time.deltaTime;
+                if (fireTimer <= 0)
+                {
+                    weaponController.HandleFire();
+                    fireTimer = fireInterval;
+                }
                 break;
-        }
-    }
-
-    protected virtual void Attack() // EnemyAI subclasses can override this to have different attack pattern
-    {
-        TrackTarget();
-
-        fireTimer -= Time.deltaTime;
-        if (fireTimer <= 0)
-        {
-            weaponController.HandleFire();
-            fireTimer = fireInterval;
         }
     }
 
