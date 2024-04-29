@@ -8,6 +8,8 @@ public class XPManager : MonoBehaviour
     public int Level => (int) (totalXp / xpPerLevel);
     public float CurrentLevelXp => totalXp % xpPerLevel; // XP earned at current level
 
+    public event EventHandler OnLevelUp;
+
     private void Start()
     {
         EnemyController.OnEnemyDeath += HandleEnemyDeath;
@@ -29,6 +31,6 @@ public class XPManager : MonoBehaviour
 
     private void LevelUp()
     {
-        Debug.Log("Leveled up");
+        OnLevelUp?.Invoke(this, EventArgs.Empty);
     }
 }

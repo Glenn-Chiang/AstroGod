@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour, ICharacter, IArmable
 
     public HealthManager HealthManager { get; private set; }
     public AmmoManager AmmoManager { get; private set; }
+    public XPManager XPManager { get; private set; }
 
     public PlayerInventoryManager InventoryManager { get; private set; }
     InstanceInventory<Weapon> IArmable.WeaponInventory => InventoryManager.weaponInventory;
@@ -45,6 +46,9 @@ public class PlayerController : MonoBehaviour, ICharacter, IArmable
 
         AmmoManager = GetComponent<AmmoManager>();
         WeaponEquip = GetComponentInChildren<WeaponEquip>();
+
+        XPManager = GetComponent<XPManager>();
+        XPManager.OnLevelUp += HandleLevelUp;
     }
 
     private void HandleDeath(object sender, EventArgs e)
@@ -52,5 +56,10 @@ public class PlayerController : MonoBehaviour, ICharacter, IArmable
         Debug.Log("Player died");
         OnPlayerDeath?.Invoke(this, EventArgs.Empty);
         Destroy(gameObject);
+    }
+
+    private void HandleLevelUp(object sender, EventArgs e)
+    {
+        Debug.Log("Player leveled up");
     }
 }
