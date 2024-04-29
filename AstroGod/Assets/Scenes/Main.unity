@@ -2192,6 +2192,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: ChestSpawner
       objectReference: {fileID: 0}
+    - target: {fileID: 4844566582180739374, guid: 3bb8c82726cb9ae44be51cdbded53a31, type: 3}
+      propertyPath: entities.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4844566582180739374, guid: 3bb8c82726cb9ae44be51cdbded53a31, type: 3}
+      propertyPath: entities.Array.data[0].<Weight>k__BackingField
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4844566582180739374, guid: 3bb8c82726cb9ae44be51cdbded53a31, type: 3}
+      propertyPath: entities.Array.data[1].<Weight>k__BackingField
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4844566582180739374, guid: 3bb8c82726cb9ae44be51cdbded53a31, type: 3}
+      propertyPath: entities.Array.data[0].<Element>k__BackingField
+      value: 
+      objectReference: {fileID: 4134764229671060566, guid: d6cceb5f1c5cf434cb011e2af27c070d, type: 3}
+    - target: {fileID: 4844566582180739374, guid: 3bb8c82726cb9ae44be51cdbded53a31, type: 3}
+      propertyPath: entities.Array.data[1].<Element>k__BackingField
+      value: 
+      objectReference: {fileID: 2707059410073057458, guid: 4b3e1bf49b2c8b9419af0d36563bbb38, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2267,10 +2287,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemySpawner
       objectReference: {fileID: 0}
+    - target: {fileID: 3961823616652756523, guid: 5d382c952bde6ea428b9139c9e673ca2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7445140135028666135, guid: 5d382c952bde6ea428b9139c9e673ca2, type: 3}
       propertyPath: initialSpawnDelay
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 7445140135028666135, guid: 5d382c952bde6ea428b9139c9e673ca2, type: 3}
+      propertyPath: entities.Array.data[0].<Weight>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7445140135028666135, guid: 5d382c952bde6ea428b9139c9e673ca2, type: 3}
+      propertyPath: entities.Array.data[0].<Element>k__BackingField
+      value: 
+      objectReference: {fileID: 6822606531031424726, guid: 5bed1ad15e80ec74e8c6f04bd25a8fe2, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

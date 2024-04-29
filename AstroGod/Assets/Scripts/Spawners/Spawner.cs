@@ -10,7 +10,7 @@ public class Spawner : MonoBehaviour
     [SerializeField] private float minY;
     [SerializeField] private float maxY;
 
-    [SerializeField] private List<GameObject> entities;
+    [SerializeField] private List<WeightedElement<GameObject>> entities;
     [SerializeField] private float initialSpawnDelay;
     [SerializeField] private int initialSpawnCount;
 
@@ -36,7 +36,7 @@ public class Spawner : MonoBehaviour
 
     private GameObject GetRandomEntity()
     {
-        return RandomUtils.RandomSelect(entities);
+        return RandomUtils.WeightedRandomSelect(entities);
     }
 
     private Vector2 GetRandomPosition()
