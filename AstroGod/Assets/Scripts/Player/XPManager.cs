@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class XPManager : MonoBehaviour
 {    
-    public readonly float xpPerLevel = 10;
-    [SerializeField] private float totalXp = 0;
+    public readonly float xpPerLevel = 100;
+    private float totalXp = 0;
     public int Level => (int) (totalXp / xpPerLevel);
     public float CurrentLevelXp => totalXp % xpPerLevel; // XP earned at current level
 
