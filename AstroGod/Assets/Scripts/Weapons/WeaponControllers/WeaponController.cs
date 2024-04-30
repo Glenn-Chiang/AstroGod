@@ -9,7 +9,6 @@ public abstract class WeaponController : MonoBehaviour
     public IWeapon weaponInstance;
     protected float Damage => weaponInstance.Damage;
     private float FireRate => weaponInstance.FireRate;
-    protected float FirePower => WeaponData.FirePower;
 
     public AmmoManager ammoManager;
 

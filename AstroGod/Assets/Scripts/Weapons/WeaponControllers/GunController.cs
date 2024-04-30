@@ -4,6 +4,7 @@ public class GunController : WeaponController
 {
     [SerializeField] private GunData gunData;
     protected override WeaponData WeaponData => gunData;
+    protected float FirePower => gunData.FirePower;
 
     protected override IWeapon CreateWeaponInstance()
     {
