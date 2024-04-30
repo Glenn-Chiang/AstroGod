@@ -5,12 +5,11 @@ public abstract class WeaponController : MonoBehaviour
 {
     [SerializeField] protected Transform firePoint;
 
-    [SerializeField] private WeaponData weaponData;
-    public Weapon weaponInstance;
+    protected virtual WeaponData WeaponData { get; }
+    public IWeapon weaponInstance;
     protected float Damage => weaponInstance.Damage;
     private float FireRate => weaponInstance.FireRate;
-    protected float FirePower => weaponData.FirePower;
-    private int AmmoCost => weaponData.AmmoCost;
+    protected float FirePower => WeaponData.FirePower;
 
     public AmmoManager ammoManager;
 
@@ -18,20 +17,14 @@ public abstract class WeaponController : MonoBehaviour
 
     private void Awake()
     {
-        // Create new weapon instance with base stats
-        weaponInstance = new(weaponData);
+        CreateWeaponInstance();
     }
+
+    protected abstract IWeapon CreateWeaponInstance();
 
     public void HandleFire()
     {
         if (!canFire) return;
-        
-        // If ammoManager is null, we will treat the weapon as having no ammo cost / infinite ammo
-        if (ammoManager != null && !ammoManager.ConsumeAmmo(AmmoCost))
-        {
-            Debug.Log("Insufficient ammo");
-            return;
-        }
 
         Fire();
         StartCoroutine(CoolDown());

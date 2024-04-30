@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour, ICharacter, IArmable
     public XPManager XPManager { get; private set; }
 
     public PlayerInventoryManager InventoryManager { get; private set; }
-    InstanceInventory<Weapon> IArmable.WeaponInventory => InventoryManager.weaponInventory;
+    InstanceInventory<IWeapon> IArmable.WeaponInventory => InventoryManager.weaponInventory;
     
     public WeaponEquip WeaponEquip { get; private set; }
 

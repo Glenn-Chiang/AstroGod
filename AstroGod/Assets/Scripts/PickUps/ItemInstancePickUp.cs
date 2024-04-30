@@ -2,10 +2,10 @@ using UnityEngine;
 
 public abstract class ItemInstancePickUp : ItemPickUp
 {
-    public ItemInstance itemInstance;
+    public IItemInstance itemInstance;
     public override IItem Item => itemInstance;
 
-    protected abstract ItemInstance CreateItem();
+    protected abstract IItemInstance CreateItem();
 
     private void Awake()
     {

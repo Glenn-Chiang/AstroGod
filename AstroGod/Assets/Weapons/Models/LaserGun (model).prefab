@@ -99,8 +99,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firePoint: {fileID: 1083422313762901076}
-  weaponData: {fileID: 11400000, guid: 0455082cd39a47c4f884f086da86671c, type: 2}
   ammoManager: {fileID: 0}
+  gunData: {fileID: 11400000, guid: 0455082cd39a47c4f884f086da86671c, type: 2}
 --- !u!1 &2729236874372023302
 GameObject:
   m_ObjectHideFlags: 0

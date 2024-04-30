@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6935742413682026171}
   - component: {fileID: 6086345783507041912}
-  - component: {fileID: 417916995296059238}
   - component: {fileID: 7877580086345329638}
+  - component: {fileID: 2096185098189556018}
   m_Layer: 0
   m_Name: LaserGun (pickup)
   m_TagString: Untagged
@@ -86,19 +86,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &417916995296059238
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9140609486032140464}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51094076dd7a51d48868a44cebb43baf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  data: {fileID: 11400000, guid: 0455082cd39a47c4f884f086da86671c, type: 2}
 --- !u!61 &7877580086345329638
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -144,3 +131,16 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2, y: 1.1}
   m_EdgeRadius: 0
+--- !u!114 &2096185098189556018
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9140609486032140464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07c7e08dfc320044fa4458018fe20132, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data: {fileID: 11400000, guid: 0455082cd39a47c4f884f086da86671c, type: 2}

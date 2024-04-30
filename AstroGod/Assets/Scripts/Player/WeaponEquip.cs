@@ -13,7 +13,7 @@ public class WeaponEquip : MonoBehaviour
             return weapon;
         }
     }
-    private InstanceInventory<Weapon> weaponInventory;
+    private InstanceInventory<IWeapon> weaponInventory;
     private AmmoManager ammoManager;
 
     private void Start()
@@ -67,7 +67,7 @@ public class WeaponEquip : MonoBehaviour
         }
     }
 
-    private void EquipWeapon(Weapon selectedWeapon)
+    private void EquipWeapon(IWeapon selectedWeapon)
     {
         equippedWeaponModel = Instantiate(selectedWeapon.Data.ModelPrefab, transform);
         EquippedWeapon.weaponInstance = selectedWeapon;

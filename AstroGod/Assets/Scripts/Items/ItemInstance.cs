@@ -1,19 +1,20 @@
 using System;
 
-public abstract class ItemInstance : IItem
+public interface IItemInstance : IItem
 {
-    public virtual ItemData ItemData { get; }
+    ItemData Data { get; }
+    ItemData IItem.ItemData => Data;
 }
 
 [Serializable]
-public abstract class ItemInstance<T>: ItemInstance where T : ItemData
+public abstract class ItemInstance<T>: IItemInstance where T : ItemData
 {
-    public T Data { get; }
-    public override ItemData ItemData => Data;
+    public T ItemData { get; }
+    ItemData IItemInstance.Data => ItemData;
 
     public ItemInstance(T data)
     {
-        Data = data;
+        ItemData = data;
     }
 }
 

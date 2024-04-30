@@ -9,7 +9,7 @@ public interface InstanceInventory : IInventory
 }
 
 
-public class InstanceInventory<T>: InstanceInventory where T : ItemInstance
+public class InstanceInventory<T>: InstanceInventory where T : class, IItemInstance
 {
     public readonly int capacity;
     int IInventory.Capacity => capacity;
@@ -57,7 +57,7 @@ public class InstanceInventory<T>: InstanceInventory where T : ItemInstance
     {
         if (!ValidateIndex(index)) return;
         selectedIndex = index;
-        Debug.Log($"Selected {SelectedItem.ItemData.Name}");
+        Debug.Log($"Selected {SelectedItem.Data.Name}");
     }
     private bool ValidateIndex(int index)
     {

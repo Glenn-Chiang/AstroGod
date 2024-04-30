@@ -1,5 +1,5 @@
 public interface IArmable
 {
-    InstanceInventory<Weapon> WeaponInventory { get; }
+    InstanceInventory<IWeapon> WeaponInventory { get; }
     AmmoManager AmmoManager { get; }
 }

@@ -130,5 +130,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firePoint: {fileID: 6285628285088930247}
-  weaponData: {fileID: 11400000, guid: 00d0acc3cb9490d499b975619ad6a463, type: 2}
   ammoManager: {fileID: 0}
+  gunData: {fileID: 11400000, guid: 00d0acc3cb9490d499b975619ad6a463, type: 2}

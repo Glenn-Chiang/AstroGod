@@ -5,7 +5,7 @@ using UnityEngine;
 // Responsible for moving items between the game world and the player inventory
 public class PlayerInventoryManager : InventoryManager
 {
-    public readonly InstanceInventory<Weapon> weaponInventory = new(3);
+    public readonly InstanceInventory<IWeapon> weaponInventory = new(3);
     public readonly InstanceInventory<Armor> armorInventory = new(2);
     public readonly StackableInventory consumableInventory = new(6);
 
@@ -63,13 +63,13 @@ public class PlayerInventoryManager : InventoryManager
         SelectedInventory.SelectItem(index);
     }
 
-    public override bool AddItemInstance(ItemInstance itemInstance)
+    public override bool AddItemInstance(IItemInstance itemInstance)
     {
         bool added = false;
 
         switch(itemInstance)
         {
-            case Weapon weapon:
+            case IWeapon weapon:
                 added = weaponInventory.AddItem(weapon);
                 break;
             case Armor armor:
@@ -81,7 +81,7 @@ public class PlayerInventoryManager : InventoryManager
 
         if (added)
         {
-            Debug.Log($"Added {itemInstance.ItemData.Name} to player inventory");
+            Debug.Log($"Added {itemInstance.Data.Name} to player inventory");
             return true;
         }
         
