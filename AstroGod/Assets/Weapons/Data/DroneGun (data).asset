@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d681b80192b8d648a8f5e8228fe2577, type: 3}
+  m_Script: {fileID: 11500000, guid: a1ad1ebbafe822745bffc29de836581d, type: 3}
   m_Name: DroneGun (data)
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Drone Gun
@@ -19,6 +19,6 @@ MonoBehaviour:
   <ModelPrefab>k__BackingField: {fileID: 6432967644001070904, guid: 0d1c7357b55445b4e97d4d309f7f85dc, type: 3}
   <BaseFireRate>k__BackingField: 0.1
   <BaseDamage>k__BackingField: 5
-  <FirePower>k__BackingField: 20
-  <AmmoCost>k__BackingField: 1
   <ProjectilePrefab>k__BackingField: {fileID: 9099230748001107220, guid: 8cdcbf6d4ba25934d924dbf2f16dfe04, type: 3}
+  <AmmoCost>k__BackingField: 1
+  <FirePower>k__BackingField: 20

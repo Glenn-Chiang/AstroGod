@@ -9,16 +9,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d681b80192b8d648a8f5e8228fe2577, type: 3}
+  m_Script: {fileID: 11500000, guid: a1ad1ebbafe822745bffc29de836581d, type: 3}
   m_Name: PlasmaGun (data)
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Plasma Gun
   <Icon>k__BackingField: {fileID: 2790310067104290721, guid: ac45bb9a2b9b10a42b4c50ccc7f569cd, type: 3}
   <Description>k__BackingField: Trusty standard-issue weapon
-  <PickUpPrefab>k__BackingField: {fileID: 422432576416822192, guid: da53f507e1bcd0046bb64c8921d2e8a6, type: 3}
+  <PickUpPrefab>k__BackingField: {fileID: 2217562875282023586, guid: da53f507e1bcd0046bb64c8921d2e8a6, type: 3}
   <ModelPrefab>k__BackingField: {fileID: 6432967644001070904, guid: 7b565350787cdb141a7750e3ec5a58f3, type: 3}
   <BaseFireRate>k__BackingField: 0.1
   <BaseDamage>k__BackingField: 5
-  <FirePower>k__BackingField: 40
-  <AmmoCost>k__BackingField: 1
   <ProjectilePrefab>k__BackingField: {fileID: 9099230748001107220, guid: 12482771b90e3a1479ab4a0f79ba4fa7, type: 3}
+  <AmmoCost>k__BackingField: 1
+  <FirePower>k__BackingField: 40

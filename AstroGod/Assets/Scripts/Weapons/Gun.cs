@@ -1,7 +1,4 @@
 public class Gun : Weapon<GunData>
 {
-    public Gun(GunData data) : base(data)
-    {
-
-    }
+    public Gun(GunData data) : base(data) { }
 }

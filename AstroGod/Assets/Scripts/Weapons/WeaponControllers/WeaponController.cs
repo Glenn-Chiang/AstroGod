@@ -3,9 +3,7 @@ using UnityEngine;
 
 public abstract class WeaponController : MonoBehaviour
 {
-    [SerializeField] protected Transform firePoint;
-
-    protected virtual WeaponData WeaponData { get; }
+    protected abstract WeaponData WeaponData { get; }
     public IWeapon weaponInstance;
     protected float Damage => weaponInstance.Damage;
     private float FireRate => weaponInstance.FireRate;
