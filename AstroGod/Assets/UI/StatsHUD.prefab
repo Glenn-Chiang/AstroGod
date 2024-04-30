@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6105612914789532763}
   - component: {fileID: 6191851387378714547}
   - component: {fileID: 7023129711493810346}
-  - component: {fileID: 5539913414337567231}
+  - component: {fileID: 3607693075208785179}
   m_Layer: 5
   m_Name: Health
   m_TagString: Untagged
@@ -78,7 +78,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &5539913414337567231
+--- !u!114 &3607693075208785179
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -87,10 +87,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 77084914004259925}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3433ea49ea3d10541b57e14d9ad43f50, type: 3}
+  m_Script: {fileID: 11500000, guid: 3b3fc618549bc27479acd05904bde957, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthManager: {fileID: 0}
+  resourceManager: {fileID: 0}
   slider: {fileID: 3576802338304742648}
 --- !u!1 &606769069423274074
 GameObject:
@@ -905,7 +905,7 @@ GameObject:
   - component: {fileID: 6958266742160045414}
   - component: {fileID: 2394690799930217802}
   - component: {fileID: 2998415743668319595}
-  - component: {fileID: 4697351612385061917}
+  - component: {fileID: 8831723674992641848}
   m_Layer: 5
   m_Name: Ammo
   m_TagString: Untagged
@@ -972,7 +972,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &4697351612385061917
+--- !u!114 &8831723674992641848
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -981,10 +981,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 8048081734581067048}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d44a66871008a3941bacb208377aade6, type: 3}
+  m_Script: {fileID: 11500000, guid: 3b3fc618549bc27479acd05904bde957, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ammoManager: {fileID: 0}
+  resourceManager: {fileID: 0}
   slider: {fileID: 8366979985799480704}
 --- !u!1 &8555306421900824708
 GameObject:

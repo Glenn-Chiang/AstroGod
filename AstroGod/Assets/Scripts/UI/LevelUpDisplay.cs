@@ -10,7 +10,7 @@ public class LevelUpDisplay : MonoBehaviour
         PlayerController.Instance.XPManager.OnLevelUp += ShowScreen;
     }
 
-    private void ShowScreen(object sender, EventArgs e)
+    private void ShowScreen(object sender, LevelUpEventArgs e)
     {
         screen.gameObject.SetActive(true);
         Time.timeScale = 0;

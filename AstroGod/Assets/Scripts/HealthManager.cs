@@ -1,16 +1,16 @@
 using System;
 using UnityEngine;
 
-public class HealthManager : Damageable, IDepletable
+public class HealthManager : ResourceManager, IDamageable
 {
     private ICharacter character;
 
     public float MaxHealth => character.Stats.maxHealth.Value;
     public float Health { get; private set; }
-    float IDepletable.MaxValue => MaxHealth;
-    float IDepletable.Value => Health;
+    public override float MaxValue => MaxHealth;
+    public override float Value => Health;
 
-    protected override float HitPoints { get => Health; set { Health = value; } }
+    float IDamageable.HitPoints => Health;
 
     public event EventHandler OnDeath;
 
@@ -20,13 +20,32 @@ public class HealthManager : Damageable, IDepletable
         Health = MaxHealth;
     }
 
+    public void TakeDamage(float damage)
+    {
+        if (damage < Health)
+        {
+            Health -= damage;
+        }
+        else
+        {
+            Health = 0;
+            Die();
+        }
+    }
+
     public void Heal(float _health)
     {
         Health += Math.Min(_health, MaxHealth - Health); // prevent overhealing
     }
 
-    protected override void OnDestroyed()
+    public void HealToFull()
+    {
+        Health = MaxHealth;
+    }
+
+    private void Die()
     {
         OnDeath?.Invoke(this, EventArgs.Empty);
     }
+    void IDamageable.OnDestroyed() => Die();
 }

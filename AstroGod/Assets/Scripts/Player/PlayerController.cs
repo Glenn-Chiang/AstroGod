@@ -58,8 +58,9 @@ public class PlayerController : MonoBehaviour, ICharacter, IArmable
         Destroy(gameObject);
     }
 
-    private void HandleLevelUp(object sender, EventArgs e)
+    private void HandleLevelUp(object sender, LevelUpEventArgs e)
     {
         Debug.Log("Player leveled up");
+        HealthManager.HealToFull();
     }
 }

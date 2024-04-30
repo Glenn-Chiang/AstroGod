@@ -1,14 +1,17 @@
 using System;
 using UnityEngine;
 
-public class XPManager : MonoBehaviour
+public class XPManager : ResourceManager
 {    
     public readonly float xpPerLevel = 100;
     private float totalXp = 0;
     public int Level => (int) (totalXp / xpPerLevel);
     public float CurrentLevelXp => totalXp % xpPerLevel; // XP earned at current level
 
-    public event EventHandler OnLevelUp;
+    public override float MaxValue => xpPerLevel;
+    public override float Value => CurrentLevelXp;
+
+    public event EventHandler<LevelUpEventArgs> OnLevelUp;
 
     private void Start()
     {
@@ -31,6 +34,15 @@ public class XPManager : MonoBehaviour
 
     private void LevelUp()
     {
-        OnLevelUp?.Invoke(this, EventArgs.Empty);
+        OnLevelUp?.Invoke(this, new LevelUpEventArgs(Level));
+    }
+}
+
+public class LevelUpEventArgs
+{
+    public readonly int level;
+    public LevelUpEventArgs(int _level)
+    {
+        level = _level;
     }
 }

@@ -2,13 +2,14 @@ using System;
 using UnityEngine;
 
 [Serializable]
-public class AmmoManager : MonoBehaviour, IDepletable
+public class AmmoManager : ResourceManager
 {
     private PlayerController player;
     public int MaxAmmo => (int)player.Stats.maxAmmo.Value;
-    public int AmmoCount { get; private set; }
-    float IDepletable.MaxValue => MaxAmmo;
-    float IDepletable.Value => AmmoCount;
+    public float AmmoCount { get; private set; }
+
+    public override float MaxValue => MaxAmmo;
+    public override float Value => AmmoCount;
 
     private void Start()
     {
@@ -16,7 +17,7 @@ public class AmmoManager : MonoBehaviour, IDepletable
         AmmoCount = MaxAmmo;
     }
 
-    public bool ConsumeAmmo(int ammoConsumed)
+    public bool ConsumeAmmo(float ammoConsumed)
     {
         // Insufficient ammo
         if (AmmoCount < ammoConsumed)
