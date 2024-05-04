@@ -44,14 +44,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8779ef060a272a499c6a7f5b2f996c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minX: -200
-  maxX: 200
-  minY: -200
-  maxY: 200
+  room: {fileID: 0}
   entities:
   - <Element>k__BackingField: {fileID: 4134764229671060566, guid: d6cceb5f1c5cf434cb011e2af27c070d, type: 3}
-    <Weight>k__BackingField: 0.8
+    <Weight>k__BackingField: 0.7
   - <Element>k__BackingField: {fileID: 2707059410073057458, guid: 4b3e1bf49b2c8b9419af0d36563bbb38, type: 3}
-    <Weight>k__BackingField: 0.2
+    <Weight>k__BackingField: 0.3
   initialSpawnDelay: 0
-  initialSpawnCount: 20
+  initialSpawnCount: 2

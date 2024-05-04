@@ -1,14 +1,14 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    [SerializeField] private float minX;
-    [SerializeField] private float maxX;
-    [SerializeField] private float minY;
-    [SerializeField] private float maxY;
+    [SerializeField] private Room room; // The room containing this spawner
+
+    private float MinX => room.LeftBound;
+    private float MaxX => room.RightBound;
+    private float MinY => room.BottomBound;
+    private float MaxY => room.TopBound;
 
     [SerializeField] private List<WeightedElement<GameObject>> entities;
     [SerializeField] protected float initialSpawnDelay;
@@ -41,8 +41,8 @@ public class Spawner : MonoBehaviour
 
     private Vector2 GetRandomPosition()
     {
-        float xPos = UnityEngine.Random.Range(minX, maxX);
-        float yPos = UnityEngine.Random.Range(minY, maxY);
+        float xPos = UnityEngine.Random.Range(MinX, MaxX);
+        float yPos = UnityEngine.Random.Range(MinY, MaxY);
         return new Vector2(xPos, yPos);
     }
 }
