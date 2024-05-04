@@ -46,5 +46,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rowCount: 4
   colCount: 4
-  gap: 2
+  gap: 10
   roomPrefab: {fileID: 7640816056009943742, guid: 2795272a7da08144a95529649674b0aa, type: 3}
