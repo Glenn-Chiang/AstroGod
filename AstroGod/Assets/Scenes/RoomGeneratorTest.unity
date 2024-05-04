@@ -123,6 +123,54 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &347477990
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 347477992}
+  - component: {fileID: 347477991}
+  m_Layer: 0
+  m_Name: RoomGenerator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &347477991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 347477990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b986f73b0900c847a6eaa644e93762b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rowCount: 4
+  colCount: 4
+  gap: 2
+  roomPrefab: {fileID: 7640816056009943742, guid: 2795272a7da08144a95529649674b0aa, type: 3}
+--- !u!4 &347477992
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 347477990}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &958478347
 GameObject:
   m_ObjectHideFlags: 0
@@ -275,7 +323,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1428529508
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -610,16 +658,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1982051803512025809, guid: f8a4da7aa550ab04f87b9e5df9fe2fa4, type: 3}
       propertyPath: m_Name
-      value: RoomGenerator
+      value: RandomWalkVisualizer
       objectReference: {fileID: 0}
-    - target: {fileID: 6187524797680182209, guid: f8a4da7aa550ab04f87b9e5df9fe2fa4, type: 3}
-      propertyPath: gap
-      value: 0.2
+    - target: {fileID: 1982051803512025809, guid: f8a4da7aa550ab04f87b9e5df9fe2fa4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6187524797680182209, guid: f8a4da7aa550ab04f87b9e5df9fe2fa4, type: 3}
-      propertyPath: emptyRoomPrefab
-      value: 
-      objectReference: {fileID: 7640816056009943742, guid: 1ca9c5c23645e844ba55b82b8491689c, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -781,3 +825,4 @@ SceneRoots:
   - {fileID: 1812141872}
   - {fileID: 1428529511}
   - {fileID: 1693764167}
+  - {fileID: 347477992}
