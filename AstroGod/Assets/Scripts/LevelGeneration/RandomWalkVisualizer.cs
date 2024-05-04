@@ -35,7 +35,7 @@ public class RandomWalkVisualizer : MonoBehaviour
         }
     }
 
-    private void GenerateWalk()
+    public void GenerateWalk()
     {
         var randomWalker = new RandomWalker(cellsPerRow, cellsPerCol, maxTiles);
         randomWalker.Walk();
