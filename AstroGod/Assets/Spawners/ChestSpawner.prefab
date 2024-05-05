@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3871788639918828501}
-  - component: {fileID: 4844566582180739374}
+  - component: {fileID: 5016609286776833944}
   m_Layer: 0
   m_Name: ChestSpawner
   m_TagString: Untagged
@@ -32,7 +32,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4844566582180739374
+--- !u!114 &5016609286776833944
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,14 +41,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 4380891223866739625}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d8779ef060a272a499c6a7f5b2f996c0, type: 3}
+  m_Script: {fileID: 11500000, guid: 1f02b14e82854c44fa68ba2fb03a40d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  room: {fileID: 0}
   entities:
   - <Element>k__BackingField: {fileID: 4134764229671060566, guid: d6cceb5f1c5cf434cb011e2af27c070d, type: 3}
-    <Weight>k__BackingField: 0.7
+    <Weight>k__BackingField: 0.5
   - <Element>k__BackingField: {fileID: 2707059410073057458, guid: 4b3e1bf49b2c8b9419af0d36563bbb38, type: 3}
-    <Weight>k__BackingField: 0.3
-  initialSpawnDelay: 0
-  initialSpawnCount: 2
+    <Weight>k__BackingField: 0.5
+  room: {fileID: 0}
