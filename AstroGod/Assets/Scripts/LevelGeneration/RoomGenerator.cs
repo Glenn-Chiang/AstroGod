@@ -7,14 +7,14 @@ public class RoomGenerator : MonoBehaviour
     [SerializeField] private int colCount = 4;
     [SerializeField] private float gap = 2;
     private Vector3 origin;
-    [SerializeField] private GameObject roomPrefab;
-    private Vector3 RoomSize => roomPrefab.GetComponent<Renderer>().bounds.size;
-    private GameObject[,] rooms;
+    [SerializeField] private Room roomPrefab;
+    private Vector3 RoomSize => roomPrefab.size;
+    private Room[,] rooms;
 
     private void Awake()
     {
         origin = transform.position;
-        rooms = new GameObject[rowCount, colCount];
+        rooms = new Room[rowCount, colCount];
         GenerateRooms();
     }
     

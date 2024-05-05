@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 8
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -168,8 +168,8 @@ TextureImporter:
       name: lab_tileset_2
       rect:
         serializedVersion: 2
-        x: 0
-        y: 128
+        x: 32
+        y: 144
         width: 16
         height: 16
       alignment: 0
@@ -189,7 +189,7 @@ TextureImporter:
       name: lab_tileset_3
       rect:
         serializedVersion: 2
-        x: 16
+        x: 0
         y: 128
         width: 16
         height: 16
@@ -202,6 +202,27 @@ TextureImporter:
       bones: []
       spriteID: 83c41f3414e06e24f95d72be67d6516d
       internalID: -995105948
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lab_tileset_4
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 128
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0ef70dcc1adf54e4881f7e7d69ed543f
+      internalID: 1408734743
       vertices: []
       indices: 
       edges: []
@@ -221,6 +242,7 @@ TextureImporter:
       lab_tileset_1: 921614242
       lab_tileset_2: 2052491452
       lab_tileset_3: -995105948
+      lab_tileset_4: 1408734743
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
