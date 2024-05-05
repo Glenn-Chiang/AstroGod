@@ -8,7 +8,7 @@ public class RoomGenerator : MonoBehaviour
     [SerializeField] private float gap = 2;
     private Vector3 origin;
     [SerializeField] private Room roomPrefab;
-    private Vector3 RoomSize => roomPrefab.size;
+    private Vector3 RoomSize => roomPrefab.Size;
     private Room[,] rooms;
 
     private void Awake()
