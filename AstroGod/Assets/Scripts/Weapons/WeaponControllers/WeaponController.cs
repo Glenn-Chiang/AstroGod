@@ -14,7 +14,7 @@ public abstract class WeaponController : MonoBehaviour
 
     private void Awake()
     {
-        CreateWeaponInstance();
+        weaponInstance = CreateWeaponInstance();
     }
 
     protected abstract IWeapon CreateWeaponInstance();

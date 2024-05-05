@@ -8,7 +8,7 @@ public class Movement : MonoBehaviour
     private readonly float destinationThreshold = 1; // When the enemy is within this distance from the destination, it will be considered to have reached the destination
 
     private ICharacter character;
-  
+    [SerializeField] private Rigidbody2D rb;
     private float MoveSpeed => character.Stats.moveSpeed.Value;
     private Vector2 startPosition;
     private Vector2 roamDestination;
@@ -39,7 +39,7 @@ public class Movement : MonoBehaviour
 
     public void MoveTowards(Vector2 destination)
     {
-        transform.position = Vector2.MoveTowards(transform.position, destination, MoveSpeed * Time.deltaTime);
+        rb.MovePosition(Vector2.MoveTowards(transform.position, destination, MoveSpeed * Time.deltaTime));
     }
 
     private IEnumerator Wait()

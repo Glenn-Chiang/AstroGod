@@ -17,7 +17,6 @@ public class EnemyAI : MonoBehaviour
     {
         Idle,
         Aggro,
-        
     }
 
     private State state = State.Idle;
