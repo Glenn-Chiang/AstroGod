@@ -4,7 +4,7 @@ using UnityEngine;
 public abstract class Spawner : MonoBehaviour
 {
     [SerializeField] private List<WeightedElement<GameObject>> entities;
-
+    
     public void SpawnRandomEntities(int count)
     {
         for (int i = 0; i < count; i++)
@@ -19,16 +19,18 @@ public abstract class Spawner : MonoBehaviour
         Instantiate(entity, spawnPosition, Quaternion.identity);
     }
 
-    public void SpawnRandomEntity()
+    public void SpawnRandomEntityFromPool(EntityPool pool)
     {
         var spawnPosition = GetSpawnPosition();
-        var entity = GetRandomEntity();
+        var entity = RandomUtils.WeightedRandomSelect(pool.Entities);
         Instantiate(entity, spawnPosition, Quaternion.identity);
     }
 
-    private GameObject GetRandomEntity()
+    public void SpawnRandomEntity()
     {
-        return RandomUtils.WeightedRandomSelect(entities);
+        var spawnPosition = GetSpawnPosition();
+        var entity = RandomUtils.WeightedRandomSelect(entities);
+        Instantiate(entity, spawnPosition, Quaternion.identity);
     }
 
     protected abstract Vector2 GetSpawnPosition();

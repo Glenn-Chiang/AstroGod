@@ -2838,6 +2838,18 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2636554619233381330, guid: 2795272a7da08144a95529649674b0aa, type: 3}
+      propertyPath: easyPool
+      value: 
+      objectReference: {fileID: 11400000, guid: 60317110a9e1dbd48ada3602d07f2f7f, type: 2}
+    - target: {fileID: 2636554619233381330, guid: 2795272a7da08144a95529649674b0aa, type: 3}
+      propertyPath: hardPool
+      value: 
+      objectReference: {fileID: 11400000, guid: 264356d4764a32f45adc2a7f3b6b3c86, type: 2}
+    - target: {fileID: 2636554619233381330, guid: 2795272a7da08144a95529649674b0aa, type: 3}
+      propertyPath: mediumPool
+      value: 
+      objectReference: {fileID: 11400000, guid: 4d87953beaa4da14e97117dbca7b8504, type: 2}
+    - target: {fileID: 2636554619233381330, guid: 2795272a7da08144a95529649674b0aa, type: 3}
       propertyPath: spawnInterval
       value: 20
       objectReference: {fileID: 0}

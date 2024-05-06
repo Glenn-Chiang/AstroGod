@@ -7,6 +7,8 @@ public class EnemySpawnController : MonoBehaviour
     [SerializeField] private EntityPool mediumPool;
     [SerializeField] private EntityPool hardPool;
 
+    private EntityPool currentPool;
+
     [SerializeField] private List<PointSpawner> spawners;
     [SerializeField] private float initialSpawnDelay;
     [SerializeField] private float spawnInterval;
@@ -14,6 +16,7 @@ public class EnemySpawnController : MonoBehaviour
 
     private void Awake()
     {
+        currentPool = easyPool;
         spawnTimer = initialSpawnDelay;
     }
 
@@ -24,7 +27,7 @@ public class EnemySpawnController : MonoBehaviour
         {
             foreach (var spawner in spawners)
             {
-                spawner.SpawnRandomEntity();
+                spawner.SpawnRandomEntityFromPool(currentPool);
             }
             spawnTimer = spawnInterval;
         }
