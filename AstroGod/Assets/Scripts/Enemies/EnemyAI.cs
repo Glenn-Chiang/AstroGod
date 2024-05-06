@@ -8,7 +8,7 @@ public class EnemyAI : MonoBehaviour
 
     [SerializeField] private WeaponController weaponController;
 
-    [SerializeField] private float fireInterval = 0.5f;
+    [SerializeField] private float fireInterval = 0.8f;
     private float fireTimer;
 
     private float minDistance = 5;

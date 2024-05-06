@@ -457,7 +457,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8174381123413740496, guid: 3fc915e4d335b134da99c45fd326bd54, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8211845645536711227, guid: 3fc915e4d335b134da99c45fd326bd54, type: 3}
       propertyPath: enemyAI

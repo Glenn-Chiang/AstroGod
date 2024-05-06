@@ -19,4 +19,4 @@ MonoBehaviour:
   <PickUpPrefab>k__BackingField: {fileID: 7168550346016944433, guid: c64b7c0e9d9e23742b7964fc207ff615, type: 3}
   <ModelPrefab>k__BackingField: {fileID: 6432967644001070904, guid: a789c9e860fac4c4c952f61254fcdb18, type: 3}
   <BaseFireRate>k__BackingField: 0.5
-  <BaseDamage>k__BackingField: 10
+  <BaseDamage>k__BackingField: 20
