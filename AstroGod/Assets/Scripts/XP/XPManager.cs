@@ -1,5 +1,4 @@
 using System;
-using UnityEngine;
 
 public class XPManager : ResourceManager
 {    
@@ -13,23 +12,13 @@ public class XPManager : ResourceManager
 
     public event EventHandler<LevelUpEventArgs> OnLevelUp;
 
-    private void Start()
-    {
-        EnemyController.OnEnemyDeath += HandleEnemyDeath;
-    }
-
-    private void AddXp(float xpReward)
+    public void AddXp(float xpReward)
     {
         if (CurrentLevelXp + xpReward >= xpPerLevel)
         {
             LevelUp();
         }
         totalXp += xpReward;
-    }
-
-    private void HandleEnemyDeath(object sender, EnemyDeathEventArgs e)
-    {
-        AddXp(e.enemyData.XpReward);
     }
 
     private void LevelUp()

@@ -9,8 +9,8 @@ public class EnemyController : MonoBehaviour, ICharacter
     CharacterStats ICharacter.Stats => stats;
     
     [SerializeField] private HealthManager healthManager;
-
     public static event EventHandler<EnemyDeathEventArgs> OnEnemyDeath;
+    [SerializeField] private XpDropper xpDropper;
 
     private void Awake()
     {
@@ -23,7 +23,8 @@ public class EnemyController : MonoBehaviour, ICharacter
     {
         OnEnemyDeath?.Invoke(sender, new EnemyDeathEventArgs(data) );
         Destroy(gameObject);
-        
+
+        xpDropper.DropXP(data.XpReward);
     }
 }
 
