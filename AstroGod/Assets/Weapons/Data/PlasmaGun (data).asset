@@ -18,7 +18,7 @@ MonoBehaviour:
   <PickUpPrefab>k__BackingField: {fileID: 2217562875282023586, guid: da53f507e1bcd0046bb64c8921d2e8a6, type: 3}
   <ModelPrefab>k__BackingField: {fileID: 6432967644001070904, guid: 7b565350787cdb141a7750e3ec5a58f3, type: 3}
   <BaseFireRate>k__BackingField: 0.1
-  <BaseDamage>k__BackingField: 5
+  <BaseDamage>k__BackingField: 10
   <ProjectilePrefab>k__BackingField: {fileID: 9099230748001107220, guid: 12482771b90e3a1479ab4a0f79ba4fa7, type: 3}
   <AmmoCost>k__BackingField: 1
   <FirePower>k__BackingField: 40

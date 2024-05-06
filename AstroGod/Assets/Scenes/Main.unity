@@ -2612,6 +2612,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2636554619233381330, guid: 2795272a7da08144a95529649674b0aa, type: 3}
+      propertyPath: spawnInterval
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 2636554619233381330, guid: 2795272a7da08144a95529649674b0aa, type: 3}
+      propertyPath: initialSpawnDelay
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 7640816056009943742, guid: 2795272a7da08144a95529649674b0aa, type: 3}
       propertyPath: m_Name
       value: Arena

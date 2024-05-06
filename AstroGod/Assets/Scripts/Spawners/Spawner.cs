@@ -13,7 +13,7 @@ public abstract class Spawner : MonoBehaviour
         }
     }
 
-    protected void SpawnRandomEntity()
+    public void SpawnRandomEntity()
     {
         var spawnPosition = GetSpawnPosition();
         var entityToSpawn = GetRandomEntity();
