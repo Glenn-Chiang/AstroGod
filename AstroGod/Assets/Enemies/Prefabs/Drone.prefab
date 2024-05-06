@@ -218,7 +218,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movement: {fileID: 9151204077207983213}
   weaponController: {fileID: 4684923597586501668}
-  fireInterval: 0.5
+  fireInterval: 0.8
 --- !u!1001 &5335240364657220551
 PrefabInstance:
   m_ObjectHideFlags: 0

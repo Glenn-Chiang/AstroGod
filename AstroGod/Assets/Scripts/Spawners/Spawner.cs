@@ -13,11 +13,17 @@ public abstract class Spawner : MonoBehaviour
         }
     }
 
+    public void SpawnEntity(GameObject entity)
+    {
+        var spawnPosition = GetSpawnPosition();
+        Instantiate(entity, spawnPosition, Quaternion.identity);
+    }
+
     public void SpawnRandomEntity()
     {
         var spawnPosition = GetSpawnPosition();
-        var entityToSpawn = GetRandomEntity();
-        Instantiate(entityToSpawn, spawnPosition, Quaternion.identity);
+        var entity = GetRandomEntity();
+        Instantiate(entity, spawnPosition, Quaternion.identity);
     }
 
     private GameObject GetRandomEntity()

@@ -3,8 +3,11 @@ using UnityEngine;
 
 public class EnemySpawnController : MonoBehaviour
 {
-    [SerializeField] private List<PointSpawner> spawners;
+    [SerializeField] private EntityPool easyPool;
+    [SerializeField] private EntityPool mediumPool;
+    [SerializeField] private EntityPool hardPool;
 
+    [SerializeField] private List<PointSpawner> spawners;
     [SerializeField] private float initialSpawnDelay;
     [SerializeField] private float spawnInterval;
     private float spawnTimer;
