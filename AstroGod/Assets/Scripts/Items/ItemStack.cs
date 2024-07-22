@@ -2,11 +2,11 @@ using UnityEngine;
 
 public class ItemStack : IItem
 {
-    public readonly StackableItem itemData;
+    public readonly ConsumableItem itemData;
     ItemData IItem.ItemData => itemData;
     public int Amount { get; private set; }
 
-    public ItemStack(StackableItem _itemData, int _amount)
+    public ItemStack(ConsumableItem _itemData, int _amount)
     {
         itemData = _itemData;
         Amount = _amount;

@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class StackableItemPickUp : ItemPickUp
 {
-    [SerializeField] private StackableItem itemData;
+    [SerializeField] private ConsumableItem itemData;
 
     private int amount = 1;
 
