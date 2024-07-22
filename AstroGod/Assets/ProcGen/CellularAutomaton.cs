@@ -5,7 +5,8 @@ public class CellularAutomaton
 {
     private readonly int width;
     private readonly int height;
-    private readonly bool[,] map;
+    private bool[,] map;
+    private int filledNeighborThreshold = 4;
 
     public CellularAutomaton(int width, int height)
     {
@@ -45,7 +46,9 @@ public class CellularAutomaton
 
     private void SmoothMap()
     {
-        int neighborThreshold = 4;
+        // Create a new map so that we can read from the current map and write to the new map
+        bool[,] mapCopy = new bool[width, height];
+
         for (int x = 0; x < width; x++)
         {
             for (int y = 0; y < height; y++)
@@ -53,17 +56,24 @@ public class CellularAutomaton
                 // If the cell has more than "neighborThreshold" filled neighbors,
                 // then fill the cell
                 int filledNeighbors = CountFilledNeighbors(x, y);
-                if (filledNeighbors > neighborThreshold)
+                if (filledNeighbors > filledNeighborThreshold)
                 {
-                    map[x, y] = true;
+                    mapCopy[x, y] = true;
                 // If the cell has less than "neighborThreshold" filled neighbors,
                 // then clear the cell
-                } else if (filledNeighbors < neighborThreshold)
+                } else if (filledNeighbors < filledNeighborThreshold)
                 {
-                    map[x, y] = false;
+                    mapCopy[x, y] = false;
+                // Otherwise remain
+                } else
+                {
+                    mapCopy[x, y] = map[x, y];
                 }
             }
         }
+
+        // The new copy is now the current map
+        map = mapCopy;
     }
 
     // For the given cell position, count the number of neighboring cells that are filled

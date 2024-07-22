@@ -35,8 +35,7 @@ public class MapGenerator : MonoBehaviour
         // Seed the random generator
         System.Random rng = new System.Random(seed.GetHashCode());
 
-        var procGenAlgo = new CellularAutomaton(width, height);
-        bool[,] map = procGenAlgo.GenerateMap(density, smoothSteps, rng);
+        bool[,] map = new CellularAutomaton(width, height).GenerateMap(density, smoothSteps, rng);
         mapDisplay.DisplayMap(map);
 
     }
