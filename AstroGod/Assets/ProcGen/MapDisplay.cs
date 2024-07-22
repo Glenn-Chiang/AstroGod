@@ -18,6 +18,8 @@ public class MapDisplay : MonoBehaviour
 
     public void DisplayMap(bool[,] map)
     {
+        // Clear any existing tiles before redrawing
+        tilemap.ClearAllTiles();
         for (int x = 0;  x < map.GetLength(0); x++)
         {
             for (int y = 0; y < map.GetLength(1); y++)

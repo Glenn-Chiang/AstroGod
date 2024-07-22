@@ -1129,7 +1129,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   width: 64
   height: 64
-  density: 45
+  density: 40
   smoothSteps: 4
   seed: 28.50668
   useRandomSeed: 1
