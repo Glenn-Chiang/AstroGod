@@ -6,11 +6,17 @@ using UnityEngine.Tilemaps;
 public class MapDisplay : MonoBehaviour
 {
     [SerializeField] private Tilemap tilemap;
+    [SerializeField] private Vector2 position; // Bottom-left corner position
 
     [SerializeField] private TileBase floorTile;
     [SerializeField] private TileBase wallTile;
 
-   public void DisplayMap(bool[,] map)
+    private void Start()
+    {
+        tilemap.transform.position = position;
+    }
+
+    public void DisplayMap(bool[,] map)
     {
         for (int x = 0;  x < map.GetLength(0); x++)
         {
