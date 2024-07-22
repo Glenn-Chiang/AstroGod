@@ -13,6 +13,9 @@ public class MapGenerator : MonoBehaviour
     private int density; // Percentage of map that are walls
     [SerializeField] private int smoothSteps;
 
+    [SerializeField] private int minEmptyRegionSize = 16;
+    [SerializeField] private int minFilledRegionSize = 4;
+
     [SerializeField] private string seed;
     [SerializeField] private bool useRandomSeed;
 
@@ -45,7 +48,25 @@ public class MapGenerator : MonoBehaviour
     private bool[,] GenerateMap(System.Random rng)
     {
         var map = new bool[width, height];
+        RandomFill(map, rng);
 
+        // Repeatedly smooth the map
+        for (int i = 0; i < smoothSteps; i++)
+        {
+            map = SmoothMap(map);
+        }
+
+        var emptyRegions = GetRegions(map, false);
+        var filledRegions = GetRegions(map, true);
+
+        PruneRegions(map, emptyRegions, minEmptyRegionSize);
+        PruneRegions(map, filledRegions, minFilledRegionSize);
+
+        return map;
+    }
+
+    private void RandomFill(bool[,] map, System.Random rng)
+    {
         // Initialize map with random boolean values based on density percentage
         for (int x = 0; x < width; x++)
         {
@@ -62,17 +83,31 @@ public class MapGenerator : MonoBehaviour
                 }
             }
         }
+    }
 
-        // Repeatedly smooth the map
-        for (int i = 0; i < smoothSteps; i++)
+    // Remove regions that are smaller than the threshold size
+    // Regions are removed by inverting their bool value
+    private void PruneRegions(bool[,] map, List<List<Vector2Int>> regions, int minRegionSize)
+    {
+        // Iterate over the list in reverse so that we can remove from it
+        for (int i = regions.Count - 1; i >= 0; i--)
         {
-            map = SmoothMap(map);
+            var region = regions[i];
+            if (region.Count < minRegionSize)
+            {
+                InvertCells(map, region);
+                regions.Remove(region);
+            }
         }
+    }
 
-        var emptyRegions = GetEmptyRegions(map);
-        Debug.Log(emptyRegions.Count);
-
-        return map;
+    // Invert the boolean value for every cell in the given set 
+    private void InvertCells(bool[,] map, List<Vector2Int> cells)
+    {
+        foreach (var cell in cells)
+        {
+            map[cell.x, cell.y] = !map[cell.x, cell.y];
+        }
     }
 
     // Smooth the map by giving neighbors a higher tendency to be the same
@@ -139,22 +174,25 @@ public class MapGenerator : MonoBehaviour
         return count;
     }
 
-    private List<HashSet<Vector2Int>> GetEmptyRegions(bool[,] map)
+    // Get either the filled or empty regions on the map
+    private List<List<Vector2Int>> GetRegions(bool[,] map, bool cellType)
     {
-        var regions = new List<HashSet<Vector2Int>>();
-        var visitedCells = new HashSet<Vector2Int>();
+        var regions = new List<List<Vector2Int>>();
+        bool[,] visited = new bool[width, height];
 
         for (int x = 0; x < width; x++)
         {
             for (int y = 0; y < height; y++)
             {
-                // Skip filled cells and cells that have already been visited
-                if (map[x, y] || visitedCells.Contains(new Vector2Int(x, y))) continue;
+                if (map[x, y] != cellType || visited[x, y]) continue;
                 
                 var region = GetRegionCells(x, y, map);
                 regions.Add(region);
-                // Add all cells in this region to the visited set
-                visitedCells.UnionWith(region);
+                // Mark all cells in the region as visited
+                foreach (var cell in region)
+                {
+                    visited[cell.x, cell.y] = true;
+                }
             }
         }
 
@@ -163,17 +201,18 @@ public class MapGenerator : MonoBehaviour
 
     // Use flood fill logic to get the coordinates of all cells connected to the given cell,
     // i.e. part of the same "region"
-    private HashSet<Vector2Int> GetRegionCells(int startX, int startY, bool[,] map)
+    private List<Vector2Int> GetRegionCells(int startX, int startY, bool[,] map)
     {
         // If the given cell is filled, find all connected filled cells
         // If the given cell is empty, find all connected empty cells
         bool cellType = map[startX, startY];
         
-        var regionCells = new HashSet<Vector2Int>(); // Maintain set of visited cells
+        var regionCells = new List<Vector2Int>(); // Maintain list of visited cells
         var queue = new Queue<Vector2Int>(); // Queue of cells to explore
         queue.Enqueue(new Vector2Int(startX, startY)); // Add start cell to queue
 
         bool[,] visited = new bool[width, height]; // Track which cells have already been visited   
+        visited[startX, startY] = true;
 
         while (queue.Count != 0)
         {
