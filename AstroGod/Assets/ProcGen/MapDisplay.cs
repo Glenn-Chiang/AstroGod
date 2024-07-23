@@ -24,7 +24,7 @@ public class MapDisplay : MonoBehaviour
         {
             for (int y = 0; y < map.GetLength(1); y++)
             {
-                var pos = new Vector3Int(x, y, 0);
+                var pos = new Vector3Int(x, y);
                 if (map[x, y])
                 {
                     tilemap.SetTile(pos, wallTile);

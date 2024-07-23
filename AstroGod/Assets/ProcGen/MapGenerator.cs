@@ -1,7 +1,6 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using Unity.VisualScripting;
+using System.Linq;
 using UnityEngine;
 
 public class MapGenerator : MonoBehaviour
@@ -9,12 +8,13 @@ public class MapGenerator : MonoBehaviour
     [SerializeField] private int width; // Number of tile columns
     [SerializeField] private int height; // Number of tile rows
 
-    [SerializeField, Range(0, 100)]
-    private int density; // Percentage of map that are walls
+    [SerializeField, Range(0, 100)] private int fillPercent;
     [SerializeField] private int smoothSteps;
 
-    [SerializeField] private int minEmptyRegionSize = 16;
-    [SerializeField] private int minFilledRegionSize = 4;
+    [SerializeField, Range(0, 8)] private int filledNeighborThreshold = 4;
+
+    [SerializeField] private int minFilledRegionSize;
+    [SerializeField] private bool singleCavern;
 
     [SerializeField] private string seed;
     [SerializeField] private bool useRandomSeed;
@@ -22,6 +22,9 @@ public class MapGenerator : MonoBehaviour
     public bool autoUpdate = false;
     
     [SerializeField] private MapDisplay mapDisplay;
+
+    Vector2Int[] directions = { new(0, -1), new(0, 1), new(-1, 0), new(1, 0), new (-1, -1), new (-1, 1), new (1, -1), new Vector2Int(1, 1) };
+    Vector2Int[] orthogonalDirections = { new(0, -1), new(0, 1), new(-1, 0), new(1, 0) };
 
     void Start()
     {
@@ -57,12 +60,44 @@ public class MapGenerator : MonoBehaviour
         }
 
         var emptyRegions = GetRegions(map, false);
-        var filledRegions = GetRegions(map, true);
 
-        PruneRegions(map, emptyRegions, minEmptyRegionSize);
+        // If there is more than 1 empty region, fill all other empty regions except the largest region
+        if (singleCavern && emptyRegions.Count > 1)
+        {
+            int largestSize = emptyRegions.Max(region => region.Count);
+            PruneRegions(map, emptyRegions, largestSize);
+        }
+
+        // Remove filled regions that are smaller than minimum size
+        var filledRegions = GetRegions(map, true);
         PruneRegions(map, filledRegions, minFilledRegionSize);
 
         return map;
+    }
+
+    // Remove regions that are smaller than the threshold size
+    // Regions are removed by inverting their bool value
+    private void PruneRegions(bool[,] map, List<List<Vector2Int>> regions, int minRegionSize)
+    {
+        // Iterate over the list in reverse so that we can remove from it
+        for (int i = regions.Count - 1; i >= 0; i--)
+        {
+            var region = regions[i];
+            if (region.Count < minRegionSize)
+            {
+                InvertRegion(map, region);
+                regions.Remove(region);
+            }
+        }
+    }
+
+    // Invert the boolean value for every cell in the given set 
+    private void InvertRegion(bool[,] map, List<Vector2Int> cells)
+    {
+        foreach (var cell in cells)
+        {
+            map[cell.x, cell.y] = !map[cell.x, cell.y];
+        }
     }
 
     private void RandomFill(bool[,] map, System.Random rng)
@@ -79,42 +114,15 @@ public class MapGenerator : MonoBehaviour
                 }
                 else
                 {
-                    map[x, y] = rng.Next(0, 100) < density;
+                    map[x, y] = rng.Next(0, 100) < fillPercent;
                 }
             }
-        }
-    }
-
-    // Remove regions that are smaller than the threshold size
-    // Regions are removed by inverting their bool value
-    private void PruneRegions(bool[,] map, List<List<Vector2Int>> regions, int minRegionSize)
-    {
-        // Iterate over the list in reverse so that we can remove from it
-        for (int i = regions.Count - 1; i >= 0; i--)
-        {
-            var region = regions[i];
-            if (region.Count < minRegionSize)
-            {
-                InvertCells(map, region);
-                regions.Remove(region);
-            }
-        }
-    }
-
-    // Invert the boolean value for every cell in the given set 
-    private void InvertCells(bool[,] map, List<Vector2Int> cells)
-    {
-        foreach (var cell in cells)
-        {
-            map[cell.x, cell.y] = !map[cell.x, cell.y];
         }
     }
 
     // Smooth the map by giving neighbors a higher tendency to be the same
     private bool[,] SmoothMap(bool[,] map)
     {
-        int filledNeighborThreshold = 4;
-
         // Create a new map so that we can read from the current map and write to the new map
         bool[,] mapCopy = new bool[width, height];
 
@@ -122,6 +130,13 @@ public class MapGenerator : MonoBehaviour
         {
             for (int y = 0; y < height; y++)
             {
+                // Boundary walls should remain
+                if (x == 0 || x == width - 1 || y == 0 || y == height - 1)
+                {
+                    mapCopy[x, y] = true;
+                    continue;
+                }
+
                 // If the cell has more than "neighborThreshold" filled neighbors,
                 // then fill the cell
                 int filledNeighbors = CountFilledNeighbors(x, y, map);
@@ -134,8 +149,8 @@ public class MapGenerator : MonoBehaviour
                 else if (filledNeighbors < filledNeighborThreshold)
                 {
                     mapCopy[x, y] = false;
-                    // Otherwise remain
                 }
+                    // Otherwise remain
                 else
                 {
                     mapCopy[x, y] = map[x, y];
@@ -148,28 +163,13 @@ public class MapGenerator : MonoBehaviour
     }
 
     // For the given cell position, count the number of neighboring cells that are filled
-    // The neighbors of a cell are the 8 (or fewer) cells surrounding it
     private int CountFilledNeighbors(int x, int y, bool[,] map)
     {
         int count = 0;
-        for (int neighborX = x - 1; neighborX <= x + 1; neighborX++)
+        var neighbors = GetNeighbors(x, y, map);
+        foreach (var neighbor in neighbors)
         {
-            for (int neighborY = y - 1; neighborY <= y + 1; neighborY++)
-            {
-                // Skip current cell
-                if (neighborX == x && neighborY == y) continue;
-
-                if (InBounds(neighborX, neighborY, map))
-                {
-                    // Add to count if neighbor is filled
-                    count += map[neighborX, neighborY] ? 1 : 0;
-                }
-                else
-                {
-                    // Count the area around the boundaries as filled cells
-                    count++;
-                }
-            }
+            count += map[neighbor.x, neighbor.y] ? 1 : 0;  
         }
         return count;
     }
@@ -219,21 +219,13 @@ public class MapGenerator : MonoBehaviour
             var cell = queue.Dequeue();
             regionCells.Add(cell); // Add current cell to region
 
-            for (int neighborX = cell.x - 1; neighborX <= cell.x + 1; neighborX++)
+            var neighbors = GetNeighbors(cell.x, cell.y, map, true);
+            foreach (var neighbor in neighbors)
             {
-                for (int neighborY = cell.y - 1; neighborY <= cell.y + 1; neighborY++)
+                if (InBounds(neighbor, map) && !visited[neighbor.x, neighbor.y] && map[neighbor.x, neighbor.y] == cellType)
                 {
-                    // Skip current cell
-                    if (neighborX == cell.x && neighborY == cell.y) continue;
-
-                    Vector2Int neighbor = new(neighborX, neighborY);
-                    
-                    if (InBounds(neighborX, neighborY, map) && !visited[neighborX, neighborY] 
-                        && map[neighborX, neighborY] == cellType)
-                    {
-                        queue.Enqueue(neighbor);
-                        visited[neighborX, neighborY] = true;
-                    }
+                    queue.Enqueue(neighbor);
+                    visited[neighbor.x, neighbor.y] = true;
                 }
             }
         }
@@ -241,8 +233,28 @@ public class MapGenerator : MonoBehaviour
         return regionCells;
     }
 
-    private bool InBounds(int x, int y, bool[,] map)
+    // Get neighboring cells in either 8-directions or only the 4 orthogonal directions
+    // Does not check if neighbor is within map boundaries
+    private List<Vector2Int> GetNeighbors(int x, int y, bool[,] map, bool orthogonal = false)
     {
-        return x >= 0 && y >= 0 && x < map.GetLength(0) && y < map.GetLength(1);
+        List<Vector2Int> neighbors = new();
+        
+        Vector2Int[] directions = orthogonal ? orthogonalDirections : this.directions;
+
+        foreach (var dir in directions) 
+        {
+            Vector2Int neighbor = new(x + dir.x, y + dir.y);
+            if (InBounds(neighbor, map))
+            {
+                neighbors.Add(neighbor);        
+            }
+        }
+
+        return neighbors;
+    }
+
+    private bool InBounds(Vector2Int cell, bool[,] map)
+    {
+        return cell.x >= 0 && cell.y >= 0 && cell.x < map.GetLength(0) && cell.y < map.GetLength(1);
     }
 }
