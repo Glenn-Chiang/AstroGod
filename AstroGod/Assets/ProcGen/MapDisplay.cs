@@ -11,7 +11,7 @@ public class MapDisplay : MonoBehaviour
     [SerializeField] private TileBase floorTile;
     [SerializeField] private TileBase wallTile;
 
-    private void Start()
+    private void Awake()
     {
         tilemap.transform.position = position;
         tilemap.ClearAllTiles();
