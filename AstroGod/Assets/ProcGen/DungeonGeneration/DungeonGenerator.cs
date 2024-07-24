@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class DungeonGenerator : MapGenerator
@@ -32,8 +34,19 @@ public class DungeonGenerator : MapGenerator
     [SerializeField] private int minLength = 10;
 
     // Padding refers to the number of layers of filled cells around a room
-    [SerializeField] private int minPadding = 2;
-    [SerializeField] private int maxPadding = 5;
+    [SerializeField] private int minRoomPad = 1;
+    [SerializeField] private int maxRoomPad = 10;
+
+    // Cost of pathing through filled cells
+    // Lower wallCost means higher chance of creating new paths through walls
+    [SerializeField, Range(0, 10)] private int wallCost = 5;
+    
+    // Cost of pathing through empty cells
+    // Lower emptyCost means higher chance of using existing empty paths
+    [SerializeField, Range(0, 10)] private int emptyCost = 5;
+
+    [SerializeField] private int minPathPad = 0;
+    [SerializeField] private int maxPathPad = 2;
 
     private System.Random rng;
 
@@ -67,6 +80,8 @@ public class DungeonGenerator : MapGenerator
             BuildRoom(room);
         }
 
+        ConnectAllRooms(rooms);
+
         mapDisplay.DisplayMap(grid);
     }
 
@@ -74,17 +89,58 @@ public class DungeonGenerator : MapGenerator
     private void BuildRoom(Room room)
     {
         // The maximum padding that will not cause the room to become smaller than the minimum room size
-        int maxPaddingX = Math.Max(minPadding, Math.Min(maxPadding, (room.width - minLength) / 2));
-        int maxPaddingY = Math.Max(minPadding, Math.Min(maxPadding, (room.height - minLength) / 2));
+        int maxPaddingX = Math.Max(minRoomPad, Math.Min(maxRoomPad, (room.width - minLength) / 2));
+        int maxPaddingY = Math.Max(minRoomPad, Math.Min(maxRoomPad, (room.height - minLength) / 2));
 
-        int paddingX = rng.Next(minPadding, maxPaddingX + 1);
-        int paddingY = rng.Next(minPadding, maxPaddingY + 1);
+        int paddingX = rng.Next(minRoomPad, maxPaddingX + 1);
+        int paddingY = rng.Next(minRoomPad, maxPaddingY + 1);
 
         for (int x = room.x + paddingX; x < room.x + room.width - paddingX; x++)
         {
             for (int y = room.y + paddingY; y < room.y + room.height - paddingY; y++)
             {
                 grid[x, y] = false;
+            }
+        }
+    }
+
+    private void ConnectAllRooms(List<Room> rooms)
+    {
+        // Initially, all rooms are disconnected
+        List<Room> disconnectedRooms = rooms.ToList();
+        List<Room> connectedRooms = new List<Room>();
+        var startRoom = RandomUtils.RandomSelect(rooms, rng);
+        disconnectedRooms.Remove(startRoom);
+        connectedRooms.Add(startRoom);
+
+        // Repeatedly connect rooms until all rooms are connected
+        while (disconnectedRooms.Count > 0)
+        {
+            Room disconnectedRoom = RandomUtils.RandomSelect(disconnectedRooms, rng);
+            Room connectedRoom = RandomUtils.RandomSelect(connectedRooms, rng);
+
+            CreatePath(disconnectedRoom.Center, connectedRoom.Center);
+            disconnectedRooms.Remove(disconnectedRoom);
+            connectedRooms.Add(disconnectedRoom);
+        }
+    }
+
+    private void CreatePath(Vector2Int startCell, Vector2Int endCell)
+    {
+        var pathfinder = new Pathfinder(startCell, endCell, grid, wallCost, emptyCost);
+        List<Vector2Int> path = pathfinder.FindPath();
+
+        int pathPad = rng.Next(minPathPad, maxPathPad + 1);
+
+        // Clear all cells in the path
+        foreach (var cell in path)
+        {
+            for (int x = cell.x - pathPad; x <= cell.x + pathPad; x++)
+            {
+                for (int y = cell.y - pathPad; y <= cell.y + pathPad; y++)
+                {
+                    grid[x, y] = false;
+                }
             }
         }
     }
@@ -97,6 +153,10 @@ public class DungeonGenerator : MapGenerator
         public readonly int y; // Bottommost y
         public readonly int width;
         public readonly int height;
+
+        public int CenterX => x + width / 2;
+        public int CenterY => y + height / 2;
+        public Vector2Int Center => new(CenterX, CenterY);
 
         private int MinSplitX => x + (int)(generator.minSplitRatio * width);
         private int MaxSplitX => x + (int)(generator.maxSplitRatio * width);
@@ -112,7 +172,7 @@ public class DungeonGenerator : MapGenerator
             this.height = height;
         }
 
-        // Recursively split itself using binary space partitioning
+        // Recursively split itself into smaller rooms using binary space partitioning
         public void Split(int iterations, List<Room> rooms, System.Random rng)
         {
             rooms.Add(this);
