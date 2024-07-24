@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,15 +16,26 @@ public class DungeonGenerator : MapGenerator
 
     // The minimum and maximum ratios along the width/height of the room
     // at which the room can be split
+    // These values will affect how similar the room sizes are
     [SerializeField] private float minSplitRatio = 0.4f;
     [SerializeField] private float maxSplitRatio = 0.6f;
     public float MinSplitRatio => minSplitRatio;
     public float MaxSplitRatio => maxSplitRatio;
 
+    // Aspect ratio is width over height of the room
     [SerializeField] private float minAspectRatio;
     [SerializeField] private float maxAspectRatio;
     public float MinAspectRatio => minAspectRatio;
     public float MaxAspectRatio => maxAspectRatio;
+
+    // Minimum width and height of the empty space within a room
+    [SerializeField] private int minLength = 10;
+
+    // Padding refers to the number of layers of filled cells around a room
+    [SerializeField] private int minPadding = 2;
+    [SerializeField] private int maxPadding = 5;
+
+    private System.Random rng;
 
     public override void Generate()
     {
@@ -41,7 +53,8 @@ public class DungeonGenerator : MapGenerator
         {
             seed = Time.time.ToString();
         }
-        System.Random rng = new System.Random(seed.GetHashCode());
+        
+        rng = new System.Random(seed.GetHashCode());
 
         // Create a room occupying the full dungeon space and recursively split it into smaller rooms
         List<Room> rooms = new List<Room>();
@@ -60,9 +73,16 @@ public class DungeonGenerator : MapGenerator
     // Create the room within the grid
     private void BuildRoom(Room room)
     {
-        for (int x = room.x + 1; x < room.x + room.width - 1; x++)
+        // The maximum padding that will not cause the room to become smaller than the minimum room size
+        int maxPaddingX = Math.Max(minPadding, Math.Min(maxPadding, (room.width - minLength) / 2));
+        int maxPaddingY = Math.Max(minPadding, Math.Min(maxPadding, (room.height - minLength) / 2));
+
+        int paddingX = rng.Next(minPadding, maxPaddingX + 1);
+        int paddingY = rng.Next(minPadding, maxPaddingY + 1);
+
+        for (int x = room.x + paddingX; x < room.x + room.width - paddingX; x++)
         {
-            for (int y = room.y + 1; y < room.y + room.height - 1; y++)
+            for (int y = room.y + paddingY; y < room.y + room.height - paddingY; y++)
             {
                 grid[x, y] = false;
             }
