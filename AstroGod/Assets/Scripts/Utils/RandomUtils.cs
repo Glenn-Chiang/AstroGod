@@ -5,12 +5,19 @@ using System.Linq;
 
 public static class RandomUtils
 {
-    public static T RandomSelect<T>(List<T> elements)
+    public static T RandomSelect<T>(IList<T> elements)
     {
-        System.Random random = new();
-        int randomIndex = random.Next(0, elements.Count);
+        System.Random rng = new();
+        int randomIndex = rng.Next(0, elements.Count);
         return elements[randomIndex];
     }
+
+    public static T RandomSelect<T>(IList<T> elements, System.Random rng)
+    {
+        int randomIndex = rng.Next(0, elements.Count);
+        return elements[randomIndex];
+    }
+
 
     public static T WeightedRandomSelect<T>(List<WeightedElement<T>> weightedElements)
     {

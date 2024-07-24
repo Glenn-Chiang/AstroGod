@@ -14,6 +14,7 @@ public class MapDisplay : MonoBehaviour
     private void Start()
     {
         tilemap.transform.position = position;
+        tilemap.ClearAllTiles();
     }
 
     public void DisplayMap(bool[,] map)
