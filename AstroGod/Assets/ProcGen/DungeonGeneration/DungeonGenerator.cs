@@ -101,10 +101,10 @@ public class DungeonGenerator : MapGenerator
 
             rooms.Remove(this);
 
-            float aspectRatio = width / height;
-
+            float aspectRatio = (float) width / height;
+            
             // If the room is too tall, split horizontally
-            if (aspectRatio < generator.minAspectRatio)
+            if (aspectRatio < generator.MinAspectRatio)
             {
                 HorizontalSplit(iterations, rooms, rng);
                 return;
