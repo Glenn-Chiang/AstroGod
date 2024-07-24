@@ -75,46 +75,4 @@ public abstract class MapGenerator : MonoBehaviour
         }
         return count;
     }
-
-    // Smooth the map by giving neighbors a higher tendency to be the same
-    protected bool[,] SmoothMap(bool[,] map)
-    {
-        // Create a new map so that we can read from the current map and write to the new map
-        bool[,] mapCopy = new bool[width, height];
-
-        for (int x = 0; x < width; x++)
-        {
-            for (int y = 0; y < height; y++)
-            {
-                // Boundary walls should remain
-                if (x == 0 || x == width - 1 || y == 0 || y == height - 1)
-                {
-                    mapCopy[x, y] = true;
-                    continue;
-                }
-
-                // If the cell has more than "neighborThreshold" filled neighbors,
-                // then fill the cell
-                int filledNeighbors = CountFilledNeighbors(x, y, map);
-                if (filledNeighbors > 4)
-                {
-                    mapCopy[x, y] = true;
-                    // If the cell has less than "neighborThreshold" filled neighbors,
-                    // then clear the cell
-                }
-                else if (filledNeighbors < 4)
-                {
-                    mapCopy[x, y] = false;
-                }
-                // Otherwise remain
-                else
-                {
-                    mapCopy[x, y] = map[x, y];
-                }
-            }
-        }
-
-        // The new copy is now the current map
-        return mapCopy;
-    }
 }

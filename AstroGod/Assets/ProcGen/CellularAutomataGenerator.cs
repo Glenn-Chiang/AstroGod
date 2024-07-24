@@ -83,6 +83,36 @@ public class CellularAutomataGenerator : MapGenerator
             }
         }
     }
+    private bool[,] SmoothMap(bool[,] map)
+    {
+        bool[,] mapCopy = new bool[width, height];
+
+        for (int x = 0; x < width; x++)
+        {
+            for (int y = 0; y < height; y++)
+            {
+                int filledNeighbors = CountFilledNeighbors(x, y, map);
+
+                if (filledNeighbors > 4)
+                {
+                    mapCopy[x, y] = true;
+                    // If the cell has less than "neighborThreshold" filled neighbors,
+                    // then clear the cell
+                }
+                else if (filledNeighbors < 4)
+                {
+                    mapCopy[x, y] = false;
+                }
+                // Otherwise remain
+                else
+                {
+                    mapCopy[x, y] = map[x, y];
+                }
+            }
+        }
+
+        return mapCopy;
+    }
 
     // Get either the filled or empty regions on the map
     private List<List<Vector2Int>> GetRegions(bool[,] map, bool cellType)

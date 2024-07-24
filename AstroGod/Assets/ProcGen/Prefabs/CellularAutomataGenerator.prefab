@@ -10,13 +10,14 @@ GameObject:
   m_Component:
   - component: {fileID: 8875203296506996028}
   - component: {fileID: 5436724610837922969}
+  - component: {fileID: 1722972063920662500}
   m_Layer: 0
   m_Name: CellularAutomataGenerator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8875203296506996028
 Transform:
   m_ObjectHideFlags: 0
@@ -48,10 +49,25 @@ MonoBehaviour:
   height: 128
   fillPercent: 48
   smoothSteps: 4
-  filledNeighborThreshold: 4
+  seed: 23.04795
+  useRandomSeed: 1
+  mapDisplay: {fileID: 0}
   minFilledRegionSize: 40
   singleCavern: 1
-  seed: 1.724575
-  useRandomSeed: 1
   autoUpdate: 0
-  mapDisplay: {fileID: 0}
+--- !u!114 &1722972063920662500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5580644337767446804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a34f70708e5371b4084310d66d2539ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tilemap: {fileID: 0}
+  position: {x: -64, y: -64}
+  floorTile: {fileID: 11400000, guid: 5fb69844e73f3de45abe4d879c5614f1, type: 2}
+  wallTile: {fileID: 11400000, guid: 326fabe9809ab824584a2e6d3f74e444, type: 2}
