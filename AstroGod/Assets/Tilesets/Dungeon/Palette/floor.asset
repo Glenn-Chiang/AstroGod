@@ -12,20 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1514134bc4fbd41bb739b1b9a49231, type: 3}
   m_Name: floor
   m_EditorClassIdentifier: 
-  m_DefaultSprite: {fileID: -365310830, guid: ff4e349d908faa346ad475b026317c15, type: 3}
+  m_DefaultSprite: {fileID: 396364247, guid: ff4e349d908faa346ad475b026317c15, type: 3}
   m_DefaultGameObject: {fileID: 0}
   m_DefaultColliderType: 0
   m_TilingRules:
-  - m_Id: 0
+  - m_Id: 1
     m_Sprites:
-    - {fileID: -365310830, guid: ff4e349d908faa346ad475b026317c15, type: 3}
-    - {fileID: 784385433, guid: ff4e349d908faa346ad475b026317c15, type: 3}
-    - {fileID: -915970819, guid: ff4e349d908faa346ad475b026317c15, type: 3}
-    - {fileID: -255056039, guid: ff4e349d908faa346ad475b026317c15, type: 3}
+    - {fileID: 396364247, guid: ff4e349d908faa346ad475b026317c15, type: 3}
+    - {fileID: 1111048077, guid: ff4e349d908faa346ad475b026317c15, type: 3}
+    - {fileID: -1534553285, guid: ff4e349d908faa346ad475b026317c15, type: 3}
     m_GameObject: {fileID: 0}
     m_MinAnimationSpeed: 1
     m_MaxAnimationSpeed: 1
-    m_PerlinScale: 0.5
+    m_PerlinScale: 0.4
     m_Output: 1
     m_ColliderType: 0
     m_RandomTransform: 0
