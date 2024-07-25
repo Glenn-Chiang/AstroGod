@@ -18,8 +18,8 @@ MonoBehaviour:
     <BaseValue>k__BackingField: 50
     <MaxValue>k__BackingField: 200
   <MoveSpeed>k__BackingField:
-    <BaseValue>k__BackingField: 10
-    <MaxValue>k__BackingField: 15
+    <BaseValue>k__BackingField: 5
+    <MaxValue>k__BackingField: 10
   <MaxAmmo>k__BackingField:
     <BaseValue>k__BackingField: 1000
     <MaxValue>k__BackingField: 2000
