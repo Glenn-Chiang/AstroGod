@@ -1,11 +1,14 @@
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class Pathfinder
 {
     private readonly Vector2Int startCell;
     private readonly Vector2Int targetCell;
+    private readonly bool[,] grid;
 
     // Nodes that we are interested in exploring
     private readonly HashSet<Node> openNodes = new HashSet<Node>();
@@ -17,10 +20,19 @@ public class Pathfinder
     // Pathfinder can only move in orthogonal directions
     private static readonly Vector2Int[] directions = { new(0, -1), new(0, 1), new(-1, 0), new(1, 0) };
 
-    public Pathfinder(Vector2Int startCell, Vector2Int targetCell, bool[,] grid, int wallCost, int emptyCost)
+    private readonly int wallCost; // Cost to path through a filled cell
+    private readonly int emptyCost; // Cost to path through an empty cell
+    private readonly int turnCost; // Cost to make a turn
+
+    public Pathfinder(Vector2Int startCell, Vector2Int targetCell, bool[,] grid, int wallCost, int emptyCost, int turnCost)
     {
         this.startCell = startCell;
         this.targetCell = targetCell;
+        this.grid = grid;   
+        
+        this.wallCost = wallCost;
+        this.emptyCost = emptyCost;
+        this.turnCost = turnCost;
 
         // Initialize a node for each cell in the grid
         nodeGraph = new Node[grid.GetLength(0), grid.GetLength(1)];
@@ -28,9 +40,8 @@ public class Pathfinder
         {
             for (int y = 0; y < grid.GetLength(1); y++)
             {
-                int cost = grid[x, y] ? wallCost : emptyCost;
                 int distanceToTarget = (int) Vector2Int.Distance(new Vector2Int(x, y), targetCell);
-                nodeGraph[x, y] = new Node(x, y, cost, distanceToTarget);
+                nodeGraph[x, y] = new Node(x, y, distanceToTarget);
             }
         }
     }
@@ -57,20 +68,29 @@ public class Pathfinder
                 return currentNode.GetPath();
             }
 
-            foreach (var neighbor in GetNeighbors(currentNode))
+            foreach (var dir in directions)
             {
+                int neighborX = currentNode.x + dir.x;
+                int neighborY = currentNode.y + dir.y;
+
+                if (!InBounds(neighborX, neighborY)) continue;
+
+                var neighbor = nodeGraph[neighborX, neighborY];
+
                 // Skip closed nodes
                 if (closedNodes.Contains(neighbor)) continue;
 
-                // The cost of the neighbor node added to the cost of getting to the current node
-                // We are essentially finding the cost of the current path to the neighbor
-                int newGCost = currentNode.gCost + neighbor.cost;
+                int heuristicCost = GetHeuristicCost(currentNode, neighbor);
 
+                // Find the new cost to reach this neighbor using the current path                
+                int cost = currentNode.cost + heuristicCost;
+                
                 // If the neighbor has not been explored,
-                // or if the current path to the neighbor is better than the neighbor's previous cost
-                if (!openNodes.Contains(neighbor) || newGCost < neighbor.gCost)
+                // or if the current path to the neighbor is better than the neighbor's previous cost.
+                // update the new best path to this neighbor
+                if (!openNodes.Contains(neighbor) || cost < neighbor.cost)
                 {
-                    neighbor.gCost = newGCost;
+                    neighbor.cost = cost;
                     neighbor.parent = currentNode;
                     openNodes.Add(neighbor);
                 }
@@ -80,47 +100,60 @@ public class Pathfinder
         return path;
     }
 
-    private List<Node> GetNeighbors(Node node)
+    // Heuristic cost to move from current node to neighbor
+    private int GetHeuristicCost(Node currentNode, Node neighbor)
     {
-        List<Node> neighbors = new List<Node>();
-        foreach (var dir in directions)
+        int hCost = neighbor.distanceToTarget;
+
+        hCost += grid[neighbor.x, neighbor.y] ? wallCost : emptyCost;
+
+        // Check if the direction from the current node to this neighbor
+        // is the same as the current path direction
+        var dirToNeighbor = new Vector2Int(neighbor.x - currentNode.x, neighbor.y - currentNode.y);
+        bool directionChanged = dirToNeighbor != currentNode.GetPathDirection();
+        // If path direction was changed, add the cost of making a turn
+        if (directionChanged)
         {
-            int neighborX = node.x + dir.x;
-            int neighborY = node.y + dir.y;
-            if (neighborX >= 0 && neighborY >= 0 
-                && neighborX < nodeGraph.GetLength(0) && neighborY < nodeGraph.GetLength(1))
-            {
-                neighbors.Add(nodeGraph[neighborX, neighborY]);
-            }
+            hCost += turnCost;
         }
-        return neighbors;
+
+        return hCost;
+    }
+
+    private bool InBounds(int x, int y)
+    {
+        return x >= 0 && y >= 0 && x < nodeGraph.GetLength(0) && y < nodeGraph.GetLength(1);
     }
 
     private Node GetBestNode(HashSet<Node> nodes)
     {
         // The best node is the one with the lowest f cost
-        return nodes.OrderBy(node => node.FCost).FirstOrDefault();
+        return nodes.OrderBy(node => node.cost).FirstOrDefault();
     }
 
     class Node
     {
         public readonly int x;
         public readonly int y;
-        private readonly int distanceToTarget;
+        public readonly int distanceToTarget;
 
-        public readonly int cost;
-        public int HCost => distanceToTarget + cost;
-        public int gCost;
-        public int FCost => gCost + HCost;
+        public int cost; // Lowest cost so far to this node from start node
 
-        public Node parent;
+        public Node parent; // Current parent of this node on the current path
 
-        public Node(int x, int y, int cost, int distanceToTarget)
+        public Node(int x, int y, int distanceToTarget)
         {
             this.x = x;
             this.y = y;
-            this.cost = cost;
             this.distanceToTarget = distanceToTarget;
+        }
+
+        // Get the direction to this node from its parent node
+        // We consider this to be the current path direction
+        public Vector2Int GetPathDirection()
+        {
+            if (parent == null) return Vector2Int.zero;
+            return new Vector2Int(x - parent.x, y - parent.y);
         }
 
         public List<Vector2Int> GetPath()

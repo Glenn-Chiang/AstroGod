@@ -38,12 +38,13 @@ public class DungeonGenerator : MapGenerator
     [SerializeField] private int maxRoomPad = 10;
 
     // Cost of pathing through filled cells
-    // Lower wallCost means higher chance of creating new paths through walls
     [SerializeField, Range(0, 10)] private int wallCost = 5;
     
     // Cost of pathing through empty cells
-    // Lower emptyCost means higher chance of using existing empty paths
     [SerializeField, Range(0, 10)] private int emptyCost = 5;
+
+    // Cost of making turns
+    [SerializeField, Range(0, 10)] private int turnCost;
 
     [SerializeField] private int minPathPad = 0;
     [SerializeField] private int maxPathPad = 2;
@@ -127,7 +128,8 @@ public class DungeonGenerator : MapGenerator
 
     private void CreatePath(Vector2Int startCell, Vector2Int endCell)
     {
-        var pathfinder = new Pathfinder(startCell, endCell, grid, wallCost, emptyCost);
+        var pathfinder = new Pathfinder(startCell, endCell, grid, 
+            wallCost, emptyCost, turnCost);
         List<Vector2Int> path = pathfinder.FindPath();
 
         int pathPad = rng.Next(minPathPad, maxPathPad + 1);
