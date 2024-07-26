@@ -16,7 +16,7 @@ public class MapDisplay : MonoBehaviour
         tilemap.transform.position = position;
     }
 
-    public void DisplayMap(bool[,] map)
+    public void DisplayMap(TileType[,] map)
     {
         // Clear any existing tiles before redrawing
         tilemap.ClearAllTiles();
@@ -25,6 +25,33 @@ public class MapDisplay : MonoBehaviour
             for (int y = 0; y < map.GetLength(1); y++)
             {
                 var pos = new Vector3Int(x, y);
+
+                switch (map[x,y])
+                {
+                    case TileType.FLOOR:
+                        tilemap.SetTile(pos, floorTile);
+                        break;
+                    case TileType.WALL:
+                        tilemap.SetTile(pos, wallTile);
+                        break;
+                    case TileType.EMPTY:
+                        break;
+                }
+                
+            }
+        }
+    }
+
+    public void DisplayMap(bool[,] map)
+    {
+        // Clear any existing tiles before redrawing
+        tilemap.ClearAllTiles();
+        for (int x = 0; x < map.GetLength(0); x++)
+        {
+            for (int y = 0; y < map.GetLength(1); y++)
+            {
+                var pos = new Vector3Int(x, y);
+
                 if (map[x, y])
                 {
                     tilemap.SetTile(pos, wallTile);
@@ -32,6 +59,7 @@ public class MapDisplay : MonoBehaviour
                 {
                     tilemap.SetTile(pos, floorTile);
                 }
+
             }
         }
     }

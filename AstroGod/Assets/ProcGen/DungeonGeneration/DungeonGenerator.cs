@@ -34,7 +34,7 @@ public class DungeonGenerator : MapGenerator
     [SerializeField] private int minLength = 10;
 
     // Padding refers to the number of layers of filled cells around a room
-    [SerializeField] private int minRoomPad = 1;
+    [SerializeField] private int maxRoomMargin = 1;
     [SerializeField] private int maxRoomPad = 10;
 
     // Cost of pathing through filled cells
@@ -53,7 +53,9 @@ public class DungeonGenerator : MapGenerator
 
     public override void Generate()
     {
-        // Create a filled grid
+        // Create a boolean grid with all cells initialized as non-traversable
+        // True represents non-traversable tiles i.e. empty or wall
+        // False represents traversable floors
         grid = new bool[width, height];
         for (int x = 0; x < width; x++)
         {
@@ -75,37 +77,83 @@ public class DungeonGenerator : MapGenerator
         var startRoom = new Room(0, 0, width, height, this);
         startRoom.Split(iterations, rooms, rng);
 
-        // Clear out the rooms on the grid
         foreach (var room in rooms)
         {
-            BuildRoom(room);
+            CreateRoom(room);
         }
+        ConnectRooms(rooms);
 
-        ConnectAllRooms(rooms);
 
-        mapDisplay.DisplayMap(grid);
+        // Determine tiles to place at each cell based on the boolean grid
+        TileType[,] tileGrid = BuildRooms(grid);
+
+        mapDisplay.DisplayMap(tileGrid);
     }
 
-    // Create the room within the grid
-    private void BuildRoom(Room room)
+    private TileType[,] BuildRooms(bool[,] grid)
     {
-        // The maximum padding that will not cause the room to become smaller than the minimum room size
-        int maxPaddingX = Math.Max(minRoomPad, Math.Min(maxRoomPad, (room.width - minLength) / 2));
-        int maxPaddingY = Math.Max(minRoomPad, Math.Min(maxRoomPad, (room.height - minLength) / 2));
+        TileType[,] tileGrid = new TileType[width, height];
 
-        int paddingX = rng.Next(minRoomPad, maxPaddingX + 1);
-        int paddingY = rng.Next(minRoomPad, maxPaddingY + 1);
-
-        for (int x = room.x + paddingX; x < room.x + room.width - paddingX; x++)
+        for (int x = 0; x < width; x++)
         {
-            for (int y = room.y + paddingY; y < room.y + room.height - paddingY; y++)
+            for (int y = 0; y < height; y++)
+            {
+                tileGrid[x, y] = TileType.EMPTY;
+            }
+        }
+
+        for (int x = 0; x < width; x++)
+        {
+            for (int y = 0 ; y < height ; y++)
+            {
+                if (grid[x, y]) continue;
+                
+                tileGrid[x, y] = TileType.FLOOR;
+
+                // Place walls around floor in neighboring empty cells
+                for (int neighborX = x - 1; neighborX <= x + 1; neighborX++)
+                {
+                    for (int neighborY =  y - 1; neighborY <= y + 1; neighborY++)
+                    {
+                        // Skip out of bounds cells
+                        if (neighborX < 0 || neighborY < 0 || neighborX >= width || neighborY >= height)
+                        {
+                            continue;
+                        }
+                        // Skip self
+                        if (neighborX == x && neighborY == y) continue;
+
+                        if (grid[neighborX, neighborY])
+                        {
+                            tileGrid[neighborX, neighborY] = TileType.WALL;
+                        }
+                    }
+                }
+            }
+        }
+
+        return tileGrid;
+    }
+
+    private void CreateRoom(Room room)
+    {
+        // The maximum margin that will not cause the room to become smaller than the minimum room size
+        int maxMarginX = Math.Max(maxRoomMargin, Math.Min(maxRoomPad, (room.width - minLength) / 2));
+        int maxMarginY = Math.Max(maxRoomMargin, Math.Min(maxRoomPad, (room.height - minLength) / 2));
+
+        int marginX = rng.Next(maxRoomMargin, maxMarginX + 1);
+        int marginY = rng.Next(maxRoomMargin, maxMarginY + 1);
+
+        for (int x = room.x + marginX; x < room.x + room.width - marginX; x++)
+        {
+            for (int y = room.y + marginY; y < room.y + room.height - marginY; y++)
             {
                 grid[x, y] = false;
             }
         }
     }
 
-    private void ConnectAllRooms(List<Room> rooms)
+    private void ConnectRooms(List<Room> rooms)
     {
         // Initially, all rooms are disconnected
         List<Room> disconnectedRooms = rooms.ToList();
@@ -134,7 +182,7 @@ public class DungeonGenerator : MapGenerator
 
         int pathPad = rng.Next(minPathPad, maxPathPad + 1);
 
-        // Clear all cells in the path
+        // Place a floor at all cells in the path
         foreach (var cell in path)
         {
             for (int x = cell.x - pathPad; x <= cell.x + pathPad; x++)
