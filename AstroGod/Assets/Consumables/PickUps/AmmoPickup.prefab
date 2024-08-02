@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 7593295217859926751}
   - component: {fileID: 6951318549950091512}
   - component: {fileID: 6141287647796638857}
-  - component: {fileID: -7145881307734602079}
+  - component: {fileID: -4244269090279678136}
   m_Layer: 0
-  m_Name: HealthCell (pickup)
+  m_Name: AmmoPickup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 3975007650177636013}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.5857643, y: -0.98170894, z: -0.07005185}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6d0ea722e7161b40966254fd45eff60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemData: {fileID: 11400000, guid: ee8f98f6487c16642ace90b105105578, type: 2}
+  itemData: {fileID: 11400000, guid: 6fc2268a5515f6349abcbd736071446d, type: 2}
 --- !u!212 &6141287647796638857
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -88,18 +88,18 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: -4779694876563634302, guid: 51c6332f7ad0e5a489fc03eb995d6f4d, type: 3}
+  m_Sprite: {fileID: -1743149512, guid: 1f5d5ec22a09cb34c92fc2222870adb5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.8, y: 1.4}
+  m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &-7145881307734602079
+--- !u!61 &-4244269090279678136
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -135,8 +135,8 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.125, y: 0.875}
-    newSize: {x: 1.8, y: 1.4}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0

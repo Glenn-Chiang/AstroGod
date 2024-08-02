@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: DroneGun (data)
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Drone Gun
-  <Icon>k__BackingField: {fileID: -4105225141633978610, guid: 574aefcfd5f04e249a8480b207e804ec, type: 3}
+  <Icon>k__BackingField: {fileID: 1019998595, guid: c3331c0fc27826b499bf4ccee59090f8, type: 3}
   <Description>k__BackingField: Basic enemy weapon
   <PickUpPrefab>k__BackingField: {fileID: 0}
   <ModelPrefab>k__BackingField: {fileID: 6432967644001070904, guid: 0d1c7357b55445b4e97d4d309f7f85dc, type: 3}

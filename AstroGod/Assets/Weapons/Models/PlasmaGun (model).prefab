@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 479478054586053935}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.6, y: 0, z: 0}
+  m_LocalPosition: {x: 0.392, y: -0.109, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -106,12 +106,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: 2790310067104290721, guid: ac45bb9a2b9b10a42b4c50ccc7f569cd, type: 3}
+  m_Sprite: {fileID: -2097533446, guid: c3331c0fc27826b499bf4ccee59090f8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.1, y: 0.7}
+  m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -129,6 +129,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c2beda2a6aeeb848b8cab4cfd7d235a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firePoint: {fileID: 6285628285088930247}
   ammoManager: {fileID: 0}
+  firePoint: {fileID: 6285628285088930247}
   weaponData: {fileID: 11400000, guid: 00d0acc3cb9490d499b975619ad6a463, type: 2}

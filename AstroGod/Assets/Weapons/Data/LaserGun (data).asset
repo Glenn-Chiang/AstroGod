@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: LaserGun (data)
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Laser Gun
-  <Icon>k__BackingField: {fileID: -3549380958941290185, guid: ad94658f34ee9e648b3eed4cb99f9eae, type: 3}
+  <Icon>k__BackingField: {fileID: 1941422389, guid: c3331c0fc27826b499bf4ccee59090f8, type: 3}
   <Description>k__BackingField: Fires a powerful laser beam that penetrates all enemies
     in its path
   <PickUpPrefab>k__BackingField: {fileID: 2096185098189556018, guid: 37f7e256baffab64c81b04afff5758a5, type: 3}
