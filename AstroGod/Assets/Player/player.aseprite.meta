@@ -123,7 +123,7 @@ ScriptedImporter:
   animatedSpriteImportData:
   - name: player
     originalName: 
-    pivot: {x: 0.5, y: 0.36363637}
+    pivot: {x: 0.5, y: 0.5}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
@@ -131,7 +131,7 @@ ScriptedImporter:
       x: 4
       y: 4
       width: 12
-      height: 11
+      height: 10
     spriteID: fdf8dd74e72fba447a30b720393beb23
     spriteBone: []
     spriteOutline: []
@@ -154,9 +154,9 @@ ScriptedImporter:
       frameIndex: 0
       cellRect:
         x: 2
-        y: 4
+        y: 3
         width: 12
-        height: 11
+        height: 10
       spriteId: fdf8dd74e72fba447a30b720393beb23
     linkedCells: []
     parentIndex: -1

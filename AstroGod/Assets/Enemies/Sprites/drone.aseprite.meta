@@ -123,15 +123,15 @@ ScriptedImporter:
   animatedSpriteImportData:
   - name: drone
     originalName: 
-    pivot: {x: 0.5909091, y: 0.47368422}
+    pivot: {x: 0.5, y: 0.5}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 22
-      height: 19
+      width: 12
+      height: 10
     spriteID: 35675fe2c0bb0ed4291e90b0bde4e8b1
     spriteBone: []
     spriteOutline: []
@@ -153,10 +153,10 @@ ScriptedImporter:
     - name: drone
       frameIndex: 0
       cellRect:
-        x: 3
-        y: 7
-        width: 22
-        height: 19
+        x: 2
+        y: 3
+        width: 12
+        height: 10
       spriteId: 35675fe2c0bb0ed4291e90b0bde4e8b1
     linkedCells: []
     parentIndex: -1
@@ -212,4 +212,4 @@ ScriptedImporter:
   generatePhysicsShape: 0
   secondarySpriteTextures: []
   spritePackingTag: 
-  canvasSize: {x: 32, y: 32}
+  canvasSize: {x: 16, y: 16}

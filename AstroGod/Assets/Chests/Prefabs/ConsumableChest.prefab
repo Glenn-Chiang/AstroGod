@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2481434953775463298, guid: 647c44b8e5cbb8c4b952af0e3c1810fc, type: 3}
+  m_Sprite: {fileID: 1318489743, guid: 878a1b193ad45804baa287545706fbd7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -99,10 +99,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemPrefabs:
-  - <Element>k__BackingField: {fileID: 6951318549950091512, guid: e75969db15408ff429326bda79b53c0e, type: 3}
-    <Weight>k__BackingField: 0.6
-  - <Element>k__BackingField: {fileID: 6951318549950091512, guid: 289ee15af16ad32408b43cc7bb9b85b3, type: 3}
-    <Weight>k__BackingField: 0.4
+  - element: {fileID: 6951318549950091512, guid: e75969db15408ff429326bda79b53c0e, type: 3}
+    weight: 0.5
+  - element: {fileID: 6951318549950091512, guid: 289ee15af16ad32408b43cc7bb9b85b3, type: 3}
+    weight: 0.5
   openedChestPrefab: {fileID: 5060152259115454380, guid: 5c94fe857d34eee4781e5c35df0ede16, type: 3}
 --- !u!61 &5434320106550304030
 BoxCollider2D:
@@ -139,8 +139,8 @@ BoxCollider2D:
   m_Offset: {x: -0.03125, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5217391, y: 0.5}
-    oldSize: {x: 1.4375, y: 1.375}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
