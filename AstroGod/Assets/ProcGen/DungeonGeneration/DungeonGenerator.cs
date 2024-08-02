@@ -34,8 +34,8 @@ public class DungeonGenerator : MapGenerator
     [SerializeField] private int minLength = 10;
 
     // Padding refers to the number of layers of filled cells around a room
-    [SerializeField] private int maxRoomMargin = 1;
-    [SerializeField] private int maxRoomPad = 10;
+    [SerializeField] private int minRoomMargin = 1;
+    [SerializeField] private int maxRoomMargin = 10;
 
     // Cost of pathing through filled cells
     [SerializeField, Range(0, 10)] private int wallCost = 5;
@@ -50,6 +50,8 @@ public class DungeonGenerator : MapGenerator
     [SerializeField] private int maxPathPad = 2;
 
     private System.Random rng;
+
+    [SerializeField] private RoomGenerator roomGenerator;
 
     public override void Generate()
     {
@@ -72,22 +74,52 @@ public class DungeonGenerator : MapGenerator
         
         rng = new System.Random(seed.GetHashCode());
 
-        // Create a room occupying the full dungeon space and recursively split it into smaller rooms
-        List<Room> rooms = new List<Room>();
-        var startRoom = new Room(0, 0, width, height, this);
-        startRoom.Split(iterations, rooms, rng);
+        // Recursively split partitions using BSP algorithm
+        List<Partition> partitions = new List<Partition>();
+        var basePartition = new Partition(0, 0, width, height, this);
+        basePartition.Split(iterations, partitions, rng);
 
-        foreach (var room in rooms)
+        // Create Rooms within partitions
+        foreach (var partition in partitions)
         {
-            CreateRoom(room);
+            var roomCells = CreateRoom(partition);
+            roomGenerator.GenerateRoomContent(roomCells);
         }
-        ConnectRooms(rooms);
 
+        // Create corridors to connect rooms
+        ConnectRooms(partitions);
 
         // Determine tiles to place at each cell based on the boolean grid
         TileType[,] tileGrid = BuildRooms(grid);
 
         mapDisplay.DisplayMap(tileGrid);
+    }
+
+    // Given a BSP-generated partition, create a Room
+    private List<Vector2Int> CreateRoom(Partition partition)
+    {
+        // The maximum margin that will not cause the room to become smaller than the minimum room size
+        int maxMarginX = Math.Max(minRoomMargin, Math.Min(maxRoomMargin, (partition.width - minLength) / 2));
+        int maxMarginY = Math.Max(minRoomMargin, Math.Min(maxRoomMargin, (partition.height - minLength) / 2));
+        
+        // Add a random margin within the partition, within which the Room will be created
+        int marginX = rng.Next(minRoomMargin, maxMarginX + 1);
+        int marginY = rng.Next(minRoomMargin, maxMarginY + 1);
+
+        // List of cells belonging to the new Room
+        List<Vector2Int> roomCells = new List<Vector2Int>();
+
+        for (int x = partition.x + marginX; x < partition.x + partition.width - marginX; x++)
+        {
+            for (int y = partition.y + marginY; y < partition.y + partition.height - marginY; y++)
+            {
+                roomCells.Add(new Vector2Int(x, y));
+                // Update the grid by marking the Room's cells as traversable
+                grid[x, y] = false;
+            }
+        }
+
+        return roomCells;
     }
 
     private TileType[,] BuildRooms(bool[,] grid)
@@ -135,29 +167,12 @@ public class DungeonGenerator : MapGenerator
         return tileGrid;
     }
 
-    private void CreateRoom(Room room)
-    {
-        // The maximum margin that will not cause the room to become smaller than the minimum room size
-        int maxMarginX = Math.Max(maxRoomMargin, Math.Min(maxRoomPad, (room.width - minLength) / 2));
-        int maxMarginY = Math.Max(maxRoomMargin, Math.Min(maxRoomPad, (room.height - minLength) / 2));
 
-        int marginX = rng.Next(maxRoomMargin, maxMarginX + 1);
-        int marginY = rng.Next(maxRoomMargin, maxMarginY + 1);
-
-        for (int x = room.x + marginX; x < room.x + room.width - marginX; x++)
-        {
-            for (int y = room.y + marginY; y < room.y + room.height - marginY; y++)
-            {
-                grid[x, y] = false;
-            }
-        }
-    }
-
-    private void ConnectRooms(List<Room> rooms)
+    private void ConnectRooms(List<Partition> rooms)
     {
         // Initially, all rooms are disconnected
-        List<Room> disconnectedRooms = rooms.ToList();
-        List<Room> connectedRooms = new List<Room>();
+        List<Partition> disconnectedRooms = rooms.ToList();
+        List<Partition> connectedRooms = new List<Partition>();
         var startRoom = RandomUtils.RandomSelect(rooms, rng);
         disconnectedRooms.Remove(startRoom);
         connectedRooms.Add(startRoom);
@@ -165,8 +180,8 @@ public class DungeonGenerator : MapGenerator
         // Repeatedly connect rooms until all rooms are connected
         while (disconnectedRooms.Count > 0)
         {
-            Room disconnectedRoom = RandomUtils.RandomSelect(disconnectedRooms, rng);
-            Room connectedRoom = RandomUtils.RandomSelect(connectedRooms, rng);
+            Partition disconnectedRoom = RandomUtils.RandomSelect(disconnectedRooms, rng);
+            Partition connectedRoom = RandomUtils.RandomSelect(connectedRooms, rng);
 
             CreatePath(disconnectedRoom.Center, connectedRoom.Center);
             disconnectedRooms.Remove(disconnectedRoom);
@@ -182,7 +197,7 @@ public class DungeonGenerator : MapGenerator
 
         int pathPad = rng.Next(minPathPad, maxPathPad + 1);
 
-        // Place a floor at all cells in the path
+        // Mark all cells in the path as traversable
         foreach (var cell in path)
         {
             for (int x = cell.x - pathPad; x <= cell.x + pathPad; x++)
@@ -195,7 +210,7 @@ public class DungeonGenerator : MapGenerator
         }
     }
 
-    public class Room
+    public class Partition
     {
         private readonly DungeonGenerator generator;
 
@@ -213,7 +228,7 @@ public class DungeonGenerator : MapGenerator
         private int MinSplitY => y + (int)(generator.minSplitRatio * height);
         private int MaxSplitY => y + (int)(generator.maxSplitRatio * height);
 
-        public Room(int x, int y, int width, int height, DungeonGenerator generator)
+        public Partition(int x, int y, int width, int height, DungeonGenerator generator)
         {
             this.generator = generator;
             this.x = x;
@@ -223,7 +238,7 @@ public class DungeonGenerator : MapGenerator
         }
 
         // Recursively split itself into smaller rooms using binary space partitioning
-        public void Split(int iterations, List<Room> rooms, System.Random rng)
+        public void Split(int iterations, List<Partition> rooms, System.Random rng)
         {
             rooms.Add(this);
 
@@ -258,25 +273,25 @@ public class DungeonGenerator : MapGenerator
             }
         }
 
-        private void HorizontalSplit(int iterations, List<Room> rooms, System.Random rng)
+        private void HorizontalSplit(int iterations, List<Partition> rooms, System.Random rng)
         {
             // Pick a random y position to split at
             int splitY = rng.Next(MinSplitY, MaxSplitY);
 
-            var topRoom = new Room(x, splitY, width, y + height - splitY, generator);
-            var bottomRoom = new Room(x, y, width, splitY - y, generator);
+            var topRoom = new Partition(x, splitY, width, y + height - splitY, generator);
+            var bottomRoom = new Partition(x, y, width, splitY - y, generator);
 
             topRoom.Split(iterations - 1, rooms, rng);
             bottomRoom.Split(iterations - 1, rooms, rng);
         }
 
-        private void VerticalSplit(int iterations, List<Room> rooms, System.Random rng)
+        private void VerticalSplit(int iterations, List<Partition> rooms, System.Random rng)
         {
             // Pick a random x position to split at
             int splitX = rng.Next(MinSplitX, MaxSplitX);
 
-            var leftRoom = new Room(x, y, splitX - x, height, generator);
-            var rightRoom = new Room(splitX, y, x + width - splitX, height, generator);
+            var leftRoom = new Partition(x, y, splitX - x, height, generator);
+            var rightRoom = new Partition(splitX, y, x + width - splitX, height, generator);
 
             leftRoom.Split(iterations - 1, rooms, rng);
             rightRoom.Split(iterations - 1, rooms, rng);

@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &5134937217819191343
+--- !u!1 &4459128138549224017
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,9 +8,9 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6817724202773249827}
-  - component: {fileID: 2560865851361612864}
-  - component: {fileID: 4229612683905405313}
+  - component: {fileID: 8300015863554343740}
+  - component: {fileID: 8360686622458280596}
+  - component: {fileID: 4503578549749334596}
   m_Layer: 0
   m_Name: DungeonGenerator
   m_TagString: Untagged
@@ -18,28 +18,28 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6817724202773249827
+--- !u!4 &8300015863554343740
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5134937217819191343}
+  m_GameObject: {fileID: 4459128138549224017}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.15680882, y: 0.032284167, z: -0.0031822994}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2560865851361612864
+--- !u!114 &8360686622458280596
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5134937217819191343}
+  m_GameObject: {fileID: 4459128138549224017}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7226f5c416674f24e90369f4a1f01052, type: 3}
@@ -49,20 +49,33 @@ MonoBehaviour:
   height: 128
   iterations: 4
   seed: 0
-  mapDisplay: {fileID: 4229612683905405313}
---- !u!114 &4229612683905405313
+  useRandomSeed: 1
+  mapDisplay: {fileID: 4503578549749334596}
+  minSplitRatio: 0.35
+  maxSplitRatio: 0.65
+  minAspectRatio: 0.8
+  maxAspectRatio: 1.2
+  minLength: 10
+  maxRoomMargin: 1
+  maxRoomPad: 10
+  wallCost: 10
+  emptyCost: 2
+  turnCost: 10
+  minPathPad: 0
+  maxPathPad: 0
+--- !u!114 &4503578549749334596
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5134937217819191343}
+  m_GameObject: {fileID: 4459128138549224017}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a34f70708e5371b4084310d66d2539ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   tilemap: {fileID: 0}
-  position: {x: 0, y: 0}
+  position: {x: -64, y: -64}
   floorTile: {fileID: 11400000, guid: 5fb69844e73f3de45abe4d879c5614f1, type: 2}
   wallTile: {fileID: 11400000, guid: 326fabe9809ab824584a2e6d3f74e444, type: 2}

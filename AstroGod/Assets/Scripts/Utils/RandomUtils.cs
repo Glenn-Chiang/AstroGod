@@ -40,10 +40,10 @@ public static class RandomUtils
 }
 
 [Serializable]
-public readonly struct WeightedElement<T>
+public struct WeightedElement<T>
 {
-    public readonly T element;
-    public readonly float weight;
+    public T element;
+    public float weight;
 
     public WeightedElement(T element, float weight)
     {
