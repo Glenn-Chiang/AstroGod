@@ -17,6 +17,8 @@ public abstract class CaveGenerator : MapGenerator
 
     [SerializeField] private MapDisplay mapDisplay;
 
+    [SerializeField] private EntitySpawner entitySpawner;
+
     public override void Generate()
     {
         if (useRandomSeed)
@@ -24,7 +26,25 @@ public abstract class CaveGenerator : MapGenerator
             seed = Time.time.ToString();
         }
         System.Random rng = new(seed.GetHashCode());
+        
         var map = GenerateMap(rng);
+
+        // Get a list of the empty cells on the map
+        List<Vector2Int> emptyCells = new List<Vector2Int>();
+        for (int x = 0; x < width; x++)
+        {
+            for (int y = 0; y < height; y++)
+            {
+                if (!map[x,y])
+                {
+                    emptyCells.Add(new Vector2Int(x, y));
+                }
+            }
+        }
+
+        // Spawn entities within the empty areas
+        entitySpawner.Spawn(emptyCells);
+
         mapDisplay.DisplayMap(map);
     }
 
@@ -63,10 +83,22 @@ public abstract class CaveGenerator : MapGenerator
     protected int CountFilledNeighbors(int x, int y, bool[,] map)
     {
         int count = 0;
-        var neighbors = GetNeighbors(x, y, map);
-        foreach (var neighbor in neighbors)
+
+        for (int neighborX = x - 1; neighborX <= x + 1; neighborX++)
         {
-            count += map[neighbor.x, neighbor.y] ? 1 : 0;
+            for (int neighborY = y - 1; neighborY <= y + 1; neighborY++)
+            {
+                if (x == neighborX && y == neighborY) continue;
+
+                // Cells outside the map bounds are counted as filled
+                if (!InBounds(neighborX, neighborY, map))
+                {
+                    count++;
+                } else
+                {
+                    count += map[neighborX, neighborY] ? 1 : 0;
+                }
+            }
         }
         return count;
     }

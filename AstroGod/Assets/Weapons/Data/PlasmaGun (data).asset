@@ -20,4 +20,4 @@ MonoBehaviour:
   <Damage>k__BackingField: 10
   <Controller>k__BackingField: {fileID: 4359018999685052032, guid: 7b565350787cdb141a7750e3ec5a58f3, type: 3}
   <ProjectilePrefab>k__BackingField: {fileID: 9099230748001107220, guid: 12482771b90e3a1479ab4a0f79ba4fa7, type: 3}
-  <FirePower>k__BackingField: 40
+  <FirePower>k__BackingField: 15

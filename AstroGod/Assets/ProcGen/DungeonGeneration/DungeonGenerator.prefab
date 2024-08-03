@@ -48,7 +48,7 @@ MonoBehaviour:
   width: 128
   height: 128
   iterations: 4
-  seed: 0
+  seed: 141.991
   useRandomSeed: 1
   mapDisplay: {fileID: 4503578549749334596}
   minSplitRatio: 0.35
@@ -56,13 +56,14 @@ MonoBehaviour:
   minAspectRatio: 0.8
   maxAspectRatio: 1.2
   minLength: 10
-  maxRoomMargin: 1
-  maxRoomPad: 10
+  minRoomMargin: 2
+  maxRoomMargin: 10
   wallCost: 10
   emptyCost: 2
   turnCost: 10
   minPathPad: 0
   maxPathPad: 0
+  roomGenerator: {fileID: 0}
 --- !u!114 &4503578549749334596
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -51,7 +51,7 @@ public class DungeonGenerator : MapGenerator
 
     private System.Random rng;
 
-    [SerializeField] private RoomGenerator roomGenerator;
+    [SerializeField] private EntitySpawner roomGenerator;
 
     public override void Generate()
     {
@@ -83,7 +83,7 @@ public class DungeonGenerator : MapGenerator
         foreach (var partition in partitions)
         {
             var roomCells = CreateRoom(partition);
-            roomGenerator.GenerateRoomContent(roomCells);
+            roomGenerator.Spawn(roomCells);
         }
 
         // Create corridors to connect rooms

@@ -12,7 +12,7 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] private float fireInterval = 0.8f;
     private float fireTimer;
      
-    private float minDistance = 5;
+    [SerializeField] private float minDistance = 2;
 
     private enum State
     {

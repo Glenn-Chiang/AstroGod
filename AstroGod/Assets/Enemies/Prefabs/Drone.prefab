@@ -45,10 +45,10 @@ GameObject:
   - component: {fileID: -2460733604001354508}
   - component: {fileID: 7055736811395942934}
   - component: {fileID: 4503548857600664606}
-  - component: {fileID: 9151204077207983213}
   - component: {fileID: 1472493149772129871}
   - component: {fileID: 2564450688449151234}
   - component: {fileID: 5574259186622726190}
+  - component: {fileID: 5778203580371204566}
   m_Layer: 6
   m_Name: Drone
   m_TagString: Untagged
@@ -134,7 +134,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6822606531031424726}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -226,19 +226,6 @@ MonoBehaviour:
   data: {fileID: 11400000, guid: 5836858fc2d477d4483e4af906c2870a, type: 2}
   healthManager: {fileID: 7055736811395942934}
   xpDropper: {fileID: 2564450688449151234}
---- !u!114 &9151204077207983213
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6822606531031424726}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b93cc011555e179419f8e83760ca587d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rb: {fileID: 8469505791057516600}
 --- !u!114 &1472493149772129871
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -251,9 +238,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6ea2b0241481a04087ec4d9ae2a2954, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movement: {fileID: 9151204077207983213}
+  movement: {fileID: 5778203580371204566}
   weaponManager: {fileID: 5574259186622726190}
   fireInterval: 0.8
+  minDistance: 2
 --- !u!114 &2564450688449151234
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -284,6 +272,19 @@ MonoBehaviour:
   weapons:
   - {fileID: 11400000, guid: b143c97ee31d0c748a27f85b4de1cf2b, type: 2}
   ammoManager: {fileID: 0}
+--- !u!114 &5778203580371204566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6822606531031424726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db4f02afa18b8064d870264926798a9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 8469505791057516600}
 --- !u!1001 &5335240364657220551
 PrefabInstance:
   m_ObjectHideFlags: 0
