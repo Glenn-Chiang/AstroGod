@@ -12,8 +12,18 @@ public class WeaponManager : MonoBehaviour
     private int selectedIndex = 0;
     public WeaponData SelectedWeapon => weapons.Count > 0 ? weapons[selectedIndex] : null;
     private WeaponController equippedWeapon;
+    public WeaponController EquippedWeapon => equippedWeapon;
 
     [SerializeField] private AmmoManager ammoManager; // Can be null to effectively allow infinite ammo
+
+    private void Awake()
+    {
+        // Equip first weapon by default
+        if (weapons.Count >= 0)
+        {
+            EquipWeapon(0);
+        }
+    }
 
     public void FireWeapon()
     {
@@ -23,12 +33,7 @@ public class WeaponManager : MonoBehaviour
         }
     }
 
-    private void EquipWeapon()
-    {
-        equippedWeapon = Instantiate(SelectedWeapon.Controller, weaponSlot);
-    }
-
-    public void SelectWeapon(int index)
+    public void EquipWeapon(int index)
     {
         if (index < 0 || index >= weapons.Count) return; // Invalid index
 
@@ -42,8 +47,7 @@ public class WeaponManager : MonoBehaviour
         }
 
         selectedIndex = index;
-        EquipWeapon();
-
+        equippedWeapon = Instantiate(SelectedWeapon.Controller, weaponSlot);
     }
 
     public void SelectNextWeapon()
@@ -52,12 +56,12 @@ public class WeaponManager : MonoBehaviour
 
         if (selectedIndex < weapons.Count - 1)
         {
-            SelectWeapon(selectedIndex + 1);
+            EquipWeapon(selectedIndex + 1);
             return;
         }
         if (selectedIndex == weapons.Count - 1)
         {
-            SelectWeapon(0);
+            EquipWeapon(0);
             return;
         }
     }
@@ -68,19 +72,14 @@ public class WeaponManager : MonoBehaviour
 
         if (selectedIndex > 0)
         {
-            SelectWeapon(selectedIndex - 1);
+            EquipWeapon(selectedIndex - 1);
             return;
         }
         if (selectedIndex == 0)
         {
-            SelectWeapon(weapons.Count - 1);
+            EquipWeapon(weapons.Count - 1);
             return;
         }
-    }
-
-    public void SelectRandomWeapon()
-    {
-        SelectWeapon(UnityEngine.Random.Range(0, weapons.Count));
     }
 
     public bool AddWeapon(WeaponData weapon)

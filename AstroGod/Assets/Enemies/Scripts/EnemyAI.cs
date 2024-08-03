@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class EnemyAI : MonoBehaviour
 {
-    [SerializeField] private Movement movement;
+    [SerializeField] private RoamingMovement movement;
 
-    [SerializeField] private WeaponController weaponController;
+    [SerializeField] private WeaponManager weaponManager;
+    private WeaponController EquippedWeapon => weaponManager.EquippedWeapon;
 
     [SerializeField] private float fireInterval = 0.8f;
     private float fireTimer;
-
+     
     private float minDistance = 5;
 
     private enum State
@@ -52,7 +53,7 @@ public class EnemyAI : MonoBehaviour
                 fireTimer -= Time.deltaTime;
                 if (fireTimer <= 0)
                 {
-                    weaponController.HandleFire();
+                    EquippedWeapon.HandleFire();
                     fireTimer = fireInterval;
                 }
                 break;
@@ -63,16 +64,16 @@ public class EnemyAI : MonoBehaviour
     {
         Vector2 aimDir = (target.transform.position - transform.position).normalized;
         float angle = Mathf.Atan2(aimDir.y, aimDir.x) * Mathf.Rad2Deg;
-        weaponController.transform.eulerAngles = new Vector3(0, 0, angle);
+        EquippedWeapon.transform.eulerAngles = new Vector3(0, 0, angle);
     }
 
-    public void OnEnterAggroRadius(GameObject obj)
+    public void EnterAggro(GameObject obj)
     {
         state = State.Aggro;
         target = obj;
     }
 
-    public void OnExitAggroRadius()
+    public void ExitAggro()
     {
         state = State.Idle;
         target = null;

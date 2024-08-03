@@ -16,7 +16,7 @@ public class MeleeWeaponController : WeaponController
         {
             if (target.TryGetComponent<IDamageable>(out var damageableTarget))
             {
-                damageableTarget.TakeDamage(Damage);
+                damageableTarget.TakeDamage(WeaponData.Damage);
             }
         }
     }

@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: -1685792560832141545}
   - component: {fileID: 4359018999685052032}
   m_Layer: 0
-  m_Name: DroneGun (model).cs
+  m_Name: DroneGun (model)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -57,7 +57,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6432967644001070904}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0.16546595, w: 0.98621553}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

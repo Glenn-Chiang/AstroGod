@@ -15,10 +15,9 @@ MonoBehaviour:
   <Name>k__BackingField: Drone Gun
   <Icon>k__BackingField: {fileID: 1019998595, guid: c3331c0fc27826b499bf4ccee59090f8, type: 3}
   <Description>k__BackingField: Basic enemy weapon
-  <PickUpPrefab>k__BackingField: {fileID: 0}
-  <ModelPrefab>k__BackingField: {fileID: 6432967644001070904, guid: 0d1c7357b55445b4e97d4d309f7f85dc, type: 3}
-  <BaseFireRate>k__BackingField: 0.1
-  <BaseDamage>k__BackingField: 5
-  <ProjectilePrefab>k__BackingField: {fileID: 9099230748001107220, guid: 8cdcbf6d4ba25934d924dbf2f16dfe04, type: 3}
   <AmmoCost>k__BackingField: 1
+  <FireRate>k__BackingField: 0.1
+  <Damage>k__BackingField: 10
+  <Controller>k__BackingField: {fileID: 4359018999685052032, guid: 0d1c7357b55445b4e97d4d309f7f85dc, type: 3}
+  <ProjectilePrefab>k__BackingField: {fileID: 9099230748001107220, guid: 8cdcbf6d4ba25934d924dbf2f16dfe04, type: 3}
   <FirePower>k__BackingField: 15

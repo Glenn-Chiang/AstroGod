@@ -12,7 +12,6 @@ public class GunController : WeaponController
         // If ammoManager is null, we will treat the weapon as having no ammo cost / infinite ammo
         if (ammoManager != null && !ammoManager.ConsumeAmmo(weaponData.AmmoCost))
         {
-            Debug.Log("Insufficient ammo");
             return;
         }
         Shoot();
@@ -24,7 +23,7 @@ public class GunController : WeaponController
         var projectile = Instantiate(weaponData.ProjectilePrefab, firePoint.position, firePoint.rotation);
         var projectileRb = projectile.GetComponent<Rigidbody2D>();
         projectileRb.AddForce(weaponData.FirePower * firePoint.right, ForceMode2D.Impulse);
-        projectile.damage = Damage;
+        projectile.damage = WeaponData.Damage;
 
     }
 }

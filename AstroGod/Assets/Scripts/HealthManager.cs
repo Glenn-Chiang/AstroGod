@@ -14,6 +14,8 @@ public class HealthManager : ResourceManager, IDamageable
 
     public event EventHandler OnDeath;
 
+    [SerializeField] private bool invincible = false;
+
     private void Start()
     {
         character = GetComponent<ICharacter>();
@@ -22,6 +24,8 @@ public class HealthManager : ResourceManager, IDamageable
 
     public void TakeDamage(float damage)
     {
+        if (invincible) return;
+
         if (damage < Health)
         {
             Health -= damage;

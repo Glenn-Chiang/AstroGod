@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class Movement : MonoBehaviour
+public class RoamingMovement : MonoBehaviour
 {
     private readonly float minRoamDistance = 2;
     private readonly float maxRoamDistance = 10;

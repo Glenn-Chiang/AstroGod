@@ -8,7 +8,7 @@ public class EnemyAggroRadius : MonoBehaviour
     {
         if (collider.CompareTag("Player"))
         {
-            enemyAI.OnEnterAggroRadius(collider.gameObject);
+            enemyAI.EnterAggro(collider.gameObject);
         }
     }
 
@@ -16,7 +16,7 @@ public class EnemyAggroRadius : MonoBehaviour
     {
         if (collider.CompareTag("Player"))
         {
-            enemyAI.OnExitAggroRadius();
+            enemyAI.ExitAggro();
         }
     }
 }

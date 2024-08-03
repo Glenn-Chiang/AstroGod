@@ -4,8 +4,6 @@ using UnityEngine;
 public abstract class WeaponController : MonoBehaviour
 {
     protected abstract WeaponData WeaponData { get; }
-    protected float Damage => WeaponData.Damage;
-    private float FireRate => WeaponData.FireRate;
 
     public AmmoManager ammoManager;
 
@@ -24,7 +22,7 @@ public abstract class WeaponController : MonoBehaviour
     private IEnumerator CoolDown()
     {
         canFire = false;
-        yield return new WaitForSeconds(FireRate);
+        yield return new WaitForSeconds(WeaponData.FireRate);
         canFire = true;
     }
 }

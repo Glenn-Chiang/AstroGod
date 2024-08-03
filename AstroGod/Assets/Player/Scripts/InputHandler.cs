@@ -37,7 +37,7 @@ public class InputHandler : MonoBehaviour
         // Switching weapons
         if (GetNumberInput(out int number))
         {
-            player.WeaponManager.SelectWeapon(number - 1);
+            player.WeaponManager.EquipWeapon(number - 1);
         }
         if (Input.mouseScrollDelta.y > 0)
         {
