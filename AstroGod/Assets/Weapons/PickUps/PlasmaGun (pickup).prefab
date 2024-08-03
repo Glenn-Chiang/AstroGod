@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5724637082669580684}
   - component: {fileID: 7908784711722237597}
   - component: {fileID: -4102184151727635627}
-  - component: {fileID: 2217562875282023586}
+  - component: {fileID: 8339921654432759005}
   m_Layer: 0
   m_Name: PlasmaGun (pickup)
   m_TagString: Weapon
@@ -131,7 +131,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.91568995, y: 0.70491487}
   m_EdgeRadius: 0
---- !u!114 &2217562875282023586
+--- !u!114 &8339921654432759005
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -140,7 +140,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8423891170393552728}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 07c7e08dfc320044fa4458018fe20132, type: 3}
+  m_Script: {fileID: 11500000, guid: 2c0670b7c859252428b28979b314cdf2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data: {fileID: 11400000, guid: 00d0acc3cb9490d499b975619ad6a463, type: 2}
+  weapon: {fileID: 11400000, guid: 00d0acc3cb9490d499b975619ad6a463, type: 2}

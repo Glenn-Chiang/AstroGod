@@ -97,8 +97,8 @@ GameObject:
   - component: {fileID: 7477701425574513819}
   - component: {fileID: 8041422952923844085}
   - component: {fileID: 6793941510301399174}
-  - component: {fileID: 4772484965829379629}
   - component: {fileID: 4952203065316658152}
+  - component: {fileID: 6152090502554664838}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -304,18 +304,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f15329778cc7fc4aa3cd5087aa2c727, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &4772484965829379629
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3892431038457549735}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19ebd0e8163af784b99ff9750cbc8326, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &4952203065316658152
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -328,6 +316,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca4afa1b317e7d64b97205d6e69d8940, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6152090502554664838
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3892431038457549735}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b3ab3acc6bffea40aca9e1e0c260777, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponSlot: {fileID: 5405285971975847010}
+  weaponLimit: 3
+  weapons: []
+  ammoManager: {fileID: 8041422952923844085}
 --- !u!1 &4083453597905947850
 GameObject:
   m_ObjectHideFlags: 0
@@ -337,7 +341,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5405285971975847010}
-  - component: {fileID: 6062739348008906581}
   m_Layer: 3
   m_Name: WeaponSlot
   m_TagString: Untagged
@@ -360,15 +363,3 @@ Transform:
   m_Children: []
   m_Father: {fileID: 6557674993341676727}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6062739348008906581
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4083453597905947850}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad515eff76b559943b4581019a1bda94, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

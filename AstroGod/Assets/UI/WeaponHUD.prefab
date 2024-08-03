@@ -86,7 +86,7 @@ GameObject:
   - component: {fileID: 5939677876871103505}
   - component: {fileID: 1995560009589767778}
   - component: {fileID: 5048131791925482306}
-  - component: {fileID: 5408326233975024291}
+  - component: {fileID: 8317821511311867539}
   m_Layer: 5
   m_Name: WeaponHUD
   m_TagString: Untagged
@@ -153,7 +153,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &5408326233975024291
+--- !u!114 &8317821511311867539
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -162,9 +162,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 5039151079137949964}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc10e4c6e2c41274dbed6c9553a26938, type: 3}
+  m_Script: {fileID: 11500000, guid: b54d4cd85b249eb4a91c7624f0ac7e1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponManager: {fileID: 0}
   iconImage: {fileID: 7104792201141719966}
   nameText: {fileID: 3864444517711709319}
 --- !u!1 &6130961732609461181

@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class InputHandler : MonoBehaviour
@@ -21,16 +22,33 @@ public class InputHandler : MonoBehaviour
     {
         if (isGameOver) return;
 
+        // Interaction
         if (Input.GetKeyDown(KeyCode.E))
         {
             player.InteractSystem.Interact();
         }
 
+        // Firing
         if (Input.GetButtonDown("Fire1"))
         {
-            player.WeaponEquip.FireWeapon();
+            player.WeaponManager.FireWeapon();
         }
 
+        // Switching weapons
+        if (GetNumberInput(out int number))
+        {
+            player.WeaponManager.SelectWeapon(number - 1);
+        }
+        if (Input.mouseScrollDelta.y > 0)
+        {
+            player.WeaponManager.SelectNextWeapon();
+        }
+        if (Input.mouseScrollDelta.y < 0)
+        {
+            player.WeaponManager.SelectPrevWeapon();
+        }
+
+        // Movement
         HandleMovementInputs();
     }
 
@@ -49,17 +67,18 @@ public class InputHandler : MonoBehaviour
         }
     }
 
-
-    private int GetNumberInput()
+    private bool GetNumberInput(out int number)
     {
         KeyCode[] numberKeys = { KeyCode.Alpha1, KeyCode.Alpha2, KeyCode.Alpha3, KeyCode.Alpha4, KeyCode.Alpha5, KeyCode.Alpha6, KeyCode.Alpha7, KeyCode.Alpha8, KeyCode.Alpha9 };
         for (int i = 0; i < numberKeys.Length; i++)
         {
             if (Input.GetKeyDown(numberKeys[i]))
             {
-                return i + 1;
+                number = i + 1;
+                return true;
             }
         }
-        return -1;
+        number = -1;
+        return false;
     }
 }

@@ -10,7 +10,7 @@ public class WeaponManager : MonoBehaviour
 
     [SerializeField] private List<WeaponData> weapons;
     private int selectedIndex = 0;
-    public WeaponData SelectedWeapon => weapons[selectedIndex];
+    public WeaponData SelectedWeapon => weapons.Count > 0 ? weapons[selectedIndex] : null;
     private WeaponController equippedWeapon;
 
     [SerializeField] private AmmoManager ammoManager; // Can be null to effectively allow infinite ammo
@@ -31,11 +31,14 @@ public class WeaponManager : MonoBehaviour
     public void SelectWeapon(int index)
     {
         if (index < 0 || index >= weapons.Count) return; // Invalid index
-        if (index == selectedIndex) return; // Already selected
 
         if (equippedWeapon != null)
         {
-            Destroy(equippedWeapon.gameObject); // Remove currently selected weapon
+            if (index == selectedIndex) return; // Already equipped same weapon
+            else
+            {
+                Destroy(equippedWeapon.gameObject); // Unequip currently equipped weapon
+            }
         }
 
         selectedIndex = index;

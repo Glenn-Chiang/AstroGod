@@ -6,7 +6,7 @@ public class WeaponPickUp : Interactable
 
     public override void OnInteract(GameObject interactor)
     {
-        if (TryGetComponent<WeaponManager>(out var weaponManager) && weaponManager.AddWeapon(weapon))
+        if (interactor.TryGetComponent<WeaponManager>(out var weaponManager) && weaponManager.AddWeapon(weapon))
         {
             Destroy(gameObject);   
         }

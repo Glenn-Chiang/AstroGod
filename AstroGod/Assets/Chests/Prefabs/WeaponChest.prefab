@@ -99,9 +99,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemPrefabs:
-  - element: {fileID: 2217562875282023586, guid: da53f507e1bcd0046bb64c8921d2e8a6, type: 3}
+  - element: {fileID: 8423891170393552728, guid: da53f507e1bcd0046bb64c8921d2e8a6, type: 3}
     weight: 0.8
-  - element: {fileID: 2096185098189556018, guid: 37f7e256baffab64c81b04afff5758a5, type: 3}
+  - element: {fileID: 9140609486032140464, guid: 37f7e256baffab64c81b04afff5758a5, type: 3}
     weight: 0.2
   openedChestPrefab: {fileID: 4314457260397914147, guid: 17d7b55cbdc8d0840954d6c4457c6074, type: 3}
 --- !u!61 &-1347643241888614628

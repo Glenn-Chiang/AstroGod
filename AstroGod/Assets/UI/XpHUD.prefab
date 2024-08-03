@@ -322,7 +322,7 @@ GameObject:
   - component: {fileID: 4468266484382787950}
   - component: {fileID: 1327042999481965338}
   - component: {fileID: 1486393910309191809}
-  - component: {fileID: 6742178891432440098}
+  - component: {fileID: 1369595342059018195}
   m_Layer: 5
   m_Name: XpHUD
   m_TagString: Untagged
@@ -389,7 +389,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &6742178891432440098
+--- !u!114 &1369595342059018195
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -398,12 +398,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 6506410022334462044}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 32eb81e072a23b64192ba8439e43b739, type: 3}
+  m_Script: {fileID: 11500000, guid: 5b84754cf594d37429e2053562694cda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  xpManager: {fileID: 0}
+  resourceManager: {fileID: 0}
   slider: {fileID: 7342705618908198372}
-  levelDisplay: {fileID: 6482900883018379123}
 --- !u!1 &8001586862863778447
 GameObject:
   m_ObjectHideFlags: 0

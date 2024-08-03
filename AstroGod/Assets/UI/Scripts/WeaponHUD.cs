@@ -26,6 +26,4 @@ public class WeaponHUD : MonoBehaviour
             iconImage.enabled = true;
         }
     }
-
- 
 }

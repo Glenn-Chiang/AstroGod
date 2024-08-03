@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour, ICharacter
     public AmmoManager AmmoManager { get; private set; }
     public XPManager XPManager { get; private set; }
 
-    public WeaponManager WeaponEquip { get; private set; }
+    public WeaponManager WeaponManager { get; private set; }
 
     public static event EventHandler OnPlayerDeath;
 
@@ -41,7 +41,7 @@ public class PlayerController : MonoBehaviour, ICharacter
         HealthManager.OnDeath += HandleDeath;
 
         AmmoManager = GetComponent<AmmoManager>();
-        WeaponEquip = GetComponentInChildren<WeaponManager>();
+        WeaponManager = GetComponent<WeaponManager>();
 
         XPManager = GetComponent<XPManager>();
         XPManager.OnLevelUp += HandleLevelUp;
