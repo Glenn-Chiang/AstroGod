@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour, ICharacter, IArmable
+public class PlayerController : MonoBehaviour, ICharacter
 {
     public static PlayerController Instance { get; private set; }
 
@@ -18,10 +18,7 @@ public class PlayerController : MonoBehaviour, ICharacter, IArmable
     public AmmoManager AmmoManager { get; private set; }
     public XPManager XPManager { get; private set; }
 
-    public PlayerInventoryManager InventoryManager { get; private set; }
-    InstanceInventory<IWeapon> IArmable.WeaponInventory => InventoryManager.weaponInventory;
-    
-    public WeaponEquip WeaponEquip { get; private set; }
+    public WeaponManager WeaponEquip { get; private set; }
 
     public static event EventHandler OnPlayerDeath;
 
@@ -37,7 +34,6 @@ public class PlayerController : MonoBehaviour, ICharacter, IArmable
 
         Stats = new(data);
         InteractSystem = GetComponentInChildren<InteractionManager>();
-        InventoryManager = GetComponent<PlayerInventoryManager>();
         
         Movement = GetComponent<PlayerMovement>();
         
@@ -45,7 +41,7 @@ public class PlayerController : MonoBehaviour, ICharacter, IArmable
         HealthManager.OnDeath += HandleDeath;
 
         AmmoManager = GetComponent<AmmoManager>();
-        WeaponEquip = GetComponentInChildren<WeaponEquip>();
+        WeaponEquip = GetComponentInChildren<WeaponManager>();
 
         XPManager = GetComponent<XPManager>();
         XPManager.OnLevelUp += HandleLevelUp;

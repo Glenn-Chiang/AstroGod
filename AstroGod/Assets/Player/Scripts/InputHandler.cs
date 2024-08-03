@@ -32,7 +32,6 @@ public class InputHandler : MonoBehaviour
         }
 
         HandleMovementInputs();
-        HandleInventoryInputs();
     }
 
     private void HandleMovementInputs()
@@ -50,35 +49,6 @@ public class InputHandler : MonoBehaviour
         }
     }
 
-    private void HandleInventoryInputs()
-    {
-        int numberInput = GetNumberInput();
-        if (numberInput != -1)
-        {
-            player.InventoryManager.SelectItem(numberInput - 1);
-        }
-
-        if (Input.GetKeyDown(KeyCode.G))
-        {
-            player.InventoryManager.DropItemFromInventory();
-        }
-
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            player.InventoryManager.ConsumeItem();
-        }
-
-        if (Input.GetKeyDown(KeyCode.I))
-        {
-            player.InventoryManager.ToggleInventory();
-        }
-
-        if (Input.GetKeyDown(KeyCode.Tab))
-        {
-            player.InventoryManager.SwitchInventory();
-        }
-
-    }
 
     private int GetNumberInput()
     {

@@ -377,7 +377,7 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 2059769260625647141, guid: f76f7e6707216ac4e8a8c613136ac971, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1428976760143014264}
+      addedObject: {fileID: 4235453105490752737}
   m_SourcePrefab: {fileID: 100100000, guid: f76f7e6707216ac4e8a8c613136ac971, type: 3}
 --- !u!224 &619152703465610564 stripped
 RectTransform:
@@ -400,7 +400,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2059769260625647141, guid: f76f7e6707216ac4e8a8c613136ac971, type: 3}
   m_PrefabInstance: {fileID: 5335240364657220551}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1428976760143014264
+--- !u!114 &4235453105490752737
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -409,7 +409,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6241797642287074786}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b3fc618549bc27479acd05904bde957, type: 3}
+  m_Script: {fileID: 11500000, guid: 5b84754cf594d37429e2053562694cda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   resourceManager: {fileID: 7055736811395942934}
@@ -422,10 +422,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 185946714405318648}
     m_Modifications:
-    - target: {fileID: 1385593741697648291, guid: 3fc915e4d335b134da99c45fd326bd54, type: 3}
-      propertyPath: m_Radius
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 2453998337919391008, guid: 3fc915e4d335b134da99c45fd326bd54, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -466,18 +462,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4808601005098979982, guid: 3fc915e4d335b134da99c45fd326bd54, type: 3}
+      propertyPath: enemyAI
+      value: 
+      objectReference: {fileID: 1472493149772129871}
     - target: {fileID: 8174381123413740496, guid: 3fc915e4d335b134da99c45fd326bd54, type: 3}
       propertyPath: m_Name
       value: AggroRadius
       objectReference: {fileID: 0}
-    - target: {fileID: 8174381123413740496, guid: 3fc915e4d335b134da99c45fd326bd54, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8211845645536711227, guid: 3fc915e4d335b134da99c45fd326bd54, type: 3}
-      propertyPath: enemyAI
-      value: 
-      objectReference: {fileID: 1472493149772129871}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

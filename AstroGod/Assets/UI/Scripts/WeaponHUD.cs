@@ -4,20 +4,14 @@ using UnityEngine.UI;
 
 public class WeaponHUD : MonoBehaviour
 {
-    private InstanceInventory<IWeapon> weaponInventory;
-
+    [SerializeField] private WeaponManager weaponManager;
     [SerializeField] private Image iconImage;
     [SerializeField] private TMP_Text nameText;
     private readonly string placeholderText = "No weapon";
 
-    private void Start()
-    {
-        weaponInventory = PlayerController.Instance.InventoryManager.weaponInventory;
-        
-    }
     private void Update()
     {
-        var selectedWeapon = weaponInventory.SelectedItem;
+        var selectedWeapon = weaponManager.SelectedWeapon;
 
         if (selectedWeapon == null)
         {
@@ -27,8 +21,8 @@ public class WeaponHUD : MonoBehaviour
         }
         else
         {
-            nameText.text = selectedWeapon.ItemData.Name;
-            iconImage.sprite = selectedWeapon.ItemData.Icon;
+            nameText.text = selectedWeapon.Name;
+            iconImage.sprite = selectedWeapon.Icon;
             iconImage.enabled = true;
         }
     }

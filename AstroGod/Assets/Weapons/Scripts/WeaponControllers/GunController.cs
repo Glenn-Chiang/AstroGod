@@ -7,11 +7,6 @@ public class GunController : WeaponController
     [SerializeField] private GunData weaponData;
     protected override WeaponData WeaponData => weaponData;
 
-    protected override IWeapon CreateWeaponInstance()
-    {
-        return new Gun(weaponData);
-    }
-
     protected override void Fire()
     {
         // If ammoManager is null, we will treat the weapon as having no ammo cost / infinite ammo

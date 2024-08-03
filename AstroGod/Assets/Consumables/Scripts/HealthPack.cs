@@ -1,7 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "HealthCell", menuName = "Consumable/HealthCell")]
-public class HealthCell : ConsumableItem
+public class HealthPack : Consumable
 {
     [SerializeField] private float healAmount;
 
@@ -10,7 +9,6 @@ public class HealthCell : ConsumableItem
         if (consumer.TryGetComponent<HealthManager>(out var healthManager))
         {
             healthManager.Heal(healAmount);
-            Debug.Log($"Healed {consumer.name}");
         }
     }
 }

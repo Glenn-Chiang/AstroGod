@@ -4,20 +4,12 @@ using UnityEngine;
 public abstract class WeaponController : MonoBehaviour
 {
     protected abstract WeaponData WeaponData { get; }
-    public IWeapon weaponInstance;
-    protected float Damage => weaponInstance.Damage;
-    private float FireRate => weaponInstance.FireRate;
+    protected float Damage => WeaponData.Damage;
+    private float FireRate => WeaponData.FireRate;
 
     public AmmoManager ammoManager;
 
     private bool canFire = true;
-
-    private void Awake()
-    {
-        weaponInstance = CreateWeaponInstance();
-    }
-
-    protected abstract IWeapon CreateWeaponInstance();
 
     public void HandleFire()
     {

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2453998337919391008}
   - component: {fileID: 1385593741697648291}
-  - component: {fileID: 8211845645536711227}
+  - component: {fileID: 4808601005098979982}
   m_Layer: 0
   m_Name: AggroRadius
   m_TagString: Untagged
@@ -68,7 +68,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 10
---- !u!114 &8211845645536711227
+--- !u!114 &4808601005098979982
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
